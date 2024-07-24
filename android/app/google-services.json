@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "519229435658",
+    "project_id": "pureaahar-dev",
+    "storage_bucket": "pureaahar-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519229435658:android:f4e531811258888fca94f3",
+        "android_client_info": {
+          "package_name": "com.pureaahar.vegverse.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQdO2SK_kONMsRon80JQVnD5tcPx--LFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
