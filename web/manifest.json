@@ -1,11 +1,11 @@
 {
-    "name": "Pureaahar",
-    "short_name": "Pureaahar",
+    "name": "VegVerse",
+    "short_name": "VegVerse",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "PureAahar - Aahara Suddhau Sattva Shuddhi",
+    "description": "VegVerse - Aahara Suddhau Sattva Shuddhi",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

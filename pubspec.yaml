@@ -1,25 +1,29 @@
 name: pureaahar
-description: PureAahar - Aahara Suddhau Sattva Shuddhi
+description: VegVerse - A brand of Pure Aahar
 version: 1.0.0+1
 publish_to: none
 
 environment:
-  sdk: ^3.4.0
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
-  bloc: ^8.1.4
+  dart_mappable: ^4.2.2
+  dio: ^5.5.0+1
+  firebase_auth: ^5.1.2
+  firebase_core: ^3.2.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
   flutter_localizations:
     sdk: flutter
+  hooks_riverpod: ^2.5.1
   intl: ^0.19.0
+  riverpod_annotation: ^2.3.5
 
 dev_dependencies:
-  bloc_test: ^9.1.7
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
+  riverpod_generator: ^2.4.0
   very_good_analysis: ^6.0.0
 
 flutter:
