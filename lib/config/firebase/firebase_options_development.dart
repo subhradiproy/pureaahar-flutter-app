@@ -16,9 +16,7 @@ import 'package:flutter/foundation.dart'
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
-    if (kIsWeb) {
-      return web;
-    }
+    if (kIsWeb) return web;
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
@@ -48,17 +46,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyD-Q8aH_JSHoBL0Sc3TJ-PijUVGOaZb-C0',
-    appId: '1:519229435658:web:96ba5360ed8c9822ca94f3',
+    appId: '1:519229435658:web:00f1580d99fafd14ca94f3',
     messagingSenderId: '519229435658',
     projectId: 'pureaahar-dev',
     authDomain: 'pureaahar-dev.firebaseapp.com',
     storageBucket: 'pureaahar-dev.appspot.com',
-    measurementId: 'G-NFPPF38FZR',
+    measurementId: 'G-1Q4P10KT76',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAQdO2SK_kONMsRon80JQVnD5tcPx--LFk',
-    appId: '1:519229435658:android:f4e531811258888fca94f3',
+    appId: '1:519229435658:android:b51887021a96202eca94f3',
     messagingSenderId: '519229435658',
     projectId: 'pureaahar-dev',
     storageBucket: 'pureaahar-dev.appspot.com',
@@ -66,10 +64,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDVZ3xaXSHR2FKIzRKs6wJN_0icbBcoIxM',
-    appId: '1:519229435658:ios:153455a29d00f57cca94f3',
+    appId: '1:519229435658:ios:ee5efe0e6a6ede77ca94f3',
     messagingSenderId: '519229435658',
     projectId: 'pureaahar-dev',
     storageBucket: 'pureaahar-dev.appspot.com',
-    iosBundleId: 'com.pureaahar.vegverse.app',
+    iosBundleId: 'com.vegverse.app',
   );
 }

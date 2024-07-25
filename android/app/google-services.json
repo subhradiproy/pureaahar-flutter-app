@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:519229435658:android:f4e531811258888fca94f3",
+        "mobilesdk_app_id": "1:519229435658:android:b51887021a96202eca94f3",
         "android_client_info": {
-          "package_name": "com.pureaahar.vegverse.app"
+          "package_name": "com.vegverse.app"
         }
       },
       "oauth_client": [],
