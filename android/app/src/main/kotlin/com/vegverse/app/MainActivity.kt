@@ -1,4 +1,4 @@
-package com.pureaahar.vegverse.app
+package com.vegverse.app
 
 import io.flutter.embedding.android.FlutterActivity
 
