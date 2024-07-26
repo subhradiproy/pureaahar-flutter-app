@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/extensions/theme_extensions.dart';
 import 'app_color_scheme.dart';
 
 sealed class AppTheme {
@@ -26,6 +27,8 @@ sealed class AppTheme {
         bodyColor: scheme.primary,
         displayColor: scheme.primary,
       ),
+      inputDecorationTheme:
+          const InputDecorationTheme().applyTheme(fillColor: scheme.surface),
     );
   }
 }

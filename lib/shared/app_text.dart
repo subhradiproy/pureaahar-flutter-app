@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppText extends StatelessWidget {
   const AppText(
     this.text, {
-    required AppTextStyle this.style,
+    required TextStyle this.style,
     this.scalable = true,
     this.textAlign,
     this.overflow,
@@ -20,7 +20,7 @@ class AppText extends StatelessWidget {
   /// for different parts of the text.
   const AppText.rich(
     this.inlineSpans, {
-    AppTextStyle? baseStyle,
+    TextStyle? baseStyle,
     this.scalable = true,
     this.textAlign,
     this.overflow,
@@ -92,241 +92,63 @@ class AppText extends StatelessWidget {
       overflow ?? (maxLines != null ? TextOverflow.ellipsis : null);
 }
 
-/// [AppTextStyle] is a wrapper around [TextStyle] that provides a default
-class AppTextStyle extends TextStyle {
-  const AppTextStyle._({
-    super.fontSize,
-    super.letterSpacing,
-    super.decoration,
-    super.fontWeight,
-    super.color,
-    super.inherit,
-    super.backgroundColor,
-    super.wordSpacing,
-    super.textBaseline,
-    super.height,
-    super.leadingDistribution,
-    super.decorationColor,
-    super.decorationStyle,
-    super.decorationThickness,
-    super.shadows,
-  });
+/// [AppTextStyle] is an extension on [TextStyle]
+extension AppTextStyle on TextStyle {
+  static TextStyle get _base => GoogleFonts.poppins();
 
-  /// Internal factory to create a [TextStyle] with [GoogleFonts.poppins]
-  factory AppTextStyle._poppins({
-    required double fontSize,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight? fontWeight,
-    Color? color,
-    TextBaseline? textBaseline,
-    double? height,
-    TextLeadingDistribution? leadingDistribution,
-    Color? decorationColor,
-    TextDecorationStyle? decorationStyle,
-    double? decorationThickness,
-    List<Shadow>? shadows,
-    bool inherit = true,
-    double? wordSpacing,
-    Color? backgroundColor,
-  }) =>
-      GoogleFonts.poppins(
-        textStyle: AppTextStyle._(
-          fontSize: fontSize,
-          letterSpacing: letterSpacing,
-          decoration: decoration,
-          fontWeight: fontWeight,
-          color: color,
-          inherit: inherit,
-          backgroundColor: backgroundColor,
-          wordSpacing: wordSpacing,
-          textBaseline: textBaseline,
-          height: height,
-          leadingDistribution: leadingDistribution,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          decorationThickness: decorationThickness,
-          shadows: shadows,
-        ),
-      ) as AppTextStyle;
+  static TextStyle get headline {
+    return _base.copyWith(
+      fontSize: 32,
+      letterSpacing: -0.4,
+      fontWeight: FontWeight.w600,
+    );
+  }
 
-  factory AppTextStyle.headline({
-    double fontSize = 25,
-    double letterSpacing = -0.4,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w600,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get title1 =>
+      _base.copyWith(fontSize: 24, fontWeight: FontWeight.w400);
 
-  factory AppTextStyle.title1({
-    double fontSize = 15,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w400,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get title2 {
+    return _base.copyWith(
+      fontSize: 18,
+      letterSpacing: -0.4,
+      fontWeight: FontWeight.w600,
+    );
+  }
 
-  factory AppTextStyle.title2({
-    double fontSize = 20,
-    double letterSpacing = -0.4,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w600,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get title3 =>
+      _base.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
 
-  factory AppTextStyle.title3({
-    double fontSize = 16,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w600,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get body1 =>
+      _base.copyWith(fontSize: 18, fontWeight: FontWeight.w400);
 
-  factory AppTextStyle.body1({
-    double fontSize = 16,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w400,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get body2 {
+    return _base.copyWith(
+      fontSize: 16,
+      letterSpacing: -0.4,
+      fontWeight: FontWeight.w500,
+    );
+  }
 
-  factory AppTextStyle.body2({
-    double fontSize = 14,
-    double letterSpacing = -0.4,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w500,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get paragraph1 =>
+      _base.copyWith(fontSize: 14, fontWeight: FontWeight.w600);
 
-  factory AppTextStyle.paragraph1({
-    double fontSize = 12,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w600,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get paragraph2 =>
+      _base.copyWith(fontSize: 12, fontWeight: FontWeight.w400);
 
-  factory AppTextStyle.paragraph2({
-    double fontSize = 11,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w400,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get button {
+    return _base.copyWith(
+      fontSize: 16,
+      letterSpacing: -0.4,
+      fontWeight: FontWeight.w500,
+    );
+  }
 
-  factory AppTextStyle.button({
-    double fontSize = 10,
-    double letterSpacing = -0.4,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w500,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get label1 =>
+      _base.copyWith(fontSize: 18, fontWeight: FontWeight.w400);
 
-  factory AppTextStyle.label1({
-    double fontSize = 8,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w400,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get label2 =>
+      _base.copyWith(fontSize: 16, fontWeight: FontWeight.w400);
 
-  factory AppTextStyle.label2({
-    double fontSize = 6,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w400,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
-
-  factory AppTextStyle.link({
-    double fontSize = 8,
-    double? letterSpacing,
-    TextDecoration decoration = TextDecoration.none,
-    FontWeight fontWeight = FontWeight.w400,
-    Color? color,
-  }) =>
-      AppTextStyle._poppins(
-        fontSize: fontSize,
-        letterSpacing: letterSpacing,
-        decoration: decoration,
-        fontWeight: fontWeight,
-        color: color,
-      );
+  static TextStyle get link =>
+      _base.copyWith(fontSize: 12, fontWeight: FontWeight.w400);
 }

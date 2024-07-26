@@ -16,6 +16,7 @@ dependencies:
   flutter_hooks: ^0.20.5
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^2.0.10+1
   go_router: ^14.2.1
   google_fonts: ^6.2.1
   hooks_riverpod: ^2.5.1
@@ -32,3 +33,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/
