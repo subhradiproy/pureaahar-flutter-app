@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pureaahar/app/constants/app_colors.dart';
+
+import '../constants/app_colors.dart';
 
 /// The ColorScheme made from the app colors
 

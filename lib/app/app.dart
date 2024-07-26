@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pureaahar/app/theme/app_theme.dart';
-import 'package:pureaahar/l10n/l10n.dart';
+
+import '../l10n/l10n.dart';
+import 'theme/app_theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
