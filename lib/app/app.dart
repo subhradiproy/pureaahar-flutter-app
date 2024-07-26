@@ -7,7 +7,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       theme: AppTheme.use(Brightness.light),
       darkTheme: AppTheme.use(Brightness.dark),
       localizationsDelegates: AppLocalizations.localizationsDelegates,

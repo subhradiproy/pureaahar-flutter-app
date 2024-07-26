@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart'
 ///
 /// Example:
 /// ```dart
-/// import 'firebase_options.dart';
+/// import 'firebase_options_development.dart';
 /// // ...
 /// await Firebase.initializeApp(
 ///   options: DefaultFirebaseOptions.currentPlatform,
@@ -56,7 +56,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAQdO2SK_kONMsRon80JQVnD5tcPx--LFk',
-    appId: '1:519229435658:android:b51887021a96202eca94f3',
+    appId: '1:519229435658:android:008b06da203c9d5aca94f3',
     messagingSenderId: '519229435658',
     projectId: 'pureaahar-dev',
     storageBucket: 'pureaahar-dev.appspot.com',
@@ -64,10 +64,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDVZ3xaXSHR2FKIzRKs6wJN_0icbBcoIxM',
-    appId: '1:519229435658:ios:ee5efe0e6a6ede77ca94f3',
+    appId: '1:519229435658:ios:c2fd70989077ce98ca94f3',
     messagingSenderId: '519229435658',
     projectId: 'pureaahar-dev',
     storageBucket: 'pureaahar-dev.appspot.com',
-    iosBundleId: 'com.vegverse.app',
+    iosBundleId: 'com.vegverse.app.dev',
   );
 }

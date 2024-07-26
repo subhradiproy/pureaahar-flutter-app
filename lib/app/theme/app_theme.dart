@@ -1,15 +1,17 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pureaahar/app/theme/app_color_scheme.dart';
+
+import 'app_color_scheme.dart';
 
 sealed class AppTheme {
   const AppTheme._();
 
   /// Create the theme from the brightness
   static ThemeData use(Brightness brightness) {
-    final isLightMode = brightness == Brightness.light;
-    final scheme = isLightMode ? AppColorScheme.light : AppColorScheme.dark;
+    final bool isLightMode = brightness == Brightness.light;
+    final ColorScheme scheme =
+        isLightMode ? AppColorScheme.light : AppColorScheme.dark;
     return ThemeData(
       brightness: brightness,
       useMaterial3: true,
