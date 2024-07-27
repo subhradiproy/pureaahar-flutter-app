@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../features/auth/presentation/screens/verification_screen.dart';
+import '../features/auth/presentation/screens/login_screen.dart';
 import '../l10n/l10n.dart';
 import 'theme/app_theme.dart';
 
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       darkTheme: AppTheme.use(Brightness.dark),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const VerificationScreen(),
+      home: const LoginScreen(),
     );
   }
 }

@@ -5,6 +5,7 @@ import '../../../../app/constants/app_colors.dart';
 import '../../../../shared/widgets/app_text.dart';
 import '../../../../shared/widgets/phone_textfield/country_prefix.dart';
 import '../../../../shared/widgets/phone_textfield/phone_text_field.dart';
+import 'verification_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
             maxLines: 2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 4),
+            padding: const EdgeInsets.only(top: 20, bottom: 4),
             child: AppText('Your Phone Number', style: AppTextStyle.button),
           ),
           PhoneTextField(
@@ -97,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 14),
             child: Row(
               children: <Widget>[
                 const Expanded(
@@ -117,7 +118,11 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Expanded>[
               Expanded(
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const VerificationScreen(),
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.secondaryContainer,
                     foregroundColor: theme.colorScheme.primary,
