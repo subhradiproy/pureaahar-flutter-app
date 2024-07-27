@@ -2,11 +2,30 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/constants/app_colors.dart';
 import '../../../../shared/widgets/app_text.dart';
-import '../../../../shared/widgets/phone_textfield/country_prefix.dart';
 import '../../../../shared/widgets/phone_textfield/phone_text_field.dart';
+import '../widgets/login_widgets.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late final PhoneController _controller;
+
+  @override
+  void initState() {
+    _controller = PhoneController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,84 +41,29 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
         child: Column(
           children: <Widget>[
-            Expanded(child: _loginContents()),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Login',
-                style: AppTextStyle.title1,
-              ),
+            Expanded(child: LoginContent(controller: _controller)),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: ListenableBuilder(
+                    listenable: _controller,
+                    child: AppText('Send Code', style: AppTextStyle.title3),
+                    builder: (_, Widget? child) {
+                      final bool isButtonEnabled = _controller.value.isValid();
+                      return ElevatedButton(
+                        onPressed: isButtonEnabled ? () {} : null,
+                        child: child,
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  SingleChildScrollView _loginContents() {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          AppText(
-            'Verify your phone number with code',
-            style: AppTextStyle.headline.copyWith(fontSize: 28),
-          ),
-          const SizedBox(height: 8),
-          AppText(
-            "We'll send you a code. It helps keep your account secure",
-            style: AppTextStyle.label2,
-            maxLines: 2,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 4),
-            child: AppText(
-              'Your Phone Number',
-              style: AppTextStyle.button,
-            ),
-          ),
-          PhoneTextField(
-            countryPrefixStyle: CountryPrefixStyle(
-              textStyle: AppTextStyle.paragraph1.copyWith(),
-            ),
-            autofillHints: const <String>[AutofillHints.telephoneNumber],
-          ),
-          // Row(
-          //   children: <Widget>[
-          //     // Expanded(
-          //     //   child: TextFormField(
-          //     //     initialValue: '+91',
-          //     //     ignorePointers: true,
-          //     //     decoration: InputDecoration(
-          //     //       prefix: ,
-
-          //     //     ),
-          //     //   ),
-          //     // ),
-          //     const SizedBox(width: 8),
-          //     Expanded(
-          //       flex: 3,
-          //       child: TextField(
-          //         decoration: InputDecoration(
-          //           hintText: 'Phone Number',
-          //           prefix: const Text('+91'),
-          //           prefixIconConstraints: const BoxConstraints(
-          //             maxWidth: 40,
-          //             maxHeight: 20,
-          //           ),
-          //           prefixIcon: SvgPicture.asset('assets/india.svg'),
-          //           prefixStyle:
-          //               AppTextStyle.body1.copyWith(color: Colors.black),
-          //           hintStyle: AppTextStyle.body1.copyWith(),
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-        ],
       ),
     );
   }

@@ -12,8 +12,6 @@ class PhoneController extends ChangeNotifier {
   bool _mounted;
   bool get mounted => _mounted;
 
-  /// focus node of the national number
-  // final FocusNode focusNode;
   final PhoneNumber initialValue;
   PhoneNumber _value;
   PhoneNumber get value => _value;

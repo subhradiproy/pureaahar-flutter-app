@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:flutter/material.dart';
@@ -64,7 +65,6 @@ class PhoneTextField extends FormField<PhoneNumber> {
     this.mouseCursor,
     this.scrollPhysics,
     this.scrollController,
-    this.autofillHints,
     this.enableIMEPersonalizedLearning = true,
   })  : assert(
           initialValue == null || controller == null,
@@ -132,7 +132,6 @@ class PhoneTextField extends FormField<PhoneNumber> {
   final MouseCursor? mouseCursor;
   final ScrollPhysics? scrollPhysics;
   final ScrollController? scrollController;
-  final Iterable<String>? autofillHints;
   final bool enableIMEPersonalizedLearning;
   final List<TextInputFormatter>? inputFormatters;
 
@@ -148,8 +147,8 @@ class PhoneTextField extends FormField<PhoneNumber> {
 }
 
 class PhoneFormFieldState extends FormFieldState<PhoneNumber> {
-  late final PhoneController controller;
-  late final FocusNode focusNode;
+  late final PhoneController _phoneController;
+  late final FocusNode _focusNode;
 
   @override
   PhoneTextField get widget => super.widget as PhoneTextField;
@@ -157,14 +156,15 @@ class PhoneFormFieldState extends FormFieldState<PhoneNumber> {
   @override
   void initState() {
     super.initState();
-    controller = widget.controller ?? PhoneController();
-    controller.addListener(_onControllerValueChanged);
-    focusNode = widget.focusNode ?? FocusNode();
+    _phoneController = widget.controller ?? PhoneController();
+    _phoneController.addListener(_onControllerValueChanged);
+    _focusNode = widget.focusNode ?? FocusNode();
   }
 
   @override
   void dispose() {
-    controller.removeListener(_onControllerValueChanged);
+    _phoneController.removeListener(_onControllerValueChanged);
+    if (widget.focusNode == null) _focusNode.dispose();
     super.dispose();
   }
 
@@ -173,26 +173,26 @@ class PhoneFormFieldState extends FormFieldState<PhoneNumber> {
   void didChange(PhoneNumber? value) {
     if (value == null) return;
     super.didChange(value);
-    if (controller.value != value) controller.value = value;
+    if (_phoneController.value != value) _phoneController.value = value;
   }
 
   void _onControllerValueChanged() {
     /// when the controller changes because the user called
     /// controller.value = x we need to change the value of the form field
-    if (controller.value != value) didChange(controller.value);
+    if (_phoneController.value != value) didChange(_phoneController.value);
   }
 
-  void _onTextfieldChanged(String value) {
-    controller.changeNationalNumber(text: value);
-    didChange(controller.value);
-    widget.onChanged?.call(controller.value);
+  void _onTextFieldChanged(String value) {
+    _phoneController.changeNationalNumber(text: value);
+    didChange(_phoneController.value);
+    widget.onChanged?.call(_phoneController.value);
   }
 
   // overriding method of form field, so when the user resets a form,
   // and subsequently every form field descendant, the controller is updated
   @override
   void reset() {
-    controller.value = controller.initialValue;
+    _phoneController.value = _phoneController.initialValue;
     super.reset();
   }
 
@@ -239,8 +239,8 @@ class PhoneFormFieldState extends FormFieldState<PhoneNumber> {
               errorText: errorText,
               contentPadding: widget.countryPrefixStyle.padding,
             ),
-            controller: controller._formattedNationalNumberController,
-            focusNode: focusNode,
+            controller: _phoneController._formattedNationalNumberController,
+            focusNode: _focusNode,
             enabled: widget.enabled,
             inputFormatters: widget.inputFormatters ??
                 <TextInputFormatter>[
@@ -253,9 +253,11 @@ class PhoneFormFieldState extends FormFieldState<PhoneNumber> {
                     ),
                   ),
                 ],
-            onChanged: _onTextfieldChanged,
+            onChanged: _onTextFieldChanged,
             textAlign: _computeTextAlign(),
-            autofillHints: widget.autofillHints,
+            autofillHints: const <String>[
+              AutofillHints.telephoneNumberNational,
+            ],
             keyboardType: widget.keyboardType,
             textInputAction: widget.textInputAction,
             style: widget.style,
@@ -333,7 +335,7 @@ class PhoneFormFieldState extends FormFieldState<PhoneNumber> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: AnimatedBuilder(
-          animation: controller,
+          animation: _phoneController,
           builder: (BuildContext context, _) => CountryPrefix(
             key: const ValueKey<String>('country-code-chip'),
             padding: _computeCountryButtonPadding(context),

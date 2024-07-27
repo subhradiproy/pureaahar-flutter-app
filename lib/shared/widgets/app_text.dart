@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppText extends StatelessWidget {
   const AppText(
     this.text, {
-    required TextStyle this.style,
+    this.style,
     this.scalable = true,
     this.textAlign,
     this.overflow,
