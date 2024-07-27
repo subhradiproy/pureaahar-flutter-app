@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../app/constants/app_colors.dart';
-import '../../../../shared/app_text.dart';
+import '../../../../shared/widgets/app_text.dart';
+import '../../../../shared/widgets/phone_textfield/country_prefix.dart';
+import '../../../../shared/widgets/phone_textfield/phone_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -53,26 +54,51 @@ class LoginScreen extends StatelessWidget {
             style: AppTextStyle.label2,
             maxLines: 2,
           ),
-          const SizedBox(height: 30),
-          AppText(
-            'Your Phone Number',
-            style: AppTextStyle.button,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Phone Number',
-              prefixText: '+91',
-              prefixStyle: AppTextStyle.body1.copyWith(color: Colors.black),
-              prefixIconConstraints: const BoxConstraints(
-                maxWidth: 40,
-                maxHeight: 20,
-              ),
-              prefixIcon: SvgPicture.asset(
-                'assets/india.svg',
-              ),
-              hintStyle: AppTextStyle.body1.copyWith(),
+          Padding(
+            padding: const EdgeInsets.only(top: 30, bottom: 4),
+            child: AppText(
+              'Your Phone Number',
+              style: AppTextStyle.button,
             ),
           ),
+          PhoneTextField(
+            countryPrefixStyle: CountryPrefixStyle(
+              textStyle: AppTextStyle.paragraph1.copyWith(),
+            ),
+            autofillHints: const <String>[AutofillHints.telephoneNumber],
+          ),
+          // Row(
+          //   children: <Widget>[
+          //     // Expanded(
+          //     //   child: TextFormField(
+          //     //     initialValue: '+91',
+          //     //     ignorePointers: true,
+          //     //     decoration: InputDecoration(
+          //     //       prefix: ,
+
+          //     //     ),
+          //     //   ),
+          //     // ),
+          //     const SizedBox(width: 8),
+          //     Expanded(
+          //       flex: 3,
+          //       child: TextField(
+          //         decoration: InputDecoration(
+          //           hintText: 'Phone Number',
+          //           prefix: const Text('+91'),
+          //           prefixIconConstraints: const BoxConstraints(
+          //             maxWidth: 40,
+          //             maxHeight: 20,
+          //           ),
+          //           prefixIcon: SvgPicture.asset('assets/india.svg'),
+          //           prefixStyle:
+          //               AppTextStyle.body1.copyWith(color: Colors.black),
+          //           hintStyle: AppTextStyle.body1.copyWith(),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

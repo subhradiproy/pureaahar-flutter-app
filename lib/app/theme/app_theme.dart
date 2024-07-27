@@ -27,8 +27,13 @@ sealed class AppTheme {
         bodyColor: scheme.primary,
         displayColor: scheme.primary,
       ),
-      inputDecorationTheme:
-          const InputDecorationTheme().applyTheme(fillColor: scheme.surface),
+      textTheme: GoogleFonts.poppinsTextTheme().apply(
+        bodyColor: scheme.primary,
+        displayColor: scheme.primary,
+      ),
+      inputDecorationTheme: const InputDecorationTheme().applyTheme(
+        fillColor: scheme.surface,
+      ),
     );
   }
 }
