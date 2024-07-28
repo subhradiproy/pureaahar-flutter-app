@@ -25,6 +25,10 @@ final class DioHttpService with IsolateManager {
       ..jsonDecodeCallback = _decodeJson;
     if (interceptors != null) _dio.interceptors.addAll(interceptors);
     if (httpClientAdapter != null) _dio.httpClientAdapter = httpClientAdapter;
+    _dio.options = _dio.options.copyWith(
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 3),
+    );
   }
 
   /// An instance of [Dio] for executing network requests.

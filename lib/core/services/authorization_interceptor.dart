@@ -6,8 +6,8 @@ import '../../app/typedefs/typedefs.dart';
 /// Custom Interceptor class that extends the [Interceptor] class from the
 /// [Dio] package. This adds the firebase app check to the request headers.
 /// also adds the firebase id token to the request headers.
-class CustomInterceptor extends Interceptor {
-  const CustomInterceptor(this.ref);
+class AuthorizationInterceptor extends Interceptor {
+  const AuthorizationInterceptor(this.ref);
   final Ref ref;
 
   @override
