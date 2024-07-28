@@ -12,7 +12,20 @@
           "package_name": "com.vegverse.app.dev"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "519229435658-uf273u2j9fg6aebb5t7v6e5mia4cnh7o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vegverse.app.dev",
+            "certificate_hash": "21535f6b11ca5b2ad3bd271ee4bc5071a86f3323"
+          }
+        },
+        {
+          "client_id": "519229435658-bp8em7e9ak0pni53rc1kvolfd0452hsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAQdO2SK_kONMsRon80JQVnD5tcPx--LFk"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519229435658-bp8em7e9ak0pni53rc1kvolfd0452hsa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "519229435658-q8ip3sluv5qledls53q6l1nrepbkda6b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vegverse.app.dev"
+              }
+            }
+          ]
         }
       }
     }

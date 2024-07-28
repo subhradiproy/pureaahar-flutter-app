@@ -82,11 +82,6 @@ android {
             applicationIdSuffix ""
             manifestPlaceholders = [appName: "VegVerse"]
         }
-        staging {
-            dimension "default"
-            applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] VegVerse"]
-        }
         development {
             dimension "default"
             applicationIdSuffix ".dev"

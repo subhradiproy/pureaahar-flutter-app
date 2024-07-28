@@ -68,6 +68,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '519229435658',
     projectId: 'pureaahar-dev',
     storageBucket: 'pureaahar-dev.appspot.com',
+    androidClientId:
+        '519229435658-uf273u2j9fg6aebb5t7v6e5mia4cnh7o.apps.googleusercontent.com',
+    iosClientId:
+        '519229435658-q8ip3sluv5qledls53q6l1nrepbkda6b.apps.googleusercontent.com',
     iosBundleId: 'com.vegverse.app.dev',
   );
 }
