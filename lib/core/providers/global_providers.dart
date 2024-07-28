@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../configuration/flavors.dart';
+import '../services/custom_interceptor.dart';
 import '../services/dio_http_service.dart';
 
 part 'global_providers.g.dart';
@@ -18,16 +19,6 @@ Dio dioClient(DioClientRef ref) {
 DioHttpService apiService(ApiServiceRef ref) {
   return DioHttpService(
     client: ref.watch(dioClientProvider),
-    interceptors: <Interceptor>[
-      LogInterceptor(),
-      // InterceptorsWrapper(
-      //   onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
-      //     // Add bearer token to the request headers
-      //     options.headers['Authorization'] =
-      //         'Bearer ${ref.read(tokenProvider)}';
-      //     return handler.next(options);
-      //   },
-      // ),
-    ],
+    interceptors: <Interceptor>[LogInterceptor(), CustomInterceptor(ref)],
   );
 }

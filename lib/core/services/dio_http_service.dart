@@ -30,9 +30,9 @@ final class DioHttpService with IsolateManager {
   /// An instance of [Dio] for executing network requests.
   final Dio _dio;
 
-  /// Decode response data in a background isolate if the response is large.
-  FutureOr<Object?> _decodeJson(String text) async {
-    if (text.codeUnits.length < 50 * 1024) return json.decode(text);
+  /// Decode response data in a background isolate to prevent UI jank.
+  FutureOr<Object?> _decodeJson(String text, [int sizeKb = 50]) async {
+    if (text.codeUnits.length < sizeKb * 1024) return json.decode(text);
     return await execute<Object?>(() => json.decode(text));
   }
 
