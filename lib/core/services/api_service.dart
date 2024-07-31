@@ -28,8 +28,8 @@ final class ApiService with IsolateManager {
     if (interceptors != null) _dio.interceptors.addAll(interceptors);
     if (httpClientAdapter != null) _dio.httpClientAdapter = httpClientAdapter;
     _dio.options = _dio.options.copyWith(
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 8),
+      receiveTimeout: const Duration(seconds: 10),
     );
   }
 
@@ -50,7 +50,7 @@ final class ApiService with IsolateManager {
   /// the [globalCacheOptions].
   ///
   /// [options] are special instructions that can be merged with the request.
-  FutureOr<Response<R>> get<R>({
+  Future<Response<R>> get<R>({
     required String endpoint,
     JSON? queryParams,
     Options? options,
@@ -80,7 +80,7 @@ final class ApiService with IsolateManager {
   /// [cancelToken] is used to cancel the request pre-maturely.
   ///
   /// [options] are special instructions that can be merged with the request.
-  FutureOr<Response<R>> post<R>({
+  Future<Response<R>> post<R>({
     required String endpoint,
     JSON? data,
     JSON? queryParams,
@@ -115,7 +115,7 @@ final class ApiService with IsolateManager {
   /// [cancelToken] is used to cancel the request pre-maturely.
   ///
   /// [options] are special instructions that can be merged with the request.
-  FutureOr<Response<R>> patch<R>({
+  Future<Response<R>> patch<R>({
     required String endpoint,
     JSON? data,
     Options? options,
@@ -149,7 +149,7 @@ final class ApiService with IsolateManager {
   /// [cancelToken] is used to cancel the request pre-maturely.
   ///
   /// [options] are special instructions that can be merged with the request.
-  FutureOr<Response<R>> delete<R>({
+  Future<Response<R>> delete<R>({
     required String endpoint,
     JSON? data,
     Options? options,

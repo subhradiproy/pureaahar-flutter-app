@@ -16,16 +16,31 @@ class LoginNotifier extends _$LoginNotifier {
   AsyncValue<LoginState> build() => const AsyncData<LoginState>(LoginInitial());
 
   /// Send OTP to the user's phone number
-  Future<void> sendOTP(PhoneNumber phoneNumber) async {
+  Future<void> sendOTP(PhoneNumber phone) async {
     state = const AsyncLoading<LoginState>();
-    // state = await ref
-    //     .read(authRepositoryProvider)
-    //     .sendOtp(phoneNumber)
-    //     .match(
-    //       (Failure l) => AsyncError<UserCredential?>(l, l.stackTrace),
-    //       (String r) {},
-    //     )
-    //     .run();
+    final Either<Failure, Unit> task =
+        await ref.read(authRepositoryProvider).sendOtp(phone.nsn).run();
+    state = task.match(
+      (Failure l) => AsyncError<LoginState>(l, l.stackTrace),
+      (_) => AsyncData<LoginState>(LoginVerificationState(phone)),
+    );
+  }
+
+  /// Resend OTP to the user's phone number
+  /// NOTE: This method is only available when the user
+  /// is in the [LoginVerificationState] i.e. when the user sends OTP to
+  /// the desired phone number
+  Future<void> resendOTP() async {
+    final AsyncValue<LoginState> prev = state;
+    if (prev is! AsyncData<LoginVerificationState>) return;
+    final Either<Failure, Unit> task = await ref
+        .read(authRepositoryProvider)
+        .sendOtp(prev.requireValue.number.nsn)
+        .run();
+    state = task.match(
+      (Failure l) => AsyncError<LoginState>(l, l.stackTrace),
+      (_) => prev,
+    );
   }
 
   /// Sign in with Google
@@ -40,15 +55,15 @@ class LoginNotifier extends _$LoginNotifier {
   }
 
   /// Verify OTP and sign in
-  Future<void> verifyOTP(String otp) async {
+  Future<void> verifyOTP(String otp, PhoneNumber phone) async {
     state = const AsyncLoading<LoginState>();
-    // state = await ref
-    //     .read(authRepositoryProvider)
-    //     .verifyOtp(number: '1234567890', otp: otp)
-    //     .match(
-    //       (Failure l) => AsyncError<LoginState>(l, l.stackTrace),
-    //       (JSON r) {},
-    //     )
-    //     .run();
+    final Either<Failure, UserCredential> task = await ref
+        .read(authRepositoryProvider)
+        .signInWithPhone(number: phone.nsn, otp: otp)
+        .run();
+    state = await task.match(
+      (Failure l) => AsyncError<LoginState>(l, l.stackTrace),
+      (UserCredential r) => AsyncData<LoginState>(LoginSuccess(r)),
+    );
   }
 }

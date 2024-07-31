@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -30,39 +32,20 @@ class AuthRepositoryImpl implements AuthRepository {
   final ApiService _api;
 
   @override
-  TaskEitherFailure<String> sendOtp(String nationalNumber) {
-    return TaskEitherFailure<String>.tryCatch(
-      () async {
-        final Response<JSON> result = await _api.post<JSON>(
-          endpoint: '/users/send-otp',
-          queryParams: <String, String>{'login_type': 'mobile'},
-          data: <String, String?>{
-            'countryCode': '+91',
-            'phone': nationalNumber,
-            'role': 'user',
-          },
-        );
-        if (result.data != null) return 'OTP sent successfully';
+  TaskEitherFailure<Unit> sendOtp(String nsn) {
+    return TaskEitherFailure<Unit>.tryCatch(
+      () async => _api.post<JSON>(
+        endpoint: '/users/send-otp',
+        queryParams: <String, String>{'login_type': 'mobile'},
+        data: <String, String?>{
+          'countryCode': '+91',
+          'phone': nsn,
+          'role': 'user',
+        },
+      ).then((Response<JSON> result) {
+        if (result.data != null) return unit;
         throw Failure(message: 'Failed to send OTP');
-      },
-      Failure.handleError,
-    );
-  }
-
-  @override
-  TaskEitherFailure<UserCredential> signInWithCustomToken(String token) {
-    return TaskEitherFailure<UserCredential>.tryCatch(
-      () async {
-        final UserCredential user = await _auth.signInWithCustomToken(token);
-        if (user.credential == null) {
-          throw FirebaseAuthException(
-            code: 'custom_token_failed',
-            message: 'Sign in failed',
-          );
-        }
-        await _auth.signInWithCredential(user.credential!);
-        return user;
-      },
+      }),
       Failure.handleError,
     );
   }
@@ -95,19 +78,26 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  TaskEitherFailure<JSON> verifyOtp({
+  TaskEitherFailure<UserCredential> signInWithPhone({
     required String number,
     required String otp,
   }) =>
-      TaskEitherFailure<JSON>.tryCatch(
+      TaskEitherFailure<UserCredential>.tryCatch(
         () async {
           final Response<JSON> result = await _api.post<JSON>(
             endpoint: '/users/login-user',
             queryParams: <String, String>{'login_type': 'mobile'},
             data: <String, String?>{'phone': number, 'otp_entered': otp},
           );
-          if (result.data != null) return result.data!;
-          throw Failure(message: 'Failed to verify OTP');
+          if (result.data == null) {
+            throw Failure(message: 'Failed to verify OTP');
+          }
+          log(result.data as String? ?? 'No data');
+
+          final UserCredential user = await _auth.signInWithCustomToken(
+            result.data! as String,
+          );
+          return user;
         },
         Failure.handleError,
       );

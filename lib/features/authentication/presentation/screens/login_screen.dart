@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 
 import '../../../../app/constants/app_colors.dart';
+import '../../../../router/routes/routes.dart';
 import '../../../../shared/widgets/app_text.dart';
 import '../../../../shared/widgets/phone_textfield/country_prefix.dart';
 import '../../../../shared/widgets/phone_textfield/phone_text_field.dart';
@@ -32,6 +35,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<AsyncValue<LoginState>>(
+      loginNotifierProvider,
+      (_, AsyncValue<LoginState> next) => next.whenOrNull(
+        data: (LoginState state) {
+          switch (state) {
+            case LoginVerificationState(:final PhoneNumber number):
+              context.pushNamed(
+                AppRoute.verification.name,
+                queryParameters: <String, String>{
+                  'contact': number.international,
+                },
+              );
+            default:
+          }
+        },
+      ),
+    );
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(

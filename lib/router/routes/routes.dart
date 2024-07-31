@@ -1,8 +1,8 @@
 /// Global Enum for all routes in the app
 enum AppRoute {
   splash('/', 'SPLASH'),
-  login('/login', 'AUTH_LOGIN'),
-  otpVerification('/otp-verification', 'OTP_VERIFICATION'),
+  login('/auth/login', 'AUTH_LOGIN'),
+  verification('/auth/verification', 'OTP_VERIFICATION'),
   pageNotFound('/404', 'PAGE_NOT_FOUND'),
   ;
 

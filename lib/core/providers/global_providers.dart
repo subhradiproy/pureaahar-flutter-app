@@ -3,7 +3,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../configuration/flavors.dart';
 import '../services/api_service.dart';
-import '../services/authorization_interceptor.dart';
 
 part 'global_providers.g.dart';
 
@@ -20,7 +19,7 @@ ApiService apiService(ApiServiceRef ref) {
     client: ref.watch(dioClientProvider),
     interceptors: <Interceptor>[
       LogInterceptor(),
-      AuthorizationInterceptor(ref),
+      // AuthorizationInterceptor(ref),
     ],
   );
 }

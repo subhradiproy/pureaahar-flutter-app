@@ -14,8 +14,8 @@ final class LoginInitial extends LoginState {
 }
 
 /// The Verification state of the login
-final class LoginVerification extends LoginState {
-  const LoginVerification(this.number);
+final class LoginVerificationState extends LoginState {
+  const LoginVerificationState(this.number);
 
   final PhoneNumber number;
 
