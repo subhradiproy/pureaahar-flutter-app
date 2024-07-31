@@ -58,7 +58,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     builder: (_, Widget? child) {
                       final bool isButtonEnabled = _controller.value.isValid();
                       return ElevatedButton(
-                        onPressed: isButtonEnabled ? () {} : null,
+                        onPressed: isButtonEnabled
+                            ? () => ref
+                                .read(loginNotifierProvider.notifier)
+                                .sendOTP(_controller.value)
+                            : null,
                         child: child,
                       );
                     },
