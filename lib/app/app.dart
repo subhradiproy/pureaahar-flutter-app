@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../features/auth/presentation/screens/login_screen.dart';
+import '../features/authentication/presentation/screens/login_screen.dart';
 import '../l10n/l10n.dart';
 import 'theme/app_theme.dart';
 

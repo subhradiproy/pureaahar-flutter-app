@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuthException;
 
 /// An exception thrown when an error occurs in the app.
 interface class Failure implements Exception {
-  Failure({required this.message, this.stackTrace});
+  Failure({required this.message, this.stackTrace = StackTrace.empty});
 
   factory Failure.handleError(Object e, StackTrace stk) {
     return switch (e) {
@@ -13,16 +13,16 @@ interface class Failure implements Exception {
   }
 
   final String message;
-  final StackTrace? stackTrace;
+  final StackTrace stackTrace;
 }
 
 /// An exception thrown when an unknown error occurs.
 class UnkownException implements Failure {
-  const UnkownException({this.stackTrace});
+  const UnkownException({required this.stackTrace});
 
   @override
   String get message => 'Something went wrong';
 
   @override
-  final StackTrace? stackTrace;
+  final StackTrace stackTrace;
 }

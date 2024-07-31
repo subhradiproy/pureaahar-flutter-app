@@ -1,10 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../app/typedefs/typedefs.dart';
 import '../../../../core/exceptions/app_exception.dart';
+import '../../../../core/providers/global_providers.dart';
 import '../../../../core/services/api_service.dart';
 import '../../domain/repositories/auth_repository.dart';
+
+part 'auth_repository_impl.g.dart';
+
+@riverpod
+AuthRepository authRepository(AuthRepositoryRef ref) {
+  return AuthRepositoryImpl(
+    auth: FirebaseAuth.instance,
+    apiService: ref.watch(apiServiceProvider),
+  );
+}
 
 class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl({
