@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../configuration/flavors.dart';
+import '../services/api_service.dart';
 import '../services/authorization_interceptor.dart';
-import '../services/dio_http_service.dart';
 
 part 'global_providers.g.dart';
 
@@ -15,13 +15,12 @@ Dio dioClient(DioClientRef ref) {
 }
 
 @Riverpod(keepAlive: true)
-DioHttpService apiService(ApiServiceRef ref) {
-  return DioHttpService(
+ApiService apiService(ApiServiceRef ref) {
+  return ApiService(
     client: ref.watch(dioClientProvider),
     interceptors: <Interceptor>[
       LogInterceptor(),
       AuthorizationInterceptor(ref),
-      QueuedInterceptor(),
     ],
   );
 }

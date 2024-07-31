@@ -6,7 +6,7 @@ part of 'global_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioClientHash() => r'3052a263003a0aff8c621d1c8dddb356cac00f3f';
+String _$dioClientHash() => r'0ce04391c2a22fabc26bcf1db6b6fce885ba4414';
 
 /// See also [dioClient].
 @ProviderFor(dioClient)
@@ -20,11 +20,11 @@ final dioClientProvider = Provider<Dio>.internal(
 );
 
 typedef DioClientRef = ProviderRef<Dio>;
-String _$apiServiceHash() => r'83f8fe9f8d21cccbd9ecf773205a97d999ec1f31';
+String _$apiServiceHash() => r'c5b6e98bc0a7215e88ffffb2faff03f5f2ce7b12';
 
 /// See also [apiService].
 @ProviderFor(apiService)
-final apiServiceProvider = Provider<DioHttpService>.internal(
+final apiServiceProvider = Provider<ApiService>.internal(
   apiService,
   name: r'apiServiceProvider',
   debugGetCreateSourceHash:
@@ -33,6 +33,6 @@ final apiServiceProvider = Provider<DioHttpService>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef ApiServiceRef = ProviderRef<DioHttpService>;
+typedef ApiServiceRef = ProviderRef<ApiService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

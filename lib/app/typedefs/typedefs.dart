@@ -10,5 +10,5 @@ typedef Headers = Map<String, String>;
 /// TaskEither is a type that represents a computation that can fail or succeed.
 /// It is similar to Either, but it is specialized for the use case
 /// of computations that can fail.
-typedef TaskEitherFailure<R> = TaskEither<AppException, R>;
-typedef TaskEitherUnit = TaskEither<AppException, Unit>;
+typedef TaskEitherFailure<R> = TaskEither<Failure, R>;
+typedef TaskEitherUnit = TaskEither<Failure, Unit>;

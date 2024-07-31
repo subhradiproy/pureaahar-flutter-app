@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 
+import '../../../../app/typedefs/typedefs.dart';
+
 /// [AuthRepository] interface to be implemented in data layer
 abstract interface class AuthRepository {
   const AuthRepository();
@@ -9,7 +11,7 @@ abstract interface class AuthRepository {
   TaskEither<Exception, UserCredential> signInWithGoogle();
 
   /// Send OTP
-  TaskEither<Exception, Unit> sendOtp(String phoneNumber);
+  TaskEither<Exception, String> sendOtp(String phoneNumber);
 
   /// Sign in with custom JWT token
   TaskEither<Exception, UserCredential> signInWithCustomToken(String token);
@@ -18,9 +20,8 @@ abstract interface class AuthRepository {
   TaskEither<Exception, Unit> signOut();
 
   /// Verify OTP
-  TaskEither<Exception, Unit> verifyOtp({
-    required String nationalNumber,
-    required String dialCode,
+  TaskEither<Exception, JSON> verifyOtp({
+    required String number,
     required String otp,
   });
 }
