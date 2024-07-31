@@ -64,33 +64,37 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           style: AppTextStyle.title2.copyWith(color: AppColors.primary),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
-        child: Column(
-          children: <Widget>[
-            Expanded(child: _content(theme)),
-            Row(
-              children: <Expanded>[
-                Expanded(
-                  child: ListenableBuilder(
-                    listenable: _controller,
-                    child: AppText('Send Code', style: AppTextStyle.title3),
-                    builder: (_, Widget? child) {
-                      final bool isButtonEnabled = _controller.value.isValid();
-                      return ElevatedButton(
-                        onPressed: isButtonEnabled
-                            ? () => ref
-                                .read(loginNotifierProvider.notifier)
-                                .sendOTP(_controller.value)
-                            : null,
-                        child: child,
-                      );
-                    },
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+          child: Column(
+            children: <Widget>[
+              Expanded(child: _content(theme)),
+              Row(
+                children: <Expanded>[
+                  Expanded(
+                    child: ListenableBuilder(
+                      listenable: _controller,
+                      child: AppText('Send Code', style: AppTextStyle.title3),
+                      builder: (_, Widget? child) {
+                        final bool isButtonEnabled =
+                            _controller.value.isValid();
+                        return ElevatedButton(
+                          onPressed: isButtonEnabled
+                              ? () => ref
+                                  .read(loginNotifierProvider.notifier)
+                                  .sendOTP(_controller.value)
+                              : null,
+                          child: child,
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

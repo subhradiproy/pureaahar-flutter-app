@@ -55,11 +55,13 @@ class LoginNotifier extends _$LoginNotifier {
   }
 
   /// Verify OTP and sign in
-  Future<void> verifyOTP(String otp, PhoneNumber phone) async {
+  Future<void> verifyOTP(String otp) async {
+    final AsyncValue<LoginState> prev = state;
+    if (prev is! AsyncData<LoginVerificationState>) return;
     state = const AsyncLoading<LoginState>();
     final Either<Failure, UserCredential> task = await ref
         .read(authRepositoryProvider)
-        .signInWithPhone(number: phone.nsn, otp: otp)
+        .signInWithPhone(number: prev.requireValue.number.nsn, otp: otp)
         .run();
     state = await task.match(
       (Failure l) => AsyncError<LoginState>(l, l.stackTrace),

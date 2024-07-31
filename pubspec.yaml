@@ -27,6 +27,7 @@ dependencies:
   phone_numbers_parser: ^8.3.0
   pinput: ^5.0.0
   riverpod_annotation: ^2.3.5
+  smart_auth: ^2.0.0
   worker_manager: ^7.0.3
 
 dev_dependencies:

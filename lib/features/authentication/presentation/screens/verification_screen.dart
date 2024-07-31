@@ -4,8 +4,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pinput/pinput.dart';
+import 'package:smart_auth/smart_auth.dart';
 
 import '../../../../app/constants/app_colors.dart';
+import '../../../../shared/utils/sms_retriever_api.dart';
 import '../../../../shared/widgets/app_text.dart';
 import '../providers/login_notifier.dart';
 
@@ -41,7 +43,7 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
       const Duration(seconds: 1),
       (_) => _timer.value - const Duration(seconds: 1),
     )
-        .takeWhile((Duration value) => value.inSeconds > 0)
+        .takeWhile((Duration value) => value.inSeconds >= 0)
         .listen((Duration event) => _deductTime());
     super.initState();
   }
@@ -59,7 +61,7 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
       const Duration(seconds: 1),
       (_) => _timer.value - const Duration(seconds: 1),
     )
-        .takeWhile((Duration value) => value.inSeconds > 0)
+        .takeWhile((Duration value) => value.inSeconds >= 0)
         .listen((Duration event) => _deductTime());
   }
 
@@ -118,6 +120,9 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
                         controller: _controller,
                         autofocus: true,
                         length: 6,
+                        smsRetriever: AppSmsRetriever(SmartAuth()),
+                        onClipboardFound: (String value) =>
+                            _controller.text = value,
                         animationDuration: const Duration(milliseconds: 200),
                         textInputAction: TextInputAction.done,
                         defaultPinTheme: defaultTheme,
@@ -143,7 +148,11 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
                     builder: (_, TextEditingValue value, __) {
                       final bool isEnabled = value.text.length == 6;
                       return ElevatedButton(
-                        onPressed: isEnabled ? () {} : null,
+                        onPressed: isEnabled
+                            ? () => ref
+                                .read(loginNotifierProvider.notifier)
+                                .verifyOTP(_controller.text)
+                            : null,
                         child: AppText('Done', style: AppTextStyle.title3),
                       );
                     },

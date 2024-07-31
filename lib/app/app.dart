@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/src/router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../l10n/l10n.dart';
