@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fpdart/src/either.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/exceptions/app_exception.dart';
@@ -30,7 +30,7 @@ class LoginNotifier extends _$LoginNotifier {
   }
 
   /// Sign in with Google
-  Future<void> googleSignIn() async {
+  Future<void> signInWithGoogle() async {
     state = const AsyncLoading<UserCredential?>();
     final Either<Failure, UserCredential> task =
         await ref.read(authRepositoryProvider).signInWithGoogle().run();
@@ -38,5 +38,18 @@ class LoginNotifier extends _$LoginNotifier {
       (Failure l) => AsyncError<UserCredential?>(l, l.stackTrace),
       AsyncData<UserCredential?>.new,
     );
+  }
+
+  /// Verify OTP and sign in
+  Future<void> verifyOTP(String otp) async {
+    state = const AsyncLoading<UserCredential?>();
+    // state = await ref
+    //     .read(authRepositoryProvider)
+    //     .verifyOtp(number: '1234567890', otp: otp)
+    //     .match(
+    //       (Failure l) => AsyncError<UserCredential?>(l, l.stackTrace),
+    //       (JSON r) {},
+    //     )
+    //     .run();
   }
 }

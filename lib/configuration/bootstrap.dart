@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'firebase/firebase_options_development.dart';
 
@@ -12,5 +13,5 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(await builder());
+  runApp(ProviderScope(child: await builder()));
 }

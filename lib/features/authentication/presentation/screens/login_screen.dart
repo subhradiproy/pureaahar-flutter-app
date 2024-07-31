@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../app/constants/app_colors.dart';
 import '../../../../shared/widgets/app_text.dart';
 import '../../../../shared/widgets/phone_textfield/country_prefix.dart';
 import '../../../../shared/widgets/phone_textfield/phone_text_field.dart';
+import '../providers/login_notifier.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   late final PhoneController _controller;
 
   @override
@@ -117,7 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
             children: <Expanded>[
               Expanded(
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed:
+                      ref.read(loginNotifierProvider.notifier).signInWithGoogle,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.secondaryContainer,
                     foregroundColor: theme.colorScheme.primary,

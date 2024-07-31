@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../app/typedefs/typedefs.dart';
@@ -22,10 +23,10 @@ class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl({
     required FirebaseAuth auth,
     required ApiService apiService,
-  })  : _firebase = auth,
+  })  : _auth = auth,
         _api = apiService;
 
-  final FirebaseAuth _firebase;
+  final FirebaseAuth _auth;
   final ApiService _api;
 
   @override
@@ -52,15 +53,14 @@ class AuthRepositoryImpl implements AuthRepository {
   TaskEitherFailure<UserCredential> signInWithCustomToken(String token) {
     return TaskEitherFailure<UserCredential>.tryCatch(
       () async {
-        final UserCredential user =
-            await _firebase.signInWithCustomToken(token);
+        final UserCredential user = await _auth.signInWithCustomToken(token);
         if (user.credential == null) {
           throw FirebaseAuthException(
             code: 'custom_token_failed',
             message: 'Sign in failed',
           );
         }
-        await _firebase.signInWithCredential(user.credential!);
+        await _auth.signInWithCredential(user.credential!);
         return user;
       },
       Failure.handleError,
@@ -71,11 +71,16 @@ class AuthRepositoryImpl implements AuthRepository {
   TaskEitherFailure<UserCredential> signInWithGoogle() {
     return TaskEitherFailure<UserCredential>.tryCatch(
       () async {
-        final GoogleAuthProvider googleProvider = GoogleAuthProvider();
-        final UserCredential user =
-            await _firebase.signInWithProvider(googleProvider);
-        if (user.credential == null) throw Exception('Google sign in failed');
-        return user;
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+        final GoogleSignInAuthentication? googleAuth =
+            await googleUser?.authentication;
+        final UserCredential credential = await _auth.signInWithCredential(
+          GoogleAuthProvider.credential(
+            accessToken: googleAuth?.accessToken,
+            idToken: googleAuth?.idToken,
+          ),
+        );
+        return credential;
       },
       Failure.handleError,
     );
@@ -84,7 +89,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   TaskEitherFailure<Unit> signOut() {
     return TaskEitherFailure<Unit>.tryCatch(
-      () async => _firebase.signOut().then((_) => unit),
+      () async => _auth.signOut().then((_) => unit),
       Failure.handleError,
     );
   }
