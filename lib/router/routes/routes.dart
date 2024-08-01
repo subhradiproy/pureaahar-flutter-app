@@ -4,6 +4,8 @@ enum AppRoute {
   login('/auth/login', 'AUTH_LOGIN'),
   verification('/auth/verification', 'OTP_VERIFICATION'),
   pageNotFound('/404', 'PAGE_NOT_FOUND'),
+  home('/app/explore', 'EXPLORE'),
+  meals('/app/meals', 'MEALS'),
   ;
 
   /// AppRoute Constructor
