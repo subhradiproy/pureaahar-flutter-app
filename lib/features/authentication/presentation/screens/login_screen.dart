@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 
 import '../../../../app/constants/app_colors.dart';
+import '../../../../app/constants/assets.dart';
 import '../../../../router/routes/routes.dart';
 import '../../../../shared/widgets/app_text.dart';
 import '../../../../shared/widgets/phone_textfield/country_prefix.dart';
@@ -154,7 +155,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     foregroundColor: theme.colorScheme.primary,
                   ),
                   icon: SvgPicture.asset(
-                    'assets/google.svg',
+                    SvgAsset.googleIcon.path,
                     width: 24,
                     height: 24,
                   ),

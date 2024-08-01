@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 
+import '../../../app/constants/assets.dart';
+
 @immutable
 class CountryPrefixStyle {
   const CountryPrefixStyle({
@@ -96,7 +98,7 @@ class CountryPrefix extends StatelessWidget {
             if (showFlag) ...<Widget>[
               ExcludeSemantics(
                 child: SvgPicture.asset(
-                  'assets/india.svg',
+                  SvgAsset.india.path,
                   height: flagSize,
                   width: flagSize,
                 ),

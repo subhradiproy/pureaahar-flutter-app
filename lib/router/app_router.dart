@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../features/app_startup/presentation/screens/splash_screen.dart';
 import '../features/authentication/presentation/screens/login_screen.dart';
 import '../features/authentication/presentation/screens/verification_screen.dart';
 import 'routes/routes.dart';
@@ -20,22 +20,20 @@ class AppRouter extends _$AppRouter {
         GoRoute(
           name: AppRoute.splash.name,
           path: AppRoute.splash.path,
-          builder: (_, GoRouterState state) => const Scaffold(),
+          builder: (_, GoRouterState state) => const SplashScreen(),
         ),
         GoRoute(
           name: AppRoute.login.name,
           path: AppRoute.login.path,
           builder: (_, GoRouterState state) => const LoginScreen(),
-          
-          
         ),
         GoRoute(
-              name: AppRoute.verification.name,
-              path: AppRoute.verification.path,
-              builder: (_, GoRouterState state) => VerificationScreen(
-                contact: state.uri.queryParameters['contact'] ?? '',
-              ),
-            ),
+          name: AppRoute.verification.name,
+          path: AppRoute.verification.path,
+          builder: (_, GoRouterState state) => VerificationScreen(
+            contact: state.uri.queryParameters['contact'] ?? '',
+          ),
+        ),
       ],
     );
   }
