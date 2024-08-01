@@ -28,7 +28,7 @@ final class ApiService with IsolateManager {
     if (interceptors != null) _dio.interceptors.addAll(interceptors);
     if (httpClientAdapter != null) _dio.httpClientAdapter = httpClientAdapter;
     _dio.options = _dio.options.copyWith(
-      connectTimeout: const Duration(seconds: 8),
+      // connectTimeout: const Duration(seconds: 8),
       receiveTimeout: const Duration(seconds: 10),
     );
   }

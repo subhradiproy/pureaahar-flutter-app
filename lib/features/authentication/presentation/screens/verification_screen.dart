@@ -151,7 +151,7 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
                         onPressed: isEnabled
                             ? () => ref
                                 .read(loginNotifierProvider.notifier)
-                                .verifyOTP(_controller.text)
+                                .verifyOTP(_controller.text, widget.contact)
                             : null,
                         child: AppText('Done', style: AppTextStyle.title3),
                       );
