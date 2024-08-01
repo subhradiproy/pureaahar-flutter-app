@@ -55,17 +55,25 @@ class LoginNotifier extends _$LoginNotifier {
   }
 
   /// Verify OTP and sign in
-  Future<void> verifyOTP(String otp, String number) async {
-    final AsyncValue<LoginState> prev = state;
-    // if (prev is! AsyncData<LoginVerificationState>) return;
-    // state = const AsyncLoading<LoginState>();
-    final Either<Failure, UserCredential> task = await ref
-        .read(authRepositoryProvider)
-        .signInWithPhone(number: number.substring(3), otp: otp)
-        .run();
-    state = await task.match(
-      (Failure l) => AsyncError<LoginState>(l, l.stackTrace),
-      (UserCredential r) => AsyncData<LoginState>(LoginSuccess(r)),
-    );
+  Future<void> verifyOTP(String otp) async {
+    switch (state.valueOrNull) {
+      case LoginVerificationState(:final PhoneNumber number):
+        final AsyncValue<LoginState> prev = state;
+        state = const AsyncLoading<LoginState>().copyWithPrevious(prev);
+        final Either<Failure, UserCredential> task = await ref
+            .read(authRepositoryProvider)
+            .signInWithPhone(number: number.nsn, otp: otp)
+            .run();
+        state = await task.match(
+          (Failure l) =>
+              AsyncError<LoginState>(l, l.stackTrace).copyWithPrevious(prev),
+          (UserCredential r) => AsyncData<LoginState>(LoginSuccess(r)),
+        );
+      default:
+        state = AsyncError<LoginState>(
+          Failure(message: 'Invalid state please restart the process'),
+          StackTrace.current,
+        );
+    }
   }
 }

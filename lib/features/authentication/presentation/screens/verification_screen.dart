@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smart_auth/smart_auth.dart';
@@ -43,7 +44,7 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
       const Duration(seconds: 1),
       (_) => _timer.value - const Duration(seconds: 1),
     )
-        .takeWhile((Duration value) => value.inSeconds >= 0)
+        .takeWhile((Duration duration) => duration.inSeconds >= 0)
         .listen((Duration event) => _deductTime());
     super.initState();
   }
@@ -103,7 +104,7 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
                         ),
                         const SizedBox(width: 5),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () => context.pop(),
                           style: TextButton.styleFrom(
                             foregroundColor: AppColors.primary,
                           ),
@@ -145,17 +146,14 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
                 Expanded(
                   child: ValueListenableBuilder<TextEditingValue>(
                     valueListenable: _controller,
-                    builder: (_, TextEditingValue value, __) {
-                      final bool isEnabled = value.text.length == 6;
-                      return ElevatedButton(
-                        onPressed: isEnabled
-                            ? () => ref
-                                .read(loginNotifierProvider.notifier)
-                                .verifyOTP(_controller.text, widget.contact)
-                            : null,
-                        child: AppText('Done', style: AppTextStyle.title3),
-                      );
-                    },
+                    builder: (_, TextEditingValue value, __) => ElevatedButton(
+                      onPressed: value.text.length == 6
+                          ? () => ref
+                              .read(loginNotifierProvider.notifier)
+                              .verifyOTP(_controller.text)
+                          : null,
+                      child: AppText('Done', style: AppTextStyle.title3),
+                    ),
                   ),
                 ),
               ],

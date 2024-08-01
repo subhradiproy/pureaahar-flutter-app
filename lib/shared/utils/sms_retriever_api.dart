@@ -12,7 +12,8 @@ class AppSmsRetriever implements SmsRetriever {
   @override
   Future<String?> getSmsCode() async {
     // final String? signature = await smartAuth.getAppSignature();
-    final SmsCodeResult res = await smartAuth.getSmsCode();
+    final SmsCodeResult res =
+        await smartAuth.getSmsCode(useUserConsentApi: true);
     if (res.succeed && res.codeFound) return res.code!;
     return null;
   }
