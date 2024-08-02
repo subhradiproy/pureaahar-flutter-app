@@ -14,15 +14,14 @@ part 'app_router.g.dart';
 @riverpod
 class AppRouter extends _$AppRouter {
   /// Root Navigator key
-  final GlobalKey<NavigatorState> _rootNavigatorKey =
-      GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> _root = GlobalKey<NavigatorState>();
 
   @override
   GoRouter build() {
     GoRouter? router;
     ref.onDispose(() => router?.dispose());
     return router ??= GoRouter(
-      navigatorKey: _rootNavigatorKey,
+      navigatorKey: _root,
       initialLocation: AppRoute.home.path,
       routes: <RouteBase>[
         GoRoute(
@@ -43,8 +42,8 @@ class AppRouter extends _$AppRouter {
           ),
         ),
         StatefulShellRoute.indexedStack(
-          builder: (_, GoRouterState state, StatefulNavigationShell shell) =>
-              NestedScaffoldNavBar(key: state.pageKey, child: shell),
+          builder: (_, GoRouterState state, StatefulNavigationShell child) =>
+              NestedScaffoldNavBar(key: state.pageKey, child: child),
           branches: <StatefulShellBranch>[
             StatefulShellBranch(
               routes: <GoRoute>[
