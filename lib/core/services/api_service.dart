@@ -50,8 +50,8 @@ final class ApiService with IsolateManager {
   /// the [globalCacheOptions].
   ///
   /// [options] are special instructions that can be merged with the request.
-  Future<Response<R>> get<R>({
-    required String endpoint,
+  Future<Response<R>> get<R>(
+    String endpoint, {
     JSON? queryParams,
     Options? options,
     CancelToken? cancelToken,
@@ -80,8 +80,8 @@ final class ApiService with IsolateManager {
   /// [cancelToken] is used to cancel the request pre-maturely.
   ///
   /// [options] are special instructions that can be merged with the request.
-  Future<Response<R>> post<R>({
-    required String endpoint,
+  Future<Response<R>> post<R>(
+    String endpoint, {
     JSON? data,
     JSON? queryParams,
     Options? options,
@@ -115,8 +115,8 @@ final class ApiService with IsolateManager {
   /// [cancelToken] is used to cancel the request pre-maturely.
   ///
   /// [options] are special instructions that can be merged with the request.
-  Future<Response<R>> patch<R>({
-    required String endpoint,
+  Future<Response<R>> patch<R>(
+    String endpoint, {
     JSON? data,
     Options? options,
     CancelToken? cancelToken,
@@ -149,8 +149,8 @@ final class ApiService with IsolateManager {
   /// [cancelToken] is used to cancel the request pre-maturely.
   ///
   /// [options] are special instructions that can be merged with the request.
-  Future<Response<R>> delete<R>({
-    required String endpoint,
+  Future<Response<R>> delete<R>(
+    String endpoint, {
     JSON? data,
     Options? options,
     CancelToken? cancelToken,

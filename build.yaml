@@ -1,0 +1,28 @@
+global_options:
+  dart_mappable_builder:
+    options:
+      ignoreNull: true
+      discriminatorKey: type
+      generateMethods: [copy, stringify, equals, encode, decode]
+
+targets:
+  $default:
+    builders:
+      riverpod_generator:riverpod_generator:
+        enabled: true
+        # generate_for:
+        #   include:
+        #     - lib/features/*
+      dart_mappable_builder:
+        enabled: true
+        generate_for:
+          include:
+            - lib/features/**/data/models/**.dart
+      flutter_gen:
+        enabled: true
+        generate_for:
+          - pubspec.yaml
+      
+
+
+            

@@ -35,7 +35,7 @@ class AuthRepositoryImpl implements AuthRepository {
   TaskEitherFailure<Unit> sendOtp(String nsn) {
     return TaskEitherFailure<Unit>.tryCatch(
       () async => _api.post<JSON>(
-        endpoint: '/users/send-otp',
+        '/users/send-otp',
         queryParams: <String, String>{'login_type': 'mobile'},
         data: <String, String?>{
           'countryCode': '+91',
@@ -46,7 +46,7 @@ class AuthRepositoryImpl implements AuthRepository {
         if (result.data != null) return unit;
         throw Failure(message: 'Failed to send OTP');
       }),
-      Failure.handleError,
+      Failure.parseError,
     );
   }
 
@@ -65,7 +65,7 @@ class AuthRepositoryImpl implements AuthRepository {
         );
         return credential;
       },
-      Failure.handleError,
+      Failure.parseError,
     );
   }
 
@@ -73,7 +73,7 @@ class AuthRepositoryImpl implements AuthRepository {
   TaskEitherFailure<Unit> signOut() {
     return TaskEitherFailure<Unit>.tryCatch(
       () async => _auth.signOut().then((_) => unit),
-      Failure.handleError,
+      Failure.parseError,
     );
   }
 
@@ -85,7 +85,7 @@ class AuthRepositoryImpl implements AuthRepository {
       TaskEitherFailure<UserCredential>.tryCatch(
         () async {
           final Response<JSON> result = await _api.post<JSON>(
-            endpoint: '/users/login-user',
+            '/users/login-user',
             queryParams: <String, String>{'login_type': 'mobile'},
             data: <String, String?>{'phone': number, 'otp_entered': otp},
           );
@@ -99,6 +99,6 @@ class AuthRepositoryImpl implements AuthRepository {
           );
           return user;
         },
-        Failure.handleError,
+        Failure.parseError,
       );
 }

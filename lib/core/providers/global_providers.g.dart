@@ -20,7 +20,7 @@ final dioClientProvider = Provider<Dio>.internal(
 );
 
 typedef DioClientRef = ProviderRef<Dio>;
-String _$apiServiceHash() => r'c5b6e98bc0a7215e88ffffb2faff03f5f2ce7b12';
+String _$apiServiceHash() => r'9597177c441620ade004490c164aaf027fbaabf2';
 
 /// See also [apiService].
 @ProviderFor(apiService)

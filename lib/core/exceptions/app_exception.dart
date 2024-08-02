@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuthException;
 interface class Failure implements Exception {
   Failure({required this.message, this.stackTrace = StackTrace.empty});
 
-  factory Failure.handleError(Object e, StackTrace stk) {
+  factory Failure.parseError(Object e, StackTrace stk) {
     return switch (e) {
       FirebaseAuthException(:final String message) =>
         Failure(message: message, stackTrace: stk),
