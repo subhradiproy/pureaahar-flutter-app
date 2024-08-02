@@ -18,7 +18,11 @@ ApiService apiService(ApiServiceRef ref) {
   return ApiService(
     client: ref.watch(dioClientProvider),
     interceptors: <Interceptor>[
-      LogInterceptor(),
+      LogInterceptor(
+        responseBody: true,
+        requestHeader: false,
+        responseHeader: false,
+      ),
       // AuthorizationInterceptor(ref),
     ],
   );

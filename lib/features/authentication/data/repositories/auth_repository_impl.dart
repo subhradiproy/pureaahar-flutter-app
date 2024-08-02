@@ -35,7 +35,7 @@ class AuthRepositoryImpl implements AuthRepository {
   TaskEitherFailure<Unit> sendOtp(String nsn) {
     return TaskEitherFailure<Unit>.tryCatch(
       () async => _api.post<JSON>(
-        '/users/send-otp',
+        '/v1/api/users/send-otp',
         queryParams: <String, String>{'login_type': 'mobile'},
         data: <String, String?>{
           'countryCode': '+91',
@@ -85,7 +85,7 @@ class AuthRepositoryImpl implements AuthRepository {
       TaskEitherFailure<UserCredential>.tryCatch(
         () async {
           final Response<JSON> result = await _api.post<JSON>(
-            '/users/login-user',
+            '/v1/api/users/login-user',
             queryParams: <String, String>{'login_type': 'mobile'},
             data: <String, String?>{'phone': number, 'otp_entered': otp},
           );
@@ -93,10 +93,8 @@ class AuthRepositoryImpl implements AuthRepository {
             throw Failure(message: 'Failed to verify OTP');
           }
           log(result.data as String? ?? 'No data');
-
-          final UserCredential user = await _auth.signInWithCustomToken(
-            result.data! as String,
-          );
+          final UserCredential user =
+              await _auth.signInWithCustomToken(result.data! as String);
           return user;
         },
         Failure.parseError,

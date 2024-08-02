@@ -26,12 +26,11 @@ class HomeContentRepositoryImpl implements HomeContentRepository {
   @override
   TaskEitherFailure<List<AdBanner>> getAdBanners() {
     return TaskEitherFailure<List<AdBanner>>.tryCatch(
-      () async => _client.get<JSON>('ad_banners').then(
+      () async => _client.get<JSON>('/v1/api/restaurants/banners').then(
         (Response<JSON> json) {
-          if (json.data case {'data': final List<JSON> banners}) {
-            return banners.map(AdBanner.fromMap).toList();
-          }
-          return <AdBanner>[];
+          final List<Object?>? banners = json.data?['data'] as List<Object?>?;
+          if (banners == null || banners.isEmpty) return <AdBanner>[];
+          return banners.cast<JSON>().map(AdBanner.fromMap).toList();
         },
       ),
       Failure.parseError,

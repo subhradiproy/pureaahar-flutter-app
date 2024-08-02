@@ -21,11 +21,12 @@ class AdBannerMapper extends ClassMapperBase<AdBanner> {
   final String id = 'AdBanner';
 
   static String _$id(AdBanner v) => v.id;
-  static const Field<AdBanner, String> _f$id = Field('id', _$id);
+  static const Field<AdBanner, String> _f$id = Field('id', _$id, key: '_id');
   static String _$name(AdBanner v) => v.name;
   static const Field<AdBanner, String> _f$name = Field('name', _$name);
   static String _$url(AdBanner v) => v.url;
-  static const Field<AdBanner, String> _f$url = Field('url', _$url);
+  static const Field<AdBanner, String> _f$url =
+      Field('url', _$url, key: 'bannerImageUrl');
 
   @override
   final MappableFields<AdBanner> fields = const {

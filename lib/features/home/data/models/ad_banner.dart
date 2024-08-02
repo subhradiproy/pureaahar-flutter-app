@@ -13,7 +13,9 @@ class AdBanner with AdBannerMappable {
   factory AdBanner.fromMap(Map<String, Object?> json) =>
       AdBannerMapper.fromMap(json);
 
+  @MappableField(key: '_id')
   final String id;
   final String name;
+  @MappableField(key: 'bannerImageUrl')
   final String url;
 }
