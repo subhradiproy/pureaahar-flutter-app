@@ -16,6 +16,7 @@ class SearchField extends StatefulWidget {
     this.hintTextLeadingPadding = 10,
     this.hintText = 'What do you want to eat ?',
     this.minValidQueryLength = 3,
+    this.enabledVoiceTyping = false,
   });
 
   final Duration debounceTime;
@@ -26,6 +27,7 @@ class SearchField extends StatefulWidget {
   final double hintTextLeadingPadding;
   final String hintText;
   final int minValidQueryLength;
+  final bool enabledVoiceTyping;
 
   @override
   State<SearchField> createState() => _SearchFieldState();
@@ -66,6 +68,10 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         filled: true,
+        prefixIcon: const Icon(Icons.search),
+        suffixIcon: widget.enabledVoiceTyping
+            ? Icon(Icons.mic, color: themeData.iconTheme.color)
+            : null,
         suffixIconConstraints: themeData.visualDensity.effectiveConstraints(
           BoxConstraints(
             minWidth: kMinInteractiveDimension + widget.hintTextLeadingPadding,
