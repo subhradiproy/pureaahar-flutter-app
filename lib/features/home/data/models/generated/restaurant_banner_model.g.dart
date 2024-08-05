@@ -22,8 +22,8 @@ Map<String, dynamic> _$RestaurantBannerModelToJson(
       'bannerImageUrl': instance.url,
     };
 
-Map<String, dynamic> _$$RestaurantBannerDTOImplToJson(
-        _$RestaurantBannerDTOImpl instance) =>
+Map<String, dynamic> _$$RestaurantBannerModelImplToJson(
+        _$RestaurantBannerModelImpl instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'name': instance.name,

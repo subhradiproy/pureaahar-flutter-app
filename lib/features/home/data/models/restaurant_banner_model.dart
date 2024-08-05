@@ -11,11 +11,14 @@ part 'generated/restaurant_banner_model.g.dart';
 sealed class RestaurantBannerModel
     with _$RestaurantBannerModel
     implements EntityMapper<RestaurantBannerEntity> {
+  @Implements<EntityMapper<RestaurantBannerEntity>>()
   const factory RestaurantBannerModel({
     @JsonKey(name: '_id') required String id,
     required String name,
     @JsonKey(name: 'bannerImageUrl') required String url,
-  }) = _RestaurantBannerDTO;
+  }) = _RestaurantBannerModel;
+
+  const RestaurantBannerModel._();
 
   factory RestaurantBannerModel.fromJson(Map<String, dynamic> json) =>
       _$RestaurantBannerModelFromJson(json);

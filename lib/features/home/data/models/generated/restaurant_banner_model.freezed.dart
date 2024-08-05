@@ -76,11 +76,12 @@ class _$RestaurantBannerModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$RestaurantBannerDTOImplCopyWith<$Res>
+abstract class _$$RestaurantBannerModelImplCopyWith<$Res>
     implements $RestaurantBannerModelCopyWith<$Res> {
-  factory _$$RestaurantBannerDTOImplCopyWith(_$RestaurantBannerDTOImpl value,
-          $Res Function(_$RestaurantBannerDTOImpl) then) =
-      __$$RestaurantBannerDTOImplCopyWithImpl<$Res>;
+  factory _$$RestaurantBannerModelImplCopyWith(
+          _$RestaurantBannerModelImpl value,
+          $Res Function(_$RestaurantBannerModelImpl) then) =
+      __$$RestaurantBannerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -90,11 +91,12 @@ abstract class _$$RestaurantBannerDTOImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RestaurantBannerDTOImplCopyWithImpl<$Res>
-    extends _$RestaurantBannerModelCopyWithImpl<$Res, _$RestaurantBannerDTOImpl>
-    implements _$$RestaurantBannerDTOImplCopyWith<$Res> {
-  __$$RestaurantBannerDTOImplCopyWithImpl(_$RestaurantBannerDTOImpl _value,
-      $Res Function(_$RestaurantBannerDTOImpl) _then)
+class __$$RestaurantBannerModelImplCopyWithImpl<$Res>
+    extends _$RestaurantBannerModelCopyWithImpl<$Res,
+        _$RestaurantBannerModelImpl>
+    implements _$$RestaurantBannerModelImplCopyWith<$Res> {
+  __$$RestaurantBannerModelImplCopyWithImpl(_$RestaurantBannerModelImpl _value,
+      $Res Function(_$RestaurantBannerModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -104,7 +106,7 @@ class __$$RestaurantBannerDTOImplCopyWithImpl<$Res>
     Object? name = null,
     Object? url = null,
   }) {
-    return _then(_$RestaurantBannerDTOImpl(
+    return _then(_$RestaurantBannerModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -123,11 +125,12 @@ class __$$RestaurantBannerDTOImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class _$RestaurantBannerDTOImpl implements _RestaurantBannerDTO {
-  const _$RestaurantBannerDTOImpl(
+class _$RestaurantBannerModelImpl extends _RestaurantBannerModel {
+  const _$RestaurantBannerModelImpl(
       {@JsonKey(name: '_id') required this.id,
       required this.name,
-      @JsonKey(name: 'bannerImageUrl') required this.url});
+      @JsonKey(name: 'bannerImageUrl') required this.url})
+      : super._();
 
   @override
   @JsonKey(name: '_id')
@@ -147,7 +150,7 @@ class _$RestaurantBannerDTOImpl implements _RestaurantBannerDTO {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RestaurantBannerDTOImpl &&
+            other is _$RestaurantBannerModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.url, url) || other.url == url));
@@ -160,24 +163,26 @@ class _$RestaurantBannerDTOImpl implements _RestaurantBannerDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantBannerDTOImplCopyWith<_$RestaurantBannerDTOImpl> get copyWith =>
-      __$$RestaurantBannerDTOImplCopyWithImpl<_$RestaurantBannerDTOImpl>(
-          this, _$identity);
+  _$$RestaurantBannerModelImplCopyWith<_$RestaurantBannerModelImpl>
+      get copyWith => __$$RestaurantBannerModelImplCopyWithImpl<
+          _$RestaurantBannerModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RestaurantBannerDTOImplToJson(
+    return _$$RestaurantBannerModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _RestaurantBannerDTO implements RestaurantBannerModel {
-  const factory _RestaurantBannerDTO(
+abstract class _RestaurantBannerModel extends RestaurantBannerModel
+    implements EntityMapper<RestaurantBannerEntity> {
+  const factory _RestaurantBannerModel(
           {@JsonKey(name: '_id') required final String id,
           required final String name,
           @JsonKey(name: 'bannerImageUrl') required final String url}) =
-      _$RestaurantBannerDTOImpl;
+      _$RestaurantBannerModelImpl;
+  const _RestaurantBannerModel._() : super._();
 
   @override
   @JsonKey(name: '_id')
@@ -189,6 +194,6 @@ abstract class _RestaurantBannerDTO implements RestaurantBannerModel {
   String get url;
   @override
   @JsonKey(ignore: true)
-  _$$RestaurantBannerDTOImplCopyWith<_$RestaurantBannerDTOImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$RestaurantBannerModelImplCopyWith<_$RestaurantBannerModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

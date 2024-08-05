@@ -8,14 +8,17 @@ part 'generated/cuisine_model.g.dart';
 
 @freezed
 @JsonSerializable()
-final class CuisineModel
+sealed class CuisineModel
     with _$CuisineModel
     implements EntityMapper<CuisineEntity> {
+  @Implements<EntityMapper<CuisineEntity>>()
   const factory CuisineModel({
     @JsonKey(name: '_id') required String id,
     required String name,
     @JsonKey(name: 'cuisineImageUrl') required String url,
-  }) = _RestaurantBannerDTO;
+  }) = _CuisineModel;
+
+  const CuisineModel._();
 
   factory CuisineModel.fromJson(Map<String, dynamic> json) =>
       _$CuisineModelFromJson(json);
