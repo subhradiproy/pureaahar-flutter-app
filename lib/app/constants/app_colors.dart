@@ -5,7 +5,7 @@ sealed class AppColors {
   const AppColors._();
 
   // Brand Colors
-  static const Color primary = Color(0xFF009F0B);
+  static const Color primary = Color(0xFF03B334);
   static const Color secondary = Color(0xFFFF7916);
   static const Color white = Color(0xFFFFFFFF);
 

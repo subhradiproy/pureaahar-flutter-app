@@ -10,6 +10,8 @@ sealed class AppColorScheme {
   /// App's light ColorScheme.
   static final ColorScheme light = ColorScheme.fromSeed(
     seedColor: AppColors.primary,
+    surface: Colors.white,
+    onSurface: Colors.black,
     error: AppColors.error,
     onSecondary: AppColors.secondary,
   );
@@ -17,6 +19,7 @@ sealed class AppColorScheme {
   /// App's dark ColorScheme.
   static const ColorScheme dark = ColorScheme.dark(
     primary: AppColors.primary,
+    surface: Colors.white,
     secondary: AppColors.secondary,
     error: AppColors.error,
   );

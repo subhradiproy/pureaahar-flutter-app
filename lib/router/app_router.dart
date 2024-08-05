@@ -9,7 +9,7 @@ import '../features/home/presentation/screens/explore_home_screen.dart';
 import '../features/home/presentation/widgets/nested_scaffold_nav.dart';
 import 'routes/routes.dart';
 
-part 'app_router.g.dart';
+part 'generated/app_router.g.dart';
 
 @riverpod
 class AppRouter extends _$AppRouter {

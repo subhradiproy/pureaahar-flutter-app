@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_notifier.dart';
+part of '../home_content_repository_impl.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$adBannerFutureHash() => r'3b510f73f2f94aaf77b3ee69232e0b5a16d9434b';
+String _$homeRepositoryHash() => r'e5b171daa5d9553b06bda6de5f4ce4a6fe5eeb28';
 
-/// See also [adBannerFuture].
-@ProviderFor(adBannerFuture)
-final adBannerFutureProvider =
-    AutoDisposeFutureProvider<List<AdBanner>>.internal(
-  adBannerFuture,
-  name: r'adBannerFutureProvider',
+/// See also [homeRepository].
+@ProviderFor(homeRepository)
+final homeRepositoryProvider =
+    AutoDisposeProvider<HomeContentRepository>.internal(
+  homeRepository,
+  name: r'homeRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$adBannerFutureHash,
+      : _$homeRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AdBannerFutureRef = AutoDisposeFutureProviderRef<List<AdBanner>>;
+typedef HomeRepositoryRef = AutoDisposeProviderRef<HomeContentRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

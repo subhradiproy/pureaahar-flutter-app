@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
       appBar: AppBar(toolbarHeight: 0),
       body: Center(
         child: LottieBuilder.asset(
-          LottieAssets.splash.path,
+          LottieAsset.splash.path,
           onLoaded: (LottieComposition lottie) => _controller
             ..duration = lottie.duration
             ..forward(),

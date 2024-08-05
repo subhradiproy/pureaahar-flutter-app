@@ -10,13 +10,16 @@ class SearchField extends StatefulWidget {
     super.key,
     this.debounceTime = const Duration(milliseconds: 350),
     this.readOnly = false,
-    this.height = 40,
+    this.height = 45,
     this.initialValue,
     this.onChanged,
     this.hintTextLeadingPadding = 10,
     this.hintText = 'What do you want to eat ?',
     this.minValidQueryLength = 3,
     this.enabledVoiceTyping = false,
+    this.textAlign = TextAlign.start,
+    this.contentPadding,
+    this.onTap,
   });
 
   final Duration debounceTime;
@@ -28,6 +31,9 @@ class SearchField extends StatefulWidget {
   final String hintText;
   final int minValidQueryLength;
   final bool enabledVoiceTyping;
+  final TextAlign textAlign;
+  final EdgeInsets? contentPadding;
+  final VoidCallback? onTap;
 
   @override
   State<SearchField> createState() => _SearchFieldState();
@@ -64,10 +70,15 @@ class _SearchFieldState extends State<SearchField> {
     return TextField(
       readOnly: widget.readOnly,
       onChanged: _onChanged,
+      onTap: widget.onTap,
       controller: _textEditingController,
+      textAlign: widget.textAlign,
       decoration: InputDecoration(
         hintText: widget.hintText,
+        contentPadding: widget.contentPadding,
+        constraints: BoxConstraints(maxHeight: widget.height),
         filled: true,
+        hintStyle: const TextStyle(fontSize: 14),
         prefixIcon: const Icon(Icons.search),
         suffixIcon: widget.enabledVoiceTyping
             ? Icon(Icons.mic, color: themeData.iconTheme.color)

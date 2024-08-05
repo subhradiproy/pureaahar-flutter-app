@@ -94,11 +94,12 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen> {
                     ),
                     const SizedBox(height: 8),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Expanded(
                           child: AppText(
-                            '''Enter the 4-digit code we've sent to ${widget.contact.isEmpty ? 'your phone' : widget.contact}''',
-                            style: AppTextStyle.label2,
+                            '''Enter the 6-digit code we've sent to ${widget.contact.isEmpty ? 'your phone' : widget.contact}''',
+                            style: AppTextStyle.label2.copyWith(fontSize: 14),
                             maxLines: 3,
                           ),
                         ),

@@ -30,6 +30,7 @@ linter:
   rules:
     avoid_setters_without_getters: false
     flutter_style_todos: false
+    prefer_asserts_with_message: false
     comment_references: false
     only_throw_errors: false
     lines_longer_than_80_chars: true

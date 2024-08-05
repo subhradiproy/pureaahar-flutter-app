@@ -7,7 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/exceptions/app_exception.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 
-part 'login_notifier.g.dart';
+part 'generated/login_notifier.g.dart';
 part 'login_state.dart';
 
 @riverpod

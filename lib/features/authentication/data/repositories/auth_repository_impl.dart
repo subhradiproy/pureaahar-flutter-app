@@ -11,7 +11,7 @@ import '../../../../core/providers/global_providers.dart';
 import '../../../../core/services/api_service.dart';
 import '../../domain/repositories/auth_repository.dart';
 
-part 'auth_repository_impl.g.dart';
+part 'generated/auth_repository_impl.g.dart';
 
 @riverpod
 AuthRepository authRepository(AuthRepositoryRef ref) {

@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../configuration/flavors.dart';
 import '../services/api_service.dart';
 
-part 'global_providers.g.dart';
+part 'generated/global_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 Dio dioClient(DioClientRef ref) {

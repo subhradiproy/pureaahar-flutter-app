@@ -1,14 +1,30 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/exceptions/app_exception.dart';
-import '../../data/models/ad_banner.dart';
+import '../../../../core/models/entity_mapper.dart';
+import '../../data/models/cuisine_model.dart';
+import '../../data/models/restaurant_banner_model.dart';
 import '../../data/repositories/home_content_repository_impl.dart';
+import '../../domain/entities/cuisine_entity.dart';
+import '../../domain/entities/restaurant_banner_entity.dart';
 
-part 'home_notifier.g.dart';
+part 'generated/home_notifier.g.dart';
 
 @riverpod
-FutureOr<List<AdBanner>> adBannerFuture(AdBannerFutureRef ref) async => ref
+FutureOr<List<RestaurantBannerEntity>> restaurantBanner(
+  RestaurantBannerRef ref,
+) async =>
+    ref
+        .read(homeRepositoryProvider)
+        .getAdBanners()
+        .map((List<RestaurantBannerModel> r) => r.toEntityList())
+        .getOrElse((Failure l) => throw l)
+        .run();
+
+@riverpod
+FutureOr<List<CuisineEntity>> cuisine(CuisineRef ref) async => ref
     .read(homeRepositoryProvider)
-    .getAdBanners()
+    .getCuisines()
+    .map((List<CuisineModel> r) => r.toEntityList())
     .getOrElse((Failure l) => throw l)
     .run();

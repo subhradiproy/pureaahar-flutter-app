@@ -17,21 +17,20 @@ sealed class AppTheme {
       brightness: brightness,
       useMaterial3: true,
       colorScheme: scheme,
-      scaffoldBackgroundColor: scheme.surfaceBright,
+      scaffoldBackgroundColor: scheme.surface,
       visualDensity: VisualDensity.comfortable,
       typography: Typography.material2021(
         colorScheme: scheme,
         platform: defaultTargetPlatform,
       ),
       primaryColor: scheme.primary,
-      primaryTextTheme: GoogleFonts.poppinsTextTheme().apply(
-        bodyColor: scheme.primary,
-        displayColor: scheme.primary,
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        iconTheme: IconThemeData(color: AppColors.primary),
       ),
-      textTheme: GoogleFonts.poppinsTextTheme().apply(
-        bodyColor: scheme.primary,
-        displayColor: scheme.primary,
-      ),
+      primaryTextTheme: GoogleFonts.poppinsTextTheme(),
+      textTheme: GoogleFonts.poppinsTextTheme(),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
@@ -47,6 +46,7 @@ sealed class AppTheme {
           ),
         ),
       ),
+      iconTheme: const IconThemeData(color: AppColors.primary),
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
           TargetPlatform.android: CupertinoPageTransitionsBuilder(),

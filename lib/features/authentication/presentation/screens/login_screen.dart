@@ -56,14 +56,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.close_rounded),
-        ),
         title: AppText(
-          'Welcome to Veg Verse',
+          'Welcome to Vegverse',
           style: AppTextStyle.title2.copyWith(color: AppColors.primary),
         ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => context.goNamed(AppRoute.home.name),
+            child: const AppText('Skip'),
+          ),
+        ],
       ),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -74,6 +76,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               Expanded(child: _content(theme)),
               Row(
                 children: <Expanded>[
+                  // const SizedBox.square(
+                  //           dimension: 24,
+                  //           child: CircularProgressIndicator.adaptive(
+                  //             valueColor: AlwaysStoppedAnimation<Color>(
+                  //               AppColors.white,
+                  //             ),
+                  //           ),
+                  //         ),
                   Expanded(
                     child: ListenableBuilder(
                       listenable: _controller,
@@ -109,20 +119,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         children: <Widget>[
           AppText(
             'Verify your phone number with code',
-            style: AppTextStyle.headline.copyWith(fontSize: 28),
+            style: AppTextStyle.headline.copyWith(fontSize: 24),
           ),
           const SizedBox(height: 8),
           AppText(
             "We'll send you a code. It helps keep your account secure",
-            style: AppTextStyle.label2,
+            style: AppTextStyle.label2.copyWith(fontSize: 14),
             maxLines: 2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 4),
+            padding: const EdgeInsets.only(top: 14, bottom: 4),
             child: AppText('Your Phone Number', style: AppTextStyle.button),
           ),
           PhoneTextField(
             controller: _controller,
+            decoration: const InputDecoration(hintText: 'Phone number'),
             countryPrefixStyle: CountryPrefixStyle(
               textStyle: AppTextStyle.paragraph1.copyWith(),
             ),
@@ -151,8 +162,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onPressed:
                       ref.read(loginNotifierProvider.notifier).signInWithGoogle,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.colorScheme.secondaryContainer,
-                    foregroundColor: theme.colorScheme.primary,
+                    backgroundColor: theme.colorScheme.surface,
+                    foregroundColor: theme.colorScheme.onSurface,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(36),
+                      side: BorderSide(
+                        color: theme.colorScheme.onSurface,
+                        width: 0.1,
+                      ),
+                    ),
                   ),
                   icon: SvgPicture.asset(
                     SvgAsset.googleIcon.path,
@@ -162,7 +180,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   label: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: AppText(
-                      'Sign in with Google',
+                      'Continue with Google',
                       style: AppTextStyle.label2,
                     ),
                   ),
