@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../core/models/entity_mapper.dart';
+import '../../domain/entities/menu_item_entity.dart';
 import 'choice_and_addons_model.dart';
 import 'restaurant_model.dart';
 
@@ -8,11 +10,11 @@ part 'generated/menu_item_model.g.dart';
 
 @freezed
 @JsonSerializable()
-sealed class MenuItemModel with _$MenuItemModel {
+class MenuItemModel with _$MenuItemModel implements EntityMapper<MenuItem> {
   const factory MenuItemModel({
     @JsonKey(name: 'restaurantId')
     required ({String restaurantName}) restaurantInfo,
-    required OptionsModel options,
+    required MenuOptionsModel options,
     @JsonKey(name: 'outletId') required OutletModel outletInfo,
     required String categoryId,
     required List<String> cuisines,
@@ -38,21 +40,53 @@ sealed class MenuItemModel with _$MenuItemModel {
       _$MenuItemModelFromJson(json);
 
   Map<String, Object?> toJson() => _$MenuItemModelToJson(this);
+
+  @override
+  MenuItem toEntity() {
+    return MenuItem(
+      restaurantName: restaurantInfo.restaurantName,
+      options: options.toEntity(),
+      outletInfo: outletInfo.toEntity(),
+      categoryId: categoryId,
+      cuisines: cuisines,
+      itemName: itemName,
+      status: status,
+      itemDescription: itemDescription,
+      itemImageUrl: itemImageUrl ?? '',
+      pricing: pricing,
+      reviews: reviews,
+      rating: rating,
+      happyHourPrice: happyHourPrice,
+      tags: tags,
+      isInStock: isInStock,
+    );
+  }
 }
 
 @freezed
 @JsonSerializable()
-sealed class OptionsModel with _$OptionsModel {
-  const factory OptionsModel({
+class MenuOptionsModel
+    with _$MenuOptionsModel
+    implements EntityMapper<MenuOptions> {
+  const factory MenuOptionsModel({
     @JsonKey(name: '_id') required String id,
-    @Default(<ChoiceModel>[]) List<ChoiceModel> choices,
+    @Default(<Choice>[]) List<Choice> choices,
     @Default(<Addons>[]) List<Addons> addons,
-  }) = _OptionsModel;
+  }) = _MenuOptionsModel;
 
-  const OptionsModel._();
+  const MenuOptionsModel._();
 
-  factory OptionsModel.fromJson(Map<String, Object?> json) =>
-      _$OptionsModelFromJson(json);
+  factory MenuOptionsModel.fromJson(Map<String, Object?> json) =>
+      _$MenuOptionsModelFromJson(json);
 
-  Map<String, Object?> toJson() => _$OptionsModelToJson(this);
+  Map<String, Object?> toJson() => _$MenuOptionsModelToJson(this);
+
+  @override
+  MenuOptions toEntity() {
+    return MenuOptions(
+      id: id,
+      choices: choices,
+      addons: addons,
+    );
+  }
 }

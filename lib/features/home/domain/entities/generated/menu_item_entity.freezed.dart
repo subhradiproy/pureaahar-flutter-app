@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../menu_item_model.dart';
+part of '../menu_item_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,24 +15,20 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$MenuItemModel {
-  @JsonKey(name: 'restaurantId')
-  ({String restaurantName}) get restaurantInfo =>
-      throw _privateConstructorUsedError;
-  MenuOptionsModel get options => throw _privateConstructorUsedError;
-  @JsonKey(name: 'outletId')
-  OutletModel get outletInfo => throw _privateConstructorUsedError;
+mixin _$MenuItem {
+  String get restaurantName => throw _privateConstructorUsedError;
+  MenuOptions get options => throw _privateConstructorUsedError;
+  Outlet get outletInfo => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   List<String> get cuisines => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get itemImageUrl => throw _privateConstructorUsedError;
   String? get itemDescription => throw _privateConstructorUsedError;
-  String? get itemImageUrl => throw _privateConstructorUsedError;
   List<({int discountPercent, bool isActive, int price})> get pricing =>
       throw _privateConstructorUsedError;
   List<({int rating, String userId})> get reviews =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: 'Rating')
   int? get rating => throw _privateConstructorUsedError;
   int? get happyHourPrice => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
@@ -41,43 +37,42 @@ mixin _$MenuItemModel {
   bool get isHappyHourItem => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MenuItemModelCopyWith<MenuItemModel> get copyWith =>
+  $MenuItemCopyWith<MenuItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MenuItemModelCopyWith<$Res> {
-  factory $MenuItemModelCopyWith(
-          MenuItemModel value, $Res Function(MenuItemModel) then) =
-      _$MenuItemModelCopyWithImpl<$Res, MenuItemModel>;
+abstract class $MenuItemCopyWith<$Res> {
+  factory $MenuItemCopyWith(MenuItem value, $Res Function(MenuItem) then) =
+      _$MenuItemCopyWithImpl<$Res, MenuItem>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'restaurantId') ({String restaurantName}) restaurantInfo,
-      MenuOptionsModel options,
-      @JsonKey(name: 'outletId') OutletModel outletInfo,
+      {String restaurantName,
+      MenuOptions options,
+      Outlet outletInfo,
       String categoryId,
       List<String> cuisines,
       String itemName,
       String status,
+      String itemImageUrl,
       String? itemDescription,
-      String? itemImageUrl,
       List<({int discountPercent, bool isActive, int price})> pricing,
       List<({int rating, String userId})> reviews,
-      @JsonKey(name: 'Rating') int? rating,
+      int? rating,
       int? happyHourPrice,
       List<String> tags,
       bool isInStock,
       bool isVeg,
       bool isHappyHourItem});
 
-  $MenuOptionsModelCopyWith<$Res> get options;
-  $OutletModelCopyWith<$Res> get outletInfo;
+  $MenuOptionsCopyWith<$Res> get options;
+  $OutletCopyWith<$Res> get outletInfo;
 }
 
 /// @nodoc
-class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
-    implements $MenuItemModelCopyWith<$Res> {
-  _$MenuItemModelCopyWithImpl(this._value, this._then);
+class _$MenuItemCopyWithImpl<$Res, $Val extends MenuItem>
+    implements $MenuItemCopyWith<$Res> {
+  _$MenuItemCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -87,15 +82,15 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantInfo = null,
+    Object? restaurantName = null,
     Object? options = null,
     Object? outletInfo = null,
     Object? categoryId = null,
     Object? cuisines = null,
     Object? itemName = null,
     Object? status = null,
+    Object? itemImageUrl = null,
     Object? itemDescription = freezed,
-    Object? itemImageUrl = freezed,
     Object? pricing = null,
     Object? reviews = null,
     Object? rating = freezed,
@@ -106,18 +101,18 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
     Object? isHappyHourItem = null,
   }) {
     return _then(_value.copyWith(
-      restaurantInfo: null == restaurantInfo
-          ? _value.restaurantInfo
-          : restaurantInfo // ignore: cast_nullable_to_non_nullable
-              as ({String restaurantName}),
+      restaurantName: null == restaurantName
+          ? _value.restaurantName
+          : restaurantName // ignore: cast_nullable_to_non_nullable
+              as String,
       options: null == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
-              as MenuOptionsModel,
+              as MenuOptions,
       outletInfo: null == outletInfo
           ? _value.outletInfo
           : outletInfo // ignore: cast_nullable_to_non_nullable
-              as OutletModel,
+              as Outlet,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -134,13 +129,13 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      itemImageUrl: null == itemImageUrl
+          ? _value.itemImageUrl
+          : itemImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       itemDescription: freezed == itemDescription
           ? _value.itemDescription
           : itemDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      itemImageUrl: freezed == itemImageUrl
-          ? _value.itemImageUrl
-          : itemImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       pricing: null == pricing
           ? _value.pricing
@@ -179,42 +174,42 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $MenuOptionsModelCopyWith<$Res> get options {
-    return $MenuOptionsModelCopyWith<$Res>(_value.options, (value) {
+  $MenuOptionsCopyWith<$Res> get options {
+    return $MenuOptionsCopyWith<$Res>(_value.options, (value) {
       return _then(_value.copyWith(options: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OutletModelCopyWith<$Res> get outletInfo {
-    return $OutletModelCopyWith<$Res>(_value.outletInfo, (value) {
+  $OutletCopyWith<$Res> get outletInfo {
+    return $OutletCopyWith<$Res>(_value.outletInfo, (value) {
       return _then(_value.copyWith(outletInfo: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$MenuItemModelImplCopyWith<$Res>
-    implements $MenuItemModelCopyWith<$Res> {
-  factory _$$MenuItemModelImplCopyWith(
-          _$MenuItemModelImpl value, $Res Function(_$MenuItemModelImpl) then) =
-      __$$MenuItemModelImplCopyWithImpl<$Res>;
+abstract class _$$MenuItemImplCopyWith<$Res>
+    implements $MenuItemCopyWith<$Res> {
+  factory _$$MenuItemImplCopyWith(
+          _$MenuItemImpl value, $Res Function(_$MenuItemImpl) then) =
+      __$$MenuItemImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'restaurantId') ({String restaurantName}) restaurantInfo,
-      MenuOptionsModel options,
-      @JsonKey(name: 'outletId') OutletModel outletInfo,
+      {String restaurantName,
+      MenuOptions options,
+      Outlet outletInfo,
       String categoryId,
       List<String> cuisines,
       String itemName,
       String status,
+      String itemImageUrl,
       String? itemDescription,
-      String? itemImageUrl,
       List<({int discountPercent, bool isActive, int price})> pricing,
       List<({int rating, String userId})> reviews,
-      @JsonKey(name: 'Rating') int? rating,
+      int? rating,
       int? happyHourPrice,
       List<String> tags,
       bool isInStock,
@@ -222,31 +217,31 @@ abstract class _$$MenuItemModelImplCopyWith<$Res>
       bool isHappyHourItem});
 
   @override
-  $MenuOptionsModelCopyWith<$Res> get options;
+  $MenuOptionsCopyWith<$Res> get options;
   @override
-  $OutletModelCopyWith<$Res> get outletInfo;
+  $OutletCopyWith<$Res> get outletInfo;
 }
 
 /// @nodoc
-class __$$MenuItemModelImplCopyWithImpl<$Res>
-    extends _$MenuItemModelCopyWithImpl<$Res, _$MenuItemModelImpl>
-    implements _$$MenuItemModelImplCopyWith<$Res> {
-  __$$MenuItemModelImplCopyWithImpl(
-      _$MenuItemModelImpl _value, $Res Function(_$MenuItemModelImpl) _then)
+class __$$MenuItemImplCopyWithImpl<$Res>
+    extends _$MenuItemCopyWithImpl<$Res, _$MenuItemImpl>
+    implements _$$MenuItemImplCopyWith<$Res> {
+  __$$MenuItemImplCopyWithImpl(
+      _$MenuItemImpl _value, $Res Function(_$MenuItemImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantInfo = null,
+    Object? restaurantName = null,
     Object? options = null,
     Object? outletInfo = null,
     Object? categoryId = null,
     Object? cuisines = null,
     Object? itemName = null,
     Object? status = null,
+    Object? itemImageUrl = null,
     Object? itemDescription = freezed,
-    Object? itemImageUrl = freezed,
     Object? pricing = null,
     Object? reviews = null,
     Object? rating = freezed,
@@ -256,19 +251,19 @@ class __$$MenuItemModelImplCopyWithImpl<$Res>
     Object? isVeg = null,
     Object? isHappyHourItem = null,
   }) {
-    return _then(_$MenuItemModelImpl(
-      restaurantInfo: null == restaurantInfo
-          ? _value.restaurantInfo
-          : restaurantInfo // ignore: cast_nullable_to_non_nullable
-              as ({String restaurantName}),
+    return _then(_$MenuItemImpl(
+      restaurantName: null == restaurantName
+          ? _value.restaurantName
+          : restaurantName // ignore: cast_nullable_to_non_nullable
+              as String,
       options: null == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
-              as MenuOptionsModel,
+              as MenuOptions,
       outletInfo: null == outletInfo
           ? _value.outletInfo
           : outletInfo // ignore: cast_nullable_to_non_nullable
-              as OutletModel,
+              as Outlet,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -285,13 +280,13 @@ class __$$MenuItemModelImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      itemImageUrl: null == itemImageUrl
+          ? _value.itemImageUrl
+          : itemImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       itemDescription: freezed == itemDescription
           ? _value.itemDescription
           : itemDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      itemImageUrl: freezed == itemImageUrl
-          ? _value.itemImageUrl
-          : itemImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       pricing: null == pricing
           ? _value._pricing
@@ -331,24 +326,24 @@ class __$$MenuItemModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuItemModelImpl extends _MenuItemModel {
-  const _$MenuItemModelImpl(
-      {@JsonKey(name: 'restaurantId') required this.restaurantInfo,
+class _$MenuItemImpl implements _MenuItem {
+  const _$MenuItemImpl(
+      {required this.restaurantName,
       required this.options,
-      @JsonKey(name: 'outletId') required this.outletInfo,
+      required this.outletInfo,
       required this.categoryId,
       required final List<String> cuisines,
       required this.itemName,
       required this.status,
+      required this.itemImageUrl,
       this.itemDescription,
-      this.itemImageUrl,
       final List<({int discountPercent, bool isActive, int price})> pricing =
           const <({int price, int discountPercent, bool isActive})>[],
       final List<({int rating, String userId})> reviews = const <({
         int rating,
         String userId
       })>[],
-      @JsonKey(name: 'Rating') this.rating,
+      this.rating,
       this.happyHourPrice,
       final List<String> tags = const <String>[],
       this.isInStock = false,
@@ -357,17 +352,14 @@ class _$MenuItemModelImpl extends _MenuItemModel {
       : _cuisines = cuisines,
         _pricing = pricing,
         _reviews = reviews,
-        _tags = tags,
-        super._();
+        _tags = tags;
 
   @override
-  @JsonKey(name: 'restaurantId')
-  final ({String restaurantName}) restaurantInfo;
+  final String restaurantName;
   @override
-  final MenuOptionsModel options;
+  final MenuOptions options;
   @override
-  @JsonKey(name: 'outletId')
-  final OutletModel outletInfo;
+  final Outlet outletInfo;
   @override
   final String categoryId;
   final List<String> _cuisines;
@@ -383,9 +375,9 @@ class _$MenuItemModelImpl extends _MenuItemModel {
   @override
   final String status;
   @override
-  final String? itemDescription;
+  final String itemImageUrl;
   @override
-  final String? itemImageUrl;
+  final String? itemDescription;
   final List<({int discountPercent, bool isActive, int price})> _pricing;
   @override
   @JsonKey()
@@ -405,7 +397,6 @@ class _$MenuItemModelImpl extends _MenuItemModel {
   }
 
   @override
-  @JsonKey(name: 'Rating')
   final int? rating;
   @override
   final int? happyHourPrice;
@@ -430,16 +421,16 @@ class _$MenuItemModelImpl extends _MenuItemModel {
 
   @override
   String toString() {
-    return 'MenuItemModel(restaurantInfo: $restaurantInfo, options: $options, outletInfo: $outletInfo, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemDescription: $itemDescription, itemImageUrl: $itemImageUrl, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
+    return 'MenuItem(restaurantName: $restaurantName, options: $options, outletInfo: $outletInfo, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemImageUrl: $itemImageUrl, itemDescription: $itemDescription, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MenuItemModelImpl &&
-            (identical(other.restaurantInfo, restaurantInfo) ||
-                other.restaurantInfo == restaurantInfo) &&
+            other is _$MenuItemImpl &&
+            (identical(other.restaurantName, restaurantName) ||
+                other.restaurantName == restaurantName) &&
             (identical(other.options, options) || other.options == options) &&
             (identical(other.outletInfo, outletInfo) ||
                 other.outletInfo == outletInfo) &&
@@ -449,10 +440,10 @@ class _$MenuItemModelImpl extends _MenuItemModel {
             (identical(other.itemName, itemName) ||
                 other.itemName == itemName) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.itemDescription, itemDescription) ||
-                other.itemDescription == itemDescription) &&
             (identical(other.itemImageUrl, itemImageUrl) ||
                 other.itemImageUrl == itemImageUrl) &&
+            (identical(other.itemDescription, itemDescription) ||
+                other.itemDescription == itemDescription) &&
             const DeepCollectionEquality().equals(other._pricing, _pricing) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews) &&
             (identical(other.rating, rating) || other.rating == rating) &&
@@ -469,15 +460,15 @@ class _$MenuItemModelImpl extends _MenuItemModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      restaurantInfo,
+      restaurantName,
       options,
       outletInfo,
       categoryId,
       const DeepCollectionEquality().hash(_cuisines),
       itemName,
       status,
-      itemDescription,
       itemImageUrl,
+      itemDescription,
       const DeepCollectionEquality().hash(_pricing),
       const DeepCollectionEquality().hash(_reviews),
       rating,
@@ -490,40 +481,36 @@ class _$MenuItemModelImpl extends _MenuItemModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MenuItemModelImplCopyWith<_$MenuItemModelImpl> get copyWith =>
-      __$$MenuItemModelImplCopyWithImpl<_$MenuItemModelImpl>(this, _$identity);
+  _$$MenuItemImplCopyWith<_$MenuItemImpl> get copyWith =>
+      __$$MenuItemImplCopyWithImpl<_$MenuItemImpl>(this, _$identity);
 }
 
-abstract class _MenuItemModel extends MenuItemModel {
-  const factory _MenuItemModel(
-      {@JsonKey(name: 'restaurantId')
-      required final ({String restaurantName}) restaurantInfo,
-      required final MenuOptionsModel options,
-      @JsonKey(name: 'outletId') required final OutletModel outletInfo,
+abstract class _MenuItem implements MenuItem {
+  const factory _MenuItem(
+      {required final String restaurantName,
+      required final MenuOptions options,
+      required final Outlet outletInfo,
       required final String categoryId,
       required final List<String> cuisines,
       required final String itemName,
       required final String status,
+      required final String itemImageUrl,
       final String? itemDescription,
-      final String? itemImageUrl,
       final List<({int discountPercent, bool isActive, int price})> pricing,
       final List<({int rating, String userId})> reviews,
-      @JsonKey(name: 'Rating') final int? rating,
+      final int? rating,
       final int? happyHourPrice,
       final List<String> tags,
       final bool isInStock,
       final bool isVeg,
-      final bool isHappyHourItem}) = _$MenuItemModelImpl;
-  const _MenuItemModel._() : super._();
+      final bool isHappyHourItem}) = _$MenuItemImpl;
 
   @override
-  @JsonKey(name: 'restaurantId')
-  ({String restaurantName}) get restaurantInfo;
+  String get restaurantName;
   @override
-  MenuOptionsModel get options;
+  MenuOptions get options;
   @override
-  @JsonKey(name: 'outletId')
-  OutletModel get outletInfo;
+  Outlet get outletInfo;
   @override
   String get categoryId;
   @override
@@ -533,15 +520,14 @@ abstract class _MenuItemModel extends MenuItemModel {
   @override
   String get status;
   @override
-  String? get itemDescription;
+  String get itemImageUrl;
   @override
-  String? get itemImageUrl;
+  String? get itemDescription;
   @override
   List<({int discountPercent, bool isActive, int price})> get pricing;
   @override
   List<({int rating, String userId})> get reviews;
   @override
-  @JsonKey(name: 'Rating')
   int? get rating;
   @override
   int? get happyHourPrice;
@@ -555,27 +541,27 @@ abstract class _MenuItemModel extends MenuItemModel {
   bool get isHappyHourItem;
   @override
   @JsonKey(ignore: true)
-  _$$MenuItemModelImplCopyWith<_$MenuItemModelImpl> get copyWith =>
+  _$$MenuItemImplCopyWith<_$MenuItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$MenuOptionsModel {
+mixin _$MenuOptions {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
   List<Choice> get choices => throw _privateConstructorUsedError;
   List<Addons> get addons => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MenuOptionsModelCopyWith<MenuOptionsModel> get copyWith =>
+  $MenuOptionsCopyWith<MenuOptions> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MenuOptionsModelCopyWith<$Res> {
-  factory $MenuOptionsModelCopyWith(
-          MenuOptionsModel value, $Res Function(MenuOptionsModel) then) =
-      _$MenuOptionsModelCopyWithImpl<$Res, MenuOptionsModel>;
+abstract class $MenuOptionsCopyWith<$Res> {
+  factory $MenuOptionsCopyWith(
+          MenuOptions value, $Res Function(MenuOptions) then) =
+      _$MenuOptionsCopyWithImpl<$Res, MenuOptions>;
   @useResult
   $Res call(
       {@JsonKey(name: '_id') String id,
@@ -584,9 +570,9 @@ abstract class $MenuOptionsModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MenuOptionsModelCopyWithImpl<$Res, $Val extends MenuOptionsModel>
-    implements $MenuOptionsModelCopyWith<$Res> {
-  _$MenuOptionsModelCopyWithImpl(this._value, this._then);
+class _$MenuOptionsCopyWithImpl<$Res, $Val extends MenuOptions>
+    implements $MenuOptionsCopyWith<$Res> {
+  _$MenuOptionsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -618,11 +604,11 @@ class _$MenuOptionsModelCopyWithImpl<$Res, $Val extends MenuOptionsModel>
 }
 
 /// @nodoc
-abstract class _$$MenuOptionsModelImplCopyWith<$Res>
-    implements $MenuOptionsModelCopyWith<$Res> {
-  factory _$$MenuOptionsModelImplCopyWith(_$MenuOptionsModelImpl value,
-          $Res Function(_$MenuOptionsModelImpl) then) =
-      __$$MenuOptionsModelImplCopyWithImpl<$Res>;
+abstract class _$$MenuOptionsImplCopyWith<$Res>
+    implements $MenuOptionsCopyWith<$Res> {
+  factory _$$MenuOptionsImplCopyWith(
+          _$MenuOptionsImpl value, $Res Function(_$MenuOptionsImpl) then) =
+      __$$MenuOptionsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -632,11 +618,11 @@ abstract class _$$MenuOptionsModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$MenuOptionsModelImplCopyWithImpl<$Res>
-    extends _$MenuOptionsModelCopyWithImpl<$Res, _$MenuOptionsModelImpl>
-    implements _$$MenuOptionsModelImplCopyWith<$Res> {
-  __$$MenuOptionsModelImplCopyWithImpl(_$MenuOptionsModelImpl _value,
-      $Res Function(_$MenuOptionsModelImpl) _then)
+class __$$MenuOptionsImplCopyWithImpl<$Res>
+    extends _$MenuOptionsCopyWithImpl<$Res, _$MenuOptionsImpl>
+    implements _$$MenuOptionsImplCopyWith<$Res> {
+  __$$MenuOptionsImplCopyWithImpl(
+      _$MenuOptionsImpl _value, $Res Function(_$MenuOptionsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -646,7 +632,7 @@ class __$$MenuOptionsModelImplCopyWithImpl<$Res>
     Object? choices = null,
     Object? addons = null,
   }) {
-    return _then(_$MenuOptionsModelImpl(
+    return _then(_$MenuOptionsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -665,14 +651,13 @@ class __$$MenuOptionsModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuOptionsModelImpl extends _MenuOptionsModel {
-  const _$MenuOptionsModelImpl(
+class _$MenuOptionsImpl implements _MenuOptions {
+  const _$MenuOptionsImpl(
       {@JsonKey(name: '_id') required this.id,
       final List<Choice> choices = const <Choice>[],
       final List<Addons> addons = const <Addons>[]})
       : _choices = choices,
-        _addons = addons,
-        super._();
+        _addons = addons;
 
   @override
   @JsonKey(name: '_id')
@@ -697,14 +682,14 @@ class _$MenuOptionsModelImpl extends _MenuOptionsModel {
 
   @override
   String toString() {
-    return 'MenuOptionsModel(id: $id, choices: $choices, addons: $addons)';
+    return 'MenuOptions(id: $id, choices: $choices, addons: $addons)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MenuOptionsModelImpl &&
+            other is _$MenuOptionsImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
             const DeepCollectionEquality().equals(other._addons, _addons));
@@ -720,17 +705,15 @@ class _$MenuOptionsModelImpl extends _MenuOptionsModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MenuOptionsModelImplCopyWith<_$MenuOptionsModelImpl> get copyWith =>
-      __$$MenuOptionsModelImplCopyWithImpl<_$MenuOptionsModelImpl>(
-          this, _$identity);
+  _$$MenuOptionsImplCopyWith<_$MenuOptionsImpl> get copyWith =>
+      __$$MenuOptionsImplCopyWithImpl<_$MenuOptionsImpl>(this, _$identity);
 }
 
-abstract class _MenuOptionsModel extends MenuOptionsModel {
-  const factory _MenuOptionsModel(
+abstract class _MenuOptions implements MenuOptions {
+  const factory _MenuOptions(
       {@JsonKey(name: '_id') required final String id,
       final List<Choice> choices,
-      final List<Addons> addons}) = _$MenuOptionsModelImpl;
-  const _MenuOptionsModel._() : super._();
+      final List<Addons> addons}) = _$MenuOptionsImpl;
 
   @override
   @JsonKey(name: '_id')
@@ -741,6 +724,6 @@ abstract class _MenuOptionsModel extends MenuOptionsModel {
   List<Addons> get addons;
   @override
   @JsonKey(ignore: true)
-  _$$MenuOptionsModelImplCopyWith<_$MenuOptionsModelImpl> get copyWith =>
+  _$$MenuOptionsImplCopyWith<_$MenuOptionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

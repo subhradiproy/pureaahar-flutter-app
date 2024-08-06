@@ -265,8 +265,10 @@ mixin _$OutletModel {
       throw _privateConstructorUsedError;
   @JsonKey(name: 'acceptingOrder', defaultValue: false)
   bool get isAcceptingOrder => throw _privateConstructorUsedError;
-  List<String> get certifications => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
   List<MenuSectionModel> get menuSections => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: <String>[])
+  List<String> get certifications => throw _privateConstructorUsedError;
   bool get isOpened => throw _privateConstructorUsedError;
   String? get rating => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
@@ -292,8 +294,9 @@ abstract class $OutletModelCopyWith<$Res> {
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       bool isAcceptingOrder,
-      List<String> certifications,
+      @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
       List<MenuSectionModel> menuSections,
+      @JsonKey(defaultValue: <String>[]) List<String> certifications,
       bool isOpened,
       String? rating,
       int? ratingCount,
@@ -318,8 +321,8 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
     Object? outletAddress = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
-    Object? certifications = null,
     Object? menuSections = null,
+    Object? certifications = null,
     Object? isOpened = null,
     Object? rating = freezed,
     Object? ratingCount = freezed,
@@ -346,14 +349,14 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
           ? _value.isAcceptingOrder
           : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
               as bool,
-      certifications: null == certifications
-          ? _value.certifications
-          : certifications // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       menuSections: null == menuSections
           ? _value.menuSections
           : menuSections // ignore: cast_nullable_to_non_nullable
               as List<MenuSectionModel>,
+      certifications: null == certifications
+          ? _value.certifications
+          : certifications // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       isOpened: null == isOpened
           ? _value.isOpened
           : isOpened // ignore: cast_nullable_to_non_nullable
@@ -391,8 +394,9 @@ abstract class _$$OutletModelImplCopyWith<$Res>
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       bool isAcceptingOrder,
-      List<String> certifications,
+      @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
       List<MenuSectionModel> menuSections,
+      @JsonKey(defaultValue: <String>[]) List<String> certifications,
       bool isOpened,
       String? rating,
       int? ratingCount,
@@ -415,8 +419,8 @@ class __$$OutletModelImplCopyWithImpl<$Res>
     Object? outletAddress = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
-    Object? certifications = null,
     Object? menuSections = null,
+    Object? certifications = null,
     Object? isOpened = null,
     Object? rating = freezed,
     Object? ratingCount = freezed,
@@ -443,14 +447,14 @@ class __$$OutletModelImplCopyWithImpl<$Res>
           ? _value.isAcceptingOrder
           : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
               as bool,
-      certifications: null == certifications
-          ? _value._certifications
-          : certifications // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       menuSections: null == menuSections
           ? _value._menuSections
           : menuSections // ignore: cast_nullable_to_non_nullable
               as List<MenuSectionModel>,
+      certifications: null == certifications
+          ? _value._certifications
+          : certifications // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       isOpened: null == isOpened
           ? _value.isOpened
           : isOpened // ignore: cast_nullable_to_non_nullable
@@ -481,14 +485,16 @@ class _$OutletModelImpl extends _OutletModel {
       @TimeOfDayConvertor.twentyFourHour() required this.timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       required this.isAcceptingOrder,
+      @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
+      required final List<MenuSectionModel> menuSections,
+      @JsonKey(defaultValue: <String>[])
       final List<String> certifications = const <String>[],
-      final List<MenuSectionModel> menuSections = const <MenuSectionModel>[],
       this.isOpened = false,
       this.rating,
       this.ratingCount,
       this.distanceDelta})
-      : _certifications = certifications,
-        _menuSections = menuSections,
+      : _menuSections = menuSections,
+        _certifications = certifications,
         super._();
 
   @override
@@ -505,22 +511,22 @@ class _$OutletModelImpl extends _OutletModel {
   @override
   @JsonKey(name: 'acceptingOrder', defaultValue: false)
   final bool isAcceptingOrder;
-  final List<String> _certifications;
-  @override
-  @JsonKey()
-  List<String> get certifications {
-    if (_certifications is EqualUnmodifiableListView) return _certifications;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_certifications);
-  }
-
   final List<MenuSectionModel> _menuSections;
   @override
-  @JsonKey()
+  @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
   List<MenuSectionModel> get menuSections {
     if (_menuSections is EqualUnmodifiableListView) return _menuSections;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_menuSections);
+  }
+
+  final List<String> _certifications;
+  @override
+  @JsonKey(defaultValue: <String>[])
+  List<String> get certifications {
+    if (_certifications is EqualUnmodifiableListView) return _certifications;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_certifications);
   }
 
   @override
@@ -535,7 +541,7 @@ class _$OutletModelImpl extends _OutletModel {
 
   @override
   String toString() {
-    return 'OutletModel(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, certifications: $certifications, menuSections: $menuSections, isOpened: $isOpened, rating: $rating, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'OutletModel(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, menuSections: $menuSections, certifications: $certifications, isOpened: $isOpened, rating: $rating, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -552,9 +558,9 @@ class _$OutletModelImpl extends _OutletModel {
             (identical(other.isAcceptingOrder, isAcceptingOrder) ||
                 other.isAcceptingOrder == isAcceptingOrder) &&
             const DeepCollectionEquality()
-                .equals(other._certifications, _certifications) &&
-            const DeepCollectionEquality()
                 .equals(other._menuSections, _menuSections) &&
+            const DeepCollectionEquality()
+                .equals(other._certifications, _certifications) &&
             (identical(other.isOpened, isOpened) ||
                 other.isOpened == isOpened) &&
             (identical(other.rating, rating) || other.rating == rating) &&
@@ -572,8 +578,8 @@ class _$OutletModelImpl extends _OutletModel {
       outletAddress,
       timing,
       isAcceptingOrder,
-      const DeepCollectionEquality().hash(_certifications),
       const DeepCollectionEquality().hash(_menuSections),
+      const DeepCollectionEquality().hash(_certifications),
       isOpened,
       rating,
       ratingCount,
@@ -600,8 +606,9 @@ abstract class _OutletModel extends OutletModel {
       required final ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       required final bool isAcceptingOrder,
-      final List<String> certifications,
-      final List<MenuSectionModel> menuSections,
+      @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
+      required final List<MenuSectionModel> menuSections,
+      @JsonKey(defaultValue: <String>[]) final List<String> certifications,
       final bool isOpened,
       final String? rating,
       final int? ratingCount,
@@ -623,9 +630,11 @@ abstract class _OutletModel extends OutletModel {
   @JsonKey(name: 'acceptingOrder', defaultValue: false)
   bool get isAcceptingOrder;
   @override
-  List<String> get certifications;
-  @override
+  @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
   List<MenuSectionModel> get menuSections;
+  @override
+  @JsonKey(defaultValue: <String>[])
+  List<String> get certifications;
   @override
   bool get isOpened;
   @override
@@ -641,91 +650,274 @@ abstract class _OutletModel extends OutletModel {
 }
 
 /// @nodoc
+mixin _$MenuSectionCategoryModel {
+  @JsonKey(name: '_id')
+  String get id => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  String get outletId => throw _privateConstructorUsedError;
+  String get categoryName => throw _privateConstructorUsedError;
+  String get categoryDescription => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: true)
+  bool get isActive => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MenuSectionCategoryModelCopyWith<MenuSectionCategoryModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MenuSectionCategoryModelCopyWith<$Res> {
+  factory $MenuSectionCategoryModelCopyWith(MenuSectionCategoryModel value,
+          $Res Function(MenuSectionCategoryModel) then) =
+      _$MenuSectionCategoryModelCopyWithImpl<$Res, MenuSectionCategoryModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: '_id') String id,
+      DateTime createdAt,
+      DateTime updatedAt,
+      String outletId,
+      String categoryName,
+      String categoryDescription,
+      @JsonKey(defaultValue: true) bool isActive});
+}
+
+/// @nodoc
+class _$MenuSectionCategoryModelCopyWithImpl<$Res,
+        $Val extends MenuSectionCategoryModel>
+    implements $MenuSectionCategoryModelCopyWith<$Res> {
+  _$MenuSectionCategoryModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? outletId = null,
+    Object? categoryName = null,
+    Object? categoryDescription = null,
+    Object? isActive = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      outletId: null == outletId
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: null == categoryName
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryDescription: null == categoryDescription
+          ? _value.categoryDescription
+          : categoryDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MenuSectionCategoryModelImplCopyWith<$Res>
+    implements $MenuSectionCategoryModelCopyWith<$Res> {
+  factory _$$MenuSectionCategoryModelImplCopyWith(
+          _$MenuSectionCategoryModelImpl value,
+          $Res Function(_$MenuSectionCategoryModelImpl) then) =
+      __$$MenuSectionCategoryModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: '_id') String id,
+      DateTime createdAt,
+      DateTime updatedAt,
+      String outletId,
+      String categoryName,
+      String categoryDescription,
+      @JsonKey(defaultValue: true) bool isActive});
+}
+
+/// @nodoc
+class __$$MenuSectionCategoryModelImplCopyWithImpl<$Res>
+    extends _$MenuSectionCategoryModelCopyWithImpl<$Res,
+        _$MenuSectionCategoryModelImpl>
+    implements _$$MenuSectionCategoryModelImplCopyWith<$Res> {
+  __$$MenuSectionCategoryModelImplCopyWithImpl(
+      _$MenuSectionCategoryModelImpl _value,
+      $Res Function(_$MenuSectionCategoryModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? outletId = null,
+    Object? categoryName = null,
+    Object? categoryDescription = null,
+    Object? isActive = null,
+  }) {
+    return _then(_$MenuSectionCategoryModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      outletId: null == outletId
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: null == categoryName
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryDescription: null == categoryDescription
+          ? _value.categoryDescription
+          : categoryDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MenuSectionCategoryModelImpl extends _MenuSectionCategoryModel {
+  const _$MenuSectionCategoryModelImpl(
+      {@JsonKey(name: '_id') required this.id,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.outletId,
+      required this.categoryName,
+      required this.categoryDescription,
+      @JsonKey(defaultValue: true) this.isActive = true})
+      : super._();
+
+  @override
+  @JsonKey(name: '_id')
+  final String id;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final String outletId;
+  @override
+  final String categoryName;
+  @override
+  final String categoryDescription;
+  @override
+  @JsonKey(defaultValue: true)
+  final bool isActive;
+
+  @override
+  String toString() {
+    return 'MenuSectionCategoryModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, outletId: $outletId, categoryName: $categoryName, categoryDescription: $categoryDescription, isActive: $isActive)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MenuSectionCategoryModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.outletId, outletId) ||
+                other.outletId == outletId) &&
+            (identical(other.categoryName, categoryName) ||
+                other.categoryName == categoryName) &&
+            (identical(other.categoryDescription, categoryDescription) ||
+                other.categoryDescription == categoryDescription) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, createdAt, updatedAt,
+      outletId, categoryName, categoryDescription, isActive);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MenuSectionCategoryModelImplCopyWith<_$MenuSectionCategoryModelImpl>
+      get copyWith => __$$MenuSectionCategoryModelImplCopyWithImpl<
+          _$MenuSectionCategoryModelImpl>(this, _$identity);
+}
+
+abstract class _MenuSectionCategoryModel extends MenuSectionCategoryModel {
+  const factory _MenuSectionCategoryModel(
+          {@JsonKey(name: '_id') required final String id,
+          required final DateTime createdAt,
+          required final DateTime updatedAt,
+          required final String outletId,
+          required final String categoryName,
+          required final String categoryDescription,
+          @JsonKey(defaultValue: true) final bool isActive}) =
+      _$MenuSectionCategoryModelImpl;
+  const _MenuSectionCategoryModel._() : super._();
+
+  @override
+  @JsonKey(name: '_id')
+  String get id;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime get updatedAt;
+  @override
+  String get outletId;
+  @override
+  String get categoryName;
+  @override
+  String get categoryDescription;
+  @override
+  @JsonKey(defaultValue: true)
+  bool get isActive;
+  @override
+  @JsonKey(ignore: true)
+  _$$MenuSectionCategoryModelImplCopyWith<_$MenuSectionCategoryModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$MenuSectionModel {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
-  Object get category => throw _privateConstructorUsedError;
+  MenuSectionCategoryModel get category => throw _privateConstructorUsedError;
   int get position => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: '_id') String id, String category, int position)
-        $default, {
-    required TResult Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)
-        object,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: '_id') String id, String category, int position)?
-        $default, {
-    TResult? Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)?
-        object,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: '_id') String id, String category, int position)?
-        $default, {
-    TResult Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)?
-        object,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(MenuSectionModel value) $default, {
-    required TResult Function(MenuSectionModelObject value) object,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(MenuSectionModel value)? $default, {
-    TResult? Function(MenuSectionModelObject value)? object,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(MenuSectionModel value)? $default, {
-    TResult Function(MenuSectionModelObject value)? object,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  List<MenuItemModel> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenuSectionModelCopyWith<MenuSectionModel> get copyWith =>
@@ -738,7 +930,13 @@ abstract class $MenuSectionModelCopyWith<$Res> {
           MenuSectionModel value, $Res Function(MenuSectionModel) then) =
       _$MenuSectionModelCopyWithImpl<$Res, MenuSectionModel>;
   @useResult
-  $Res call({@JsonKey(name: '_id') String id, int position});
+  $Res call(
+      {@JsonKey(name: '_id') String id,
+      MenuSectionCategoryModel category,
+      int position,
+      List<MenuItemModel> items});
+
+  $MenuSectionCategoryModelCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -755,18 +953,36 @@ class _$MenuSectionModelCopyWithImpl<$Res, $Val extends MenuSectionModel>
   @override
   $Res call({
     Object? id = null,
+    Object? category = null,
     Object? position = null,
+    Object? items = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as MenuSectionCategoryModel,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemModel>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MenuSectionCategoryModelCopyWith<$Res> get category {
+    return $MenuSectionCategoryModelCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
   }
 }
 
@@ -778,7 +994,14 @@ abstract class _$$MenuSectionModelImplCopyWith<$Res>
       __$$MenuSectionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: '_id') String id, String category, int position});
+  $Res call(
+      {@JsonKey(name: '_id') String id,
+      MenuSectionCategoryModel category,
+      int position,
+      List<MenuItemModel> items});
+
+  @override
+  $MenuSectionCategoryModelCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -795,6 +1018,7 @@ class __$$MenuSectionModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? category = null,
     Object? position = null,
+    Object? items = null,
   }) {
     return _then(_$MenuSectionModelImpl(
       id: null == id
@@ -804,241 +1028,7 @@ class __$$MenuSectionModelImplCopyWithImpl<$Res>
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$MenuSectionModelImpl extends MenuSectionModel {
-  const _$MenuSectionModelImpl(
-      {@JsonKey(name: '_id') required this.id,
-      required this.category,
-      this.position = 1})
-      : super._();
-
-  @override
-  @JsonKey(name: '_id')
-  final String id;
-  @override
-  final String category;
-  @override
-  @JsonKey()
-  final int position;
-
-  @override
-  String toString() {
-    return 'MenuSectionModel(id: $id, category: $category, position: $position)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MenuSectionModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.position, position) ||
-                other.position == position));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id, category, position);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MenuSectionModelImplCopyWith<_$MenuSectionModelImpl> get copyWith =>
-      __$$MenuSectionModelImplCopyWithImpl<_$MenuSectionModelImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: '_id') String id, String category, int position)
-        $default, {
-    required TResult Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)
-        object,
-  }) {
-    return $default(id, category, position);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: '_id') String id, String category, int position)?
-        $default, {
-    TResult? Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)?
-        object,
-  }) {
-    return $default?.call(id, category, position);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: '_id') String id, String category, int position)?
-        $default, {
-    TResult Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)?
-        object,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(id, category, position);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(MenuSectionModel value) $default, {
-    required TResult Function(MenuSectionModelObject value) object,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(MenuSectionModel value)? $default, {
-    TResult? Function(MenuSectionModelObject value)? object,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(MenuSectionModel value)? $default, {
-    TResult Function(MenuSectionModelObject value)? object,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class MenuSectionModel extends MenuSectionModel {
-  const factory MenuSectionModel(
-      {@JsonKey(name: '_id') required final String id,
-      required final String category,
-      final int position}) = _$MenuSectionModelImpl;
-  const MenuSectionModel._() : super._();
-
-  @override
-  @JsonKey(name: '_id')
-  String get id;
-  @override
-  String get category;
-  @override
-  int get position;
-  @override
-  @JsonKey(ignore: true)
-  _$$MenuSectionModelImplCopyWith<_$MenuSectionModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$MenuSectionModelObjectImplCopyWith<$Res>
-    implements $MenuSectionModelCopyWith<$Res> {
-  factory _$$MenuSectionModelObjectImplCopyWith(
-          _$MenuSectionModelObjectImpl value,
-          $Res Function(_$MenuSectionModelObjectImpl) then) =
-      __$$MenuSectionModelObjectImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: '_id') String id,
-      ({
-        String categoryDescription,
-        String categoryName,
-        DateTime createdAt,
-        bool isActivate,
-        String outletId,
-        DateTime updatedAt
-      }) category,
-      int position,
-      List<({MenuItemModel itemId, int position})> items});
-}
-
-/// @nodoc
-class __$$MenuSectionModelObjectImplCopyWithImpl<$Res>
-    extends _$MenuSectionModelCopyWithImpl<$Res, _$MenuSectionModelObjectImpl>
-    implements _$$MenuSectionModelObjectImplCopyWith<$Res> {
-  __$$MenuSectionModelObjectImplCopyWithImpl(
-      _$MenuSectionModelObjectImpl _value,
-      $Res Function(_$MenuSectionModelObjectImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? category = null,
-    Object? position = null,
-    Object? items = null,
-  }) {
-    return _then(_$MenuSectionModelObjectImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }),
+              as MenuSectionCategoryModel,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -1046,22 +1036,19 @@ class __$$MenuSectionModelObjectImplCopyWithImpl<$Res>
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<({MenuItemModel itemId, int position})>,
+              as List<MenuItemModel>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$MenuSectionModelObjectImpl extends MenuSectionModelObject {
-  const _$MenuSectionModelObjectImpl(
+class _$MenuSectionModelImpl extends _MenuSectionModel {
+  const _$MenuSectionModelImpl(
       {@JsonKey(name: '_id') required this.id,
       required this.category,
       this.position = 1,
-      final List<({MenuItemModel itemId, int position})> items = const <({
-        int position,
-        MenuItemModel itemId
-      })>[]})
+      final List<MenuItemModel> items = const <MenuItemModel>[]})
       : _items = items,
         super._();
 
@@ -1069,21 +1056,14 @@ class _$MenuSectionModelObjectImpl extends MenuSectionModelObject {
   @JsonKey(name: '_id')
   final String id;
   @override
-  final ({
-    String categoryDescription,
-    String categoryName,
-    DateTime createdAt,
-    bool isActivate,
-    String outletId,
-    DateTime updatedAt
-  }) category;
+  final MenuSectionCategoryModel category;
   @override
   @JsonKey()
   final int position;
-  final List<({MenuItemModel itemId, int position})> _items;
+  final List<MenuItemModel> _items;
   @override
   @JsonKey()
-  List<({MenuItemModel itemId, int position})> get items {
+  List<MenuItemModel> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -1091,14 +1071,14 @@ class _$MenuSectionModelObjectImpl extends MenuSectionModelObject {
 
   @override
   String toString() {
-    return 'MenuSectionModel.object(id: $id, category: $category, position: $position, items: $items)';
+    return 'MenuSectionModel(id: $id, category: $category, position: $position, items: $items)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MenuSectionModelObjectImpl &&
+            other is _$MenuSectionModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
@@ -1114,148 +1094,30 @@ class _$MenuSectionModelObjectImpl extends MenuSectionModelObject {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MenuSectionModelObjectImplCopyWith<_$MenuSectionModelObjectImpl>
-      get copyWith => __$$MenuSectionModelObjectImplCopyWithImpl<
-          _$MenuSectionModelObjectImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: '_id') String id, String category, int position)
-        $default, {
-    required TResult Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)
-        object,
-  }) {
-    return object(id, category, position, items);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: '_id') String id, String category, int position)?
-        $default, {
-    TResult? Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)?
-        object,
-  }) {
-    return object?.call(id, category, position, items);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: '_id') String id, String category, int position)?
-        $default, {
-    TResult Function(
-            @JsonKey(name: '_id') String id,
-            ({
-              String categoryDescription,
-              String categoryName,
-              DateTime createdAt,
-              bool isActivate,
-              String outletId,
-              DateTime updatedAt
-            }) category,
-            int position,
-            List<({MenuItemModel itemId, int position})> items)?
-        object,
-    required TResult orElse(),
-  }) {
-    if (object != null) {
-      return object(id, category, position, items);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(MenuSectionModel value) $default, {
-    required TResult Function(MenuSectionModelObject value) object,
-  }) {
-    return object(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(MenuSectionModel value)? $default, {
-    TResult? Function(MenuSectionModelObject value)? object,
-  }) {
-    return object?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(MenuSectionModel value)? $default, {
-    TResult Function(MenuSectionModelObject value)? object,
-    required TResult orElse(),
-  }) {
-    if (object != null) {
-      return object(this);
-    }
-    return orElse();
-  }
+  _$$MenuSectionModelImplCopyWith<_$MenuSectionModelImpl> get copyWith =>
+      __$$MenuSectionModelImplCopyWithImpl<_$MenuSectionModelImpl>(
+          this, _$identity);
 }
 
-abstract class MenuSectionModelObject extends MenuSectionModel {
-  const factory MenuSectionModelObject(
-          {@JsonKey(name: '_id') required final String id,
-          required final ({
-            String categoryDescription,
-            String categoryName,
-            DateTime createdAt,
-            bool isActivate,
-            String outletId,
-            DateTime updatedAt
-          }) category,
-          final int position,
-          final List<({MenuItemModel itemId, int position})> items}) =
-      _$MenuSectionModelObjectImpl;
-  const MenuSectionModelObject._() : super._();
+abstract class _MenuSectionModel extends MenuSectionModel {
+  const factory _MenuSectionModel(
+      {@JsonKey(name: '_id') required final String id,
+      required final MenuSectionCategoryModel category,
+      final int position,
+      final List<MenuItemModel> items}) = _$MenuSectionModelImpl;
+  const _MenuSectionModel._() : super._();
 
   @override
   @JsonKey(name: '_id')
   String get id;
   @override
-  ({
-    String categoryDescription,
-    String categoryName,
-    DateTime createdAt,
-    bool isActivate,
-    String outletId,
-    DateTime updatedAt
-  }) get category;
+  MenuSectionCategoryModel get category;
   @override
   int get position;
-  List<({MenuItemModel itemId, int position})> get items;
+  @override
+  List<MenuItemModel> get items;
   @override
   @JsonKey(ignore: true)
-  _$$MenuSectionModelObjectImplCopyWith<_$MenuSectionModelObjectImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$MenuSectionModelImplCopyWith<_$MenuSectionModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

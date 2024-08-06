@@ -90,7 +90,7 @@ class AppRouter extends _$AppRouter {
           },
           builder: (_, GoRouterState state) => ProductListingScreen(
             key: state.pageKey,
-            restaurantId: state.pathParameters['id']!,
+            outletId: state.pathParameters['id']!,
           ),
         ),
       ],

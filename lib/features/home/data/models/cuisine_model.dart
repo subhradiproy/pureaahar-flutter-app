@@ -9,7 +9,7 @@ part 'generated/cuisine_model.g.dart';
 
 @freezed
 @JsonSerializable()
-sealed class CuisineModel with _$CuisineModel implements EntityMapper<Cuisine> {
+class CuisineModel with _$CuisineModel implements EntityMapper<Cuisine> {
   const factory CuisineModel({
     @JsonKey(name: '_id') required String id,
     required String name,

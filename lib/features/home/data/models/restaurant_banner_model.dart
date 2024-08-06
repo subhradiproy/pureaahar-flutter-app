@@ -8,7 +8,7 @@ part 'generated/restaurant_banner_model.g.dart';
 
 @freezed
 @JsonSerializable()
-sealed class RestaurantBannerModel
+class RestaurantBannerModel
     with _$RestaurantBannerModel
     implements EntityMapper<RestaurantBanner> {
   const factory RestaurantBannerModel({

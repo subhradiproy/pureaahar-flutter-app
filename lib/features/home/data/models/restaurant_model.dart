@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart' show TimeOfDay;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../app/typedefs/typedefs.dart' show JSON;
 import '../../../../core/models/entity_mapper.dart';
 import '../../../../core/models/json_parsers/time_of_day_convertor.dart';
 import '../../domain/entities/restaurant_entity.dart';
@@ -12,7 +11,7 @@ part 'generated/restaurant_model.g.dart';
 
 @freezed
 @JsonSerializable()
-sealed class RestaurantModel
+class RestaurantModel
     with _$RestaurantModel
     implements EntityMapper<Restaurant> {
   const factory RestaurantModel({
@@ -33,9 +32,10 @@ sealed class RestaurantModel
   static List<RestaurantModel> fromJsonList(Map<String, Object?>? json) {
     return switch (json) {
       null => <RestaurantModel>[],
-      {'restaurantOutlets': final List<dynamic>? list} =>
-        list?.cast<JSON>().map(RestaurantModel.fromJson).toList() ??
-            <RestaurantModel>[],
+      {'restaurantOutlets': final List<dynamic> outlets} => outlets
+          .cast<Map<String, Object?>>()
+          .map(RestaurantModel.fromJson)
+          .toList(),
       _ => throw const FormatException('Invalid JSON format'),
     };
   }
@@ -52,9 +52,21 @@ sealed class RestaurantModel
   }
 }
 
+/// Custom JSON parser for the menu sections
+//TODO: Implement the custom JSON parser for the menu sections
+List<MenuSectionModel> _menuFromJson(List<Object?> json) {
+  final List<Map<String, Object?>> array = json.cast<Map<String, Object?>>();
+  return switch (array) {
+    [{'category': String}, ...] => <MenuSectionModel>[],
+    // [{'category': Map<String, Object?> }, ...] =>
+    //   array.map(MenuSectionModel.fromJson).toList(),
+    _ => throw const FormatException('Invalid JSON format'),
+  };
+}
+
 @freezed
 @JsonSerializable()
-sealed class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
+class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
   const factory OutletModel({
     @JsonKey(name: '_id') required String id,
     @JsonKey(name: 'outletLocation')
@@ -64,8 +76,11 @@ sealed class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
     required ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
     @JsonKey(name: 'acceptingOrder', defaultValue: false)
     required bool isAcceptingOrder,
-    @Default(<String>[]) List<String> certifications,
-    @Default(<MenuSectionModel>[]) List<MenuSectionModel> menuSections,
+    @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
+    required List<MenuSectionModel> menuSections,
+    @JsonKey(defaultValue: <String>[])
+    @Default(<String>[])
+    List<String> certifications,
     @Default(false) bool isOpened,
     String? rating,
     int? ratingCount,
@@ -76,14 +91,6 @@ sealed class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
 
   factory OutletModel.fromJson(Map<String, Object?> json) =>
       _$OutletModelFromJson(json);
-
-  /// Get the outlet model from the outlet id Used to parse custom JSON
-  factory OutletModel.fromCustomJson(JSON? json) {
-    return switch (json) {
-      {'outlet': final JSON data} => OutletModel.fromJson(data),
-      _ => throw const FormatException('Invalid JSON format'),
-    };
-  }
 
   Map<String, Object?> toJson() => _$OutletModelToJson(this);
 
@@ -105,59 +112,71 @@ sealed class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
   }
 }
 
-/// Menu Section Category
-typedef MenuSectionCategory = ({
-  String outletId,
-  String categoryName,
-  String categoryDescription,
-  bool isActivate,
-  DateTime createdAt,
-  DateTime updatedAt,
-});
-
-@Freezed(unionKey: 'type')
+@freezed
 @JsonSerializable()
-sealed class MenuSectionModel
+class MenuSectionCategoryModel
+    with _$MenuSectionCategoryModel
+    implements EntityMapper<MenuSectionCategory> {
+  const factory MenuSectionCategoryModel({
+    @JsonKey(name: '_id') required String id,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    required String outletId,
+    required String categoryName,
+    required String categoryDescription,
+    @JsonKey(defaultValue: true) @Default(true) bool isActive,
+  }) = _MenuSectionCategoryModel;
+
+  const MenuSectionCategoryModel._();
+
+  factory MenuSectionCategoryModel.fromJson(Map<String, Object?> json) =>
+      _$MenuSectionCategoryModelFromJson(json);
+
+  Map<String, Object?> toJson() => _$MenuSectionCategoryModelToJson(this);
+
+  @override
+  MenuSectionCategory toEntity() {
+    return MenuSectionCategory(
+      id: id,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      outletId: outletId,
+      categoryName: categoryName,
+      categoryDescription: categoryDescription,
+      isActive: isActive,
+    );
+  }
+}
+
+@freezed
+@JsonSerializable()
+class MenuSectionModel
     with _$MenuSectionModel
     implements EntityMapper<MenuSection>, Comparable<MenuSectionModel> {
-  /// Constructor with String category and List of items
   const factory MenuSectionModel({
     @JsonKey(name: '_id') required String id,
-    required String category,
+    required MenuSectionCategoryModel category,
     @Default(1) int position,
-  }) = MenuSectionModel;
-
-  /// Constructor with Category as an object
-  @FreezedUnionValue('object')
-  const factory MenuSectionModel.object({
-    // @JsonKey(name: '_id') required String id,
-    required MenuSectionCategory category,
-    @Default(1) int position,
-    @Default(<({int position, MenuItemModel itemId})>[])
-    List<({int position, MenuItemModel itemId})> items,
-  }) = MenuSectionModelObject;
+    @Default(<MenuItemModel>[]) List<MenuItemModel> items,
+  }) = _MenuSectionModel;
 
   const MenuSectionModel._();
 
-  factory MenuSectionModel.fromJson(Map<String, Object?> json) {
-    // if (json case {'category': final JSON category}) {
-    //     return MenuSectionModelObject.fromJson(category);
-    // } else {
-    return _$MenuSectionModelFromJson(json);
-    // }
-  }
+  factory MenuSectionModel.fromJson(Map<String, Object?> json) =>
+      _$MenuSectionModelFromJson(json);
 
   Map<String, Object?> toJson() => _$MenuSectionModelToJson(this);
 
   @override
-  MenuSection toEntity() {
-    return MenuSection(
-      category: category,
-      position: position,
-      items: items,
-    );
-  }
+  int compareTo(MenuSectionModel other) => position.compareTo(other.position);
 
   @override
-  int compareTo(MenuSectionModel other) => position.compareTo(other.position);
+  MenuSection toEntity() {
+    return MenuSection(
+      id: id,
+      category: category.toEntity(),
+      position: position,
+      items: items.toEntityList(),
+    );
+  }
 }

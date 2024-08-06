@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../widgets/product_list_appbar.dart';
 
 class ProductListingScreen extends StatelessWidget {
-  const ProductListingScreen({required this.restaurantId, super.key});
+  const ProductListingScreen({required this.outletId, super.key});
 
-  final String restaurantId;
+  final String outletId;
 
   @override
   Widget build(BuildContext context) {

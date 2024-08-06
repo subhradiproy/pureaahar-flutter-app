@@ -59,12 +59,13 @@ OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
         ),
       ),
       isAcceptingOrder: json['acceptingOrder'] as bool? ?? false,
-      certifications: (json['certifications'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      menuSections: (json['menuSections'] as List<dynamic>)
-          .map((e) => MenuSectionModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      menuSections: json['menuSections'] == null
+          ? []
+          : _menuFromJson(json['menuSections'] as List),
+      certifications: (json['certifications'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       isOpened: json['isOpened'] as bool,
       rating: json['rating'] as String?,
       ratingCount: (json['ratingCount'] as num?)?.toInt(),
@@ -87,8 +88,8 @@ Map<String, dynamic> _$OutletModelToJson(OutletModel instance) {
           .toJson(instance.timing.toTime),
     },
     'acceptingOrder': instance.isAcceptingOrder,
-    'certifications': instance.certifications,
     'menuSections': instance.menuSections.map((e) => e.toJson()).toList(),
+    'certifications': instance.certifications,
     'isOpened': instance.isOpened,
   };
 
@@ -110,16 +111,45 @@ $Rec _$recordConvert<$Rec>(
 ) =>
     convert(value as Map<String, dynamic>);
 
+MenuSectionCategoryModel _$MenuSectionCategoryModelFromJson(
+        Map<String, dynamic> json) =>
+    MenuSectionCategoryModel(
+      id: json['_id'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      outletId: json['outletId'] as String,
+      categoryName: json['categoryName'] as String,
+      categoryDescription: json['categoryDescription'] as String,
+      isActive: json['isActive'] as bool? ?? true,
+    );
+
+Map<String, dynamic> _$MenuSectionCategoryModelToJson(
+        MenuSectionCategoryModel instance) =>
+    <String, dynamic>{
+      '_id': instance.id,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'outletId': instance.outletId,
+      'categoryName': instance.categoryName,
+      'categoryDescription': instance.categoryDescription,
+      'isActive': instance.isActive,
+    };
+
 MenuSectionModel _$MenuSectionModelFromJson(Map<String, dynamic> json) =>
     MenuSectionModel(
       id: json['_id'] as String,
-      category: json['category'] as String,
+      category: MenuSectionCategoryModel.fromJson(
+          json['category'] as Map<String, dynamic>),
       position: (json['position'] as num).toInt(),
+      items: (json['items'] as List<dynamic>)
+          .map((e) => MenuItemModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$MenuSectionModelToJson(MenuSectionModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
-      'category': instance.category,
+      'category': instance.category.toJson(),
       'position': instance.position,
+      'items': instance.items.map((e) => e.toJson()).toList(),
     };

@@ -13,7 +13,8 @@ MenuItemModel _$MenuItemModelFromJson(Map<String, dynamic> json) =>
         ($jsonValue) =>
             (restaurantName: $jsonValue['restaurantName'] as String,),
       ),
-      options: OptionsModel.fromJson(json['options'] as Map<String, dynamic>),
+      options:
+          MenuOptionsModel.fromJson(json['options'] as Map<String, dynamic>),
       outletInfo:
           OutletModel.fromJson(json['outletId'] as Map<String, dynamic>),
       categoryId: json['categoryId'] as String,
@@ -100,17 +101,18 @@ $Rec _$recordConvert<$Rec>(
 ) =>
     convert(value as Map<String, dynamic>);
 
-OptionsModel _$OptionsModelFromJson(Map<String, dynamic> json) => OptionsModel(
+MenuOptionsModel _$MenuOptionsModelFromJson(Map<String, dynamic> json) =>
+    MenuOptionsModel(
       id: json['_id'] as String,
       choices: (json['choices'] as List<dynamic>)
-          .map((e) => ChoiceModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => Choice.fromJson(e as Map<String, dynamic>))
           .toList(),
       addons: (json['addons'] as List<dynamic>)
           .map((e) => Addons.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$OptionsModelToJson(OptionsModel instance) =>
+Map<String, dynamic> _$MenuOptionsModelToJson(MenuOptionsModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'choices': instance.choices.map((e) => e.toJson()).toList(),

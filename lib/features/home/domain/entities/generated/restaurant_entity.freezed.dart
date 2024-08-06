@@ -608,10 +608,10 @@ abstract class _Outlet implements Outlet {
 
 /// @nodoc
 mixin _$MenuSection {
-  String get category => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  MenuSectionCategory get category => throw _privateConstructorUsedError;
   int get position => throw _privateConstructorUsedError;
-  List<({String itemId, int position})> get items =>
-      throw _privateConstructorUsedError;
+  List<MenuItem> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenuSectionCopyWith<MenuSection> get copyWith =>
@@ -625,9 +625,12 @@ abstract class $MenuSectionCopyWith<$Res> {
       _$MenuSectionCopyWithImpl<$Res, MenuSection>;
   @useResult
   $Res call(
-      {String category,
+      {String id,
+      MenuSectionCategory category,
       int position,
-      List<({String itemId, int position})> items});
+      List<MenuItem> items});
+
+  $MenuSectionCategoryCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -643,15 +646,20 @@ class _$MenuSectionCopyWithImpl<$Res, $Val extends MenuSection>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? category = null,
     Object? position = null,
     Object? items = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MenuSectionCategory,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -659,8 +667,16 @@ class _$MenuSectionCopyWithImpl<$Res, $Val extends MenuSection>
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<({String itemId, int position})>,
+              as List<MenuItem>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MenuSectionCategoryCopyWith<$Res> get category {
+    return $MenuSectionCategoryCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
   }
 }
 
@@ -673,9 +689,13 @@ abstract class _$$MenuSectionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String category,
+      {String id,
+      MenuSectionCategory category,
       int position,
-      List<({String itemId, int position})> items});
+      List<MenuItem> items});
+
+  @override
+  $MenuSectionCategoryCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -689,15 +709,20 @@ class __$$MenuSectionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? category = null,
     Object? position = null,
     Object? items = null,
   }) {
     return _then(_$MenuSectionImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MenuSectionCategory,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -705,7 +730,7 @@ class __$$MenuSectionImplCopyWithImpl<$Res>
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<({String itemId, int position})>,
+              as List<MenuItem>,
     ));
   }
 }
@@ -714,23 +739,23 @@ class __$$MenuSectionImplCopyWithImpl<$Res>
 
 class _$MenuSectionImpl implements _MenuSection {
   const _$MenuSectionImpl(
-      {required this.category,
+      {required this.id,
+      required this.category,
       this.position = 1,
-      final List<({String itemId, int position})> items = const <({
-        String itemId,
-        int position
-      })>[]})
+      final List<MenuItem> items = const <MenuItem>[]})
       : _items = items;
 
   @override
-  final String category;
+  final String id;
+  @override
+  final MenuSectionCategory category;
   @override
   @JsonKey()
   final int position;
-  final List<({String itemId, int position})> _items;
+  final List<MenuItem> _items;
   @override
   @JsonKey()
-  List<({String itemId, int position})> get items {
+  List<MenuItem> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -738,7 +763,7 @@ class _$MenuSectionImpl implements _MenuSection {
 
   @override
   String toString() {
-    return 'MenuSection(category: $category, position: $position, items: $items)';
+    return 'MenuSection(id: $id, category: $category, position: $position, items: $items)';
   }
 
   @override
@@ -746,6 +771,7 @@ class _$MenuSectionImpl implements _MenuSection {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MenuSectionImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.position, position) ||
@@ -754,7 +780,7 @@ class _$MenuSectionImpl implements _MenuSection {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, category, position,
+  int get hashCode => Object.hash(runtimeType, id, category, position,
       const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
@@ -766,18 +792,271 @@ class _$MenuSectionImpl implements _MenuSection {
 
 abstract class _MenuSection implements MenuSection {
   const factory _MenuSection(
-      {required final String category,
+      {required final String id,
+      required final MenuSectionCategory category,
       final int position,
-      final List<({String itemId, int position})> items}) = _$MenuSectionImpl;
+      final List<MenuItem> items}) = _$MenuSectionImpl;
 
   @override
-  String get category;
+  String get id;
+  @override
+  MenuSectionCategory get category;
   @override
   int get position;
   @override
-  List<({String itemId, int position})> get items;
+  List<MenuItem> get items;
   @override
   @JsonKey(ignore: true)
   _$$MenuSectionImplCopyWith<_$MenuSectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$MenuSectionCategory {
+  String get id => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  String get outletId => throw _privateConstructorUsedError;
+  String get categoryName => throw _privateConstructorUsedError;
+  String get categoryDescription => throw _privateConstructorUsedError;
+  bool get isActive => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MenuSectionCategoryCopyWith<MenuSectionCategory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MenuSectionCategoryCopyWith<$Res> {
+  factory $MenuSectionCategoryCopyWith(
+          MenuSectionCategory value, $Res Function(MenuSectionCategory) then) =
+      _$MenuSectionCategoryCopyWithImpl<$Res, MenuSectionCategory>;
+  @useResult
+  $Res call(
+      {String id,
+      DateTime createdAt,
+      DateTime updatedAt,
+      String outletId,
+      String categoryName,
+      String categoryDescription,
+      bool isActive});
+}
+
+/// @nodoc
+class _$MenuSectionCategoryCopyWithImpl<$Res, $Val extends MenuSectionCategory>
+    implements $MenuSectionCategoryCopyWith<$Res> {
+  _$MenuSectionCategoryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? outletId = null,
+    Object? categoryName = null,
+    Object? categoryDescription = null,
+    Object? isActive = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      outletId: null == outletId
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: null == categoryName
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryDescription: null == categoryDescription
+          ? _value.categoryDescription
+          : categoryDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MenuSectionCategoryImplCopyWith<$Res>
+    implements $MenuSectionCategoryCopyWith<$Res> {
+  factory _$$MenuSectionCategoryImplCopyWith(_$MenuSectionCategoryImpl value,
+          $Res Function(_$MenuSectionCategoryImpl) then) =
+      __$$MenuSectionCategoryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      DateTime createdAt,
+      DateTime updatedAt,
+      String outletId,
+      String categoryName,
+      String categoryDescription,
+      bool isActive});
+}
+
+/// @nodoc
+class __$$MenuSectionCategoryImplCopyWithImpl<$Res>
+    extends _$MenuSectionCategoryCopyWithImpl<$Res, _$MenuSectionCategoryImpl>
+    implements _$$MenuSectionCategoryImplCopyWith<$Res> {
+  __$$MenuSectionCategoryImplCopyWithImpl(_$MenuSectionCategoryImpl _value,
+      $Res Function(_$MenuSectionCategoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? outletId = null,
+    Object? categoryName = null,
+    Object? categoryDescription = null,
+    Object? isActive = null,
+  }) {
+    return _then(_$MenuSectionCategoryImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      outletId: null == outletId
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: null == categoryName
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryDescription: null == categoryDescription
+          ? _value.categoryDescription
+          : categoryDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MenuSectionCategoryImpl implements _MenuSectionCategory {
+  const _$MenuSectionCategoryImpl(
+      {required this.id,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.outletId,
+      required this.categoryName,
+      required this.categoryDescription,
+      this.isActive = true});
+
+  @override
+  final String id;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final String outletId;
+  @override
+  final String categoryName;
+  @override
+  final String categoryDescription;
+  @override
+  @JsonKey()
+  final bool isActive;
+
+  @override
+  String toString() {
+    return 'MenuSectionCategory(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, outletId: $outletId, categoryName: $categoryName, categoryDescription: $categoryDescription, isActive: $isActive)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MenuSectionCategoryImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.outletId, outletId) ||
+                other.outletId == outletId) &&
+            (identical(other.categoryName, categoryName) ||
+                other.categoryName == categoryName) &&
+            (identical(other.categoryDescription, categoryDescription) ||
+                other.categoryDescription == categoryDescription) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, createdAt, updatedAt,
+      outletId, categoryName, categoryDescription, isActive);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MenuSectionCategoryImplCopyWith<_$MenuSectionCategoryImpl> get copyWith =>
+      __$$MenuSectionCategoryImplCopyWithImpl<_$MenuSectionCategoryImpl>(
+          this, _$identity);
+}
+
+abstract class _MenuSectionCategory implements MenuSectionCategory {
+  const factory _MenuSectionCategory(
+      {required final String id,
+      required final DateTime createdAt,
+      required final DateTime updatedAt,
+      required final String outletId,
+      required final String categoryName,
+      required final String categoryDescription,
+      final bool isActive}) = _$MenuSectionCategoryImpl;
+
+  @override
+  String get id;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime get updatedAt;
+  @override
+  String get outletId;
+  @override
+  String get categoryName;
+  @override
+  String get categoryDescription;
+  @override
+  bool get isActive;
+  @override
+  @JsonKey(ignore: true)
+  _$$MenuSectionCategoryImplCopyWith<_$MenuSectionCategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -5,27 +5,26 @@ part 'generated/choice_and_addons_model.g.dart';
 
 @freezed
 @JsonSerializable()
-sealed class ChoiceModel with _$ChoiceModel {
-  const factory ChoiceModel({
+class Choice with _$Choice {
+  const factory Choice({
     @JsonKey(name: '_id') required String id,
     required String name,
     @Default(true) bool isRequired,
     @JsonKey(name: 'choiceDetails')
     @Default(<({bool isDefault, int additionalPrice, String name})>[])
     List<({bool isDefault, int additionalPrice, String name})> details,
-  }) = _ChoiceModel;
+  }) = _Choice;
 
-  const ChoiceModel._();
+  const Choice._();
 
-  factory ChoiceModel.fromJson(Map<String, Object?> json) =>
-      _$ChoiceModelFromJson(json);
+  factory Choice.fromJson(Map<String, Object?> json) => _$ChoiceFromJson(json);
 
-  Map<String, Object?> toJson() => _$ChoiceModelToJson(this);
+  Map<String, Object?> toJson() => _$ChoiceToJson(this);
 }
 
 @freezed
 @JsonSerializable()
-sealed class Addons with _$Addons {
+class Addons with _$Addons {
   const factory Addons({
     @JsonKey(name: '_id') required String id,
     required String name,

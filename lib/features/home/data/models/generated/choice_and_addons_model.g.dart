@@ -6,7 +6,7 @@ part of '../choice_and_addons_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChoiceModel _$ChoiceModelFromJson(Map<String, dynamic> json) => ChoiceModel(
+Choice _$ChoiceFromJson(Map<String, dynamic> json) => Choice(
       id: json['_id'] as String,
       name: json['name'] as String,
       isRequired: json['isRequired'] as bool,
@@ -23,8 +23,7 @@ ChoiceModel _$ChoiceModelFromJson(Map<String, dynamic> json) => ChoiceModel(
           .toList(),
     );
 
-Map<String, dynamic> _$ChoiceModelToJson(ChoiceModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ChoiceToJson(Choice instance) => <String, dynamic>{
       '_id': instance.id,
       'name': instance.name,
       'isRequired': instance.isRequired,
