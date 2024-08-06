@@ -156,16 +156,16 @@ class _ExploreFlexibleSpaceBarState extends State<_ExploreFlexibleSpaceBar> {
   void _handleScroll(ScrollNotification notification) {
     final bool isAttached =
         _settings != null && (widget.controller?.hasClients ?? false);
-    if (isAttached && notification is ScrollEndNotification) {
-      final double maxExtent = _settings!.maxExtent;
-      final double current = notification.metrics.pixels;
-      final double minExtent = _settings!.minExtent;
-      if (current >= minExtent && current <= maxExtent) {
-        _scrollToOffset(
-          current > (maxExtent - minExtent) / 2 ? maxExtent : minExtent,
-        );
-      }
-    }
+    // if (isAttached && notification is ScrollEndNotification) {
+    //   final double maxExtent = _settings!.maxExtent;
+    //   final double current = notification.metrics.pixels;
+    //   final double minExtent = _settings!.minExtent;
+    //   if (current >= minExtent && current <= maxExtent) {
+    //     _scrollToOffset(
+    //       current > (maxExtent - minExtent) / 2 ? maxExtent : minExtent,
+    //     );
+    //   }
+    // }
   }
 
   // Scrolls to the given offset with animation

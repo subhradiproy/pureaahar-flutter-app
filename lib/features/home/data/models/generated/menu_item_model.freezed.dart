@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../best_seller_model.dart';
+part of '../menu_item_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$BestSellerModel {
+mixin _$MenuItemModel {
   @JsonKey(name: 'restaurantId')
   ({String restaurantName}) get restaurantInfo =>
       throw _privateConstructorUsedError;
@@ -41,15 +41,15 @@ mixin _$BestSellerModel {
   bool get isHappyHourItem => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $BestSellerModelCopyWith<BestSellerModel> get copyWith =>
+  $MenuItemModelCopyWith<MenuItemModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BestSellerModelCopyWith<$Res> {
-  factory $BestSellerModelCopyWith(
-          BestSellerModel value, $Res Function(BestSellerModel) then) =
-      _$BestSellerModelCopyWithImpl<$Res, BestSellerModel>;
+abstract class $MenuItemModelCopyWith<$Res> {
+  factory $MenuItemModelCopyWith(
+          MenuItemModel value, $Res Function(MenuItemModel) then) =
+      _$MenuItemModelCopyWithImpl<$Res, MenuItemModel>;
   @useResult
   $Res call(
       {@JsonKey(name: 'restaurantId') ({String restaurantName}) restaurantInfo,
@@ -75,9 +75,9 @@ abstract class $BestSellerModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BestSellerModelCopyWithImpl<$Res, $Val extends BestSellerModel>
-    implements $BestSellerModelCopyWith<$Res> {
-  _$BestSellerModelCopyWithImpl(this._value, this._then);
+class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
+    implements $MenuItemModelCopyWith<$Res> {
+  _$MenuItemModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -195,11 +195,11 @@ class _$BestSellerModelCopyWithImpl<$Res, $Val extends BestSellerModel>
 }
 
 /// @nodoc
-abstract class _$$BestSellerModelImplCopyWith<$Res>
-    implements $BestSellerModelCopyWith<$Res> {
-  factory _$$BestSellerModelImplCopyWith(_$BestSellerModelImpl value,
-          $Res Function(_$BestSellerModelImpl) then) =
-      __$$BestSellerModelImplCopyWithImpl<$Res>;
+abstract class _$$MenuItemModelImplCopyWith<$Res>
+    implements $MenuItemModelCopyWith<$Res> {
+  factory _$$MenuItemModelImplCopyWith(
+          _$MenuItemModelImpl value, $Res Function(_$MenuItemModelImpl) then) =
+      __$$MenuItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -228,11 +228,11 @@ abstract class _$$BestSellerModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BestSellerModelImplCopyWithImpl<$Res>
-    extends _$BestSellerModelCopyWithImpl<$Res, _$BestSellerModelImpl>
-    implements _$$BestSellerModelImplCopyWith<$Res> {
-  __$$BestSellerModelImplCopyWithImpl(
-      _$BestSellerModelImpl _value, $Res Function(_$BestSellerModelImpl) _then)
+class __$$MenuItemModelImplCopyWithImpl<$Res>
+    extends _$MenuItemModelCopyWithImpl<$Res, _$MenuItemModelImpl>
+    implements _$$MenuItemModelImplCopyWith<$Res> {
+  __$$MenuItemModelImplCopyWithImpl(
+      _$MenuItemModelImpl _value, $Res Function(_$MenuItemModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -256,7 +256,7 @@ class __$$BestSellerModelImplCopyWithImpl<$Res>
     Object? isVeg = null,
     Object? isHappyHourItem = null,
   }) {
-    return _then(_$BestSellerModelImpl(
+    return _then(_$MenuItemModelImpl(
       restaurantInfo: null == restaurantInfo
           ? _value.restaurantInfo
           : restaurantInfo // ignore: cast_nullable_to_non_nullable
@@ -331,8 +331,8 @@ class __$$BestSellerModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BestSellerModelImpl extends _BestSellerModel {
-  const _$BestSellerModelImpl(
+class _$MenuItemModelImpl extends _MenuItemModel {
+  const _$MenuItemModelImpl(
       {@JsonKey(name: 'restaurantId') required this.restaurantInfo,
       required this.options,
       @JsonKey(name: 'outletId') required this.outletInfo,
@@ -430,14 +430,14 @@ class _$BestSellerModelImpl extends _BestSellerModel {
 
   @override
   String toString() {
-    return 'BestSellerModel(restaurantInfo: $restaurantInfo, options: $options, outletInfo: $outletInfo, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemDescription: $itemDescription, itemImageUrl: $itemImageUrl, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
+    return 'MenuItemModel(restaurantInfo: $restaurantInfo, options: $options, outletInfo: $outletInfo, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemDescription: $itemDescription, itemImageUrl: $itemImageUrl, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BestSellerModelImpl &&
+            other is _$MenuItemModelImpl &&
             (identical(other.restaurantInfo, restaurantInfo) ||
                 other.restaurantInfo == restaurantInfo) &&
             (identical(other.options, options) || other.options == options) &&
@@ -490,13 +490,12 @@ class _$BestSellerModelImpl extends _BestSellerModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BestSellerModelImplCopyWith<_$BestSellerModelImpl> get copyWith =>
-      __$$BestSellerModelImplCopyWithImpl<_$BestSellerModelImpl>(
-          this, _$identity);
+  _$$MenuItemModelImplCopyWith<_$MenuItemModelImpl> get copyWith =>
+      __$$MenuItemModelImplCopyWithImpl<_$MenuItemModelImpl>(this, _$identity);
 }
 
-abstract class _BestSellerModel extends BestSellerModel {
-  const factory _BestSellerModel(
+abstract class _MenuItemModel extends MenuItemModel {
+  const factory _MenuItemModel(
       {@JsonKey(name: 'restaurantId')
       required final ({String restaurantName}) restaurantInfo,
       required final OptionsModel options,
@@ -514,8 +513,8 @@ abstract class _BestSellerModel extends BestSellerModel {
       final List<String> tags,
       final bool isInStock,
       final bool isVeg,
-      final bool isHappyHourItem}) = _$BestSellerModelImpl;
-  const _BestSellerModel._() : super._();
+      final bool isHappyHourItem}) = _$MenuItemModelImpl;
+  const _MenuItemModel._() : super._();
 
   @override
   @JsonKey(name: 'restaurantId')
@@ -556,7 +555,7 @@ abstract class _BestSellerModel extends BestSellerModel {
   bool get isHappyHourItem;
   @override
   @JsonKey(ignore: true)
-  _$$BestSellerModelImplCopyWith<_$BestSellerModelImpl> get copyWith =>
+  _$$MenuItemModelImplCopyWith<_$MenuItemModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -565,8 +564,7 @@ mixin _$OptionsModel {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
   List<ChoiceModel> get choices => throw _privateConstructorUsedError;
-  List<({int additionalPrice, String name})> get addons =>
-      throw _privateConstructorUsedError;
+  List<Addons> get addons => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OptionsModelCopyWith<OptionsModel> get copyWith =>
@@ -582,7 +580,7 @@ abstract class $OptionsModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       List<ChoiceModel> choices,
-      List<({int additionalPrice, String name})> addons});
+      List<Addons> addons});
 }
 
 /// @nodoc
@@ -614,7 +612,7 @@ class _$OptionsModelCopyWithImpl<$Res, $Val extends OptionsModel>
       addons: null == addons
           ? _value.addons
           : addons // ignore: cast_nullable_to_non_nullable
-              as List<({int additionalPrice, String name})>,
+              as List<Addons>,
     ) as $Val);
   }
 }
@@ -630,7 +628,7 @@ abstract class _$$OptionsModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: '_id') String id,
       List<ChoiceModel> choices,
-      List<({int additionalPrice, String name})> addons});
+      List<Addons> addons});
 }
 
 /// @nodoc
@@ -660,7 +658,7 @@ class __$$OptionsModelImplCopyWithImpl<$Res>
       addons: null == addons
           ? _value._addons
           : addons // ignore: cast_nullable_to_non_nullable
-              as List<({int additionalPrice, String name})>,
+              as List<Addons>,
     ));
   }
 }
@@ -671,10 +669,7 @@ class _$OptionsModelImpl extends _OptionsModel {
   const _$OptionsModelImpl(
       {@JsonKey(name: '_id') required this.id,
       final List<ChoiceModel> choices = const <ChoiceModel>[],
-      final List<({int additionalPrice, String name})> addons = const <({
-        String name,
-        int additionalPrice
-      })>[]})
+      final List<Addons> addons = const <Addons>[]})
       : _choices = choices,
         _addons = addons,
         super._();
@@ -691,10 +686,10 @@ class _$OptionsModelImpl extends _OptionsModel {
     return EqualUnmodifiableListView(_choices);
   }
 
-  final List<({int additionalPrice, String name})> _addons;
+  final List<Addons> _addons;
   @override
   @JsonKey()
-  List<({int additionalPrice, String name})> get addons {
+  List<Addons> get addons {
     if (_addons is EqualUnmodifiableListView) return _addons;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_addons);
@@ -731,10 +726,9 @@ class _$OptionsModelImpl extends _OptionsModel {
 
 abstract class _OptionsModel extends OptionsModel {
   const factory _OptionsModel(
-          {@JsonKey(name: '_id') required final String id,
-          final List<ChoiceModel> choices,
-          final List<({int additionalPrice, String name})> addons}) =
-      _$OptionsModelImpl;
+      {@JsonKey(name: '_id') required final String id,
+      final List<ChoiceModel> choices,
+      final List<Addons> addons}) = _$OptionsModelImpl;
   const _OptionsModel._() : super._();
 
   @override
@@ -743,216 +737,9 @@ abstract class _OptionsModel extends OptionsModel {
   @override
   List<ChoiceModel> get choices;
   @override
-  List<({int additionalPrice, String name})> get addons;
+  List<Addons> get addons;
   @override
   @JsonKey(ignore: true)
   _$$OptionsModelImplCopyWith<_$OptionsModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$ChoiceModel {
-  @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  bool get isRequired => throw _privateConstructorUsedError;
-  List<({int additionalPrice, bool isDefault, String name})>
-      get choiceDetails => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ChoiceModelCopyWith<ChoiceModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ChoiceModelCopyWith<$Res> {
-  factory $ChoiceModelCopyWith(
-          ChoiceModel value, $Res Function(ChoiceModel) then) =
-      _$ChoiceModelCopyWithImpl<$Res, ChoiceModel>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: '_id') String id,
-      String name,
-      bool isRequired,
-      List<({int additionalPrice, bool isDefault, String name})>
-          choiceDetails});
-}
-
-/// @nodoc
-class _$ChoiceModelCopyWithImpl<$Res, $Val extends ChoiceModel>
-    implements $ChoiceModelCopyWith<$Res> {
-  _$ChoiceModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? isRequired = null,
-    Object? choiceDetails = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      isRequired: null == isRequired
-          ? _value.isRequired
-          : isRequired // ignore: cast_nullable_to_non_nullable
-              as bool,
-      choiceDetails: null == choiceDetails
-          ? _value.choiceDetails
-          : choiceDetails // ignore: cast_nullable_to_non_nullable
-              as List<({int additionalPrice, bool isDefault, String name})>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ChoiceModelImplCopyWith<$Res>
-    implements $ChoiceModelCopyWith<$Res> {
-  factory _$$ChoiceModelImplCopyWith(
-          _$ChoiceModelImpl value, $Res Function(_$ChoiceModelImpl) then) =
-      __$$ChoiceModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: '_id') String id,
-      String name,
-      bool isRequired,
-      List<({int additionalPrice, bool isDefault, String name})>
-          choiceDetails});
-}
-
-/// @nodoc
-class __$$ChoiceModelImplCopyWithImpl<$Res>
-    extends _$ChoiceModelCopyWithImpl<$Res, _$ChoiceModelImpl>
-    implements _$$ChoiceModelImplCopyWith<$Res> {
-  __$$ChoiceModelImplCopyWithImpl(
-      _$ChoiceModelImpl _value, $Res Function(_$ChoiceModelImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? isRequired = null,
-    Object? choiceDetails = null,
-  }) {
-    return _then(_$ChoiceModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      isRequired: null == isRequired
-          ? _value.isRequired
-          : isRequired // ignore: cast_nullable_to_non_nullable
-              as bool,
-      choiceDetails: null == choiceDetails
-          ? _value._choiceDetails
-          : choiceDetails // ignore: cast_nullable_to_non_nullable
-              as List<({int additionalPrice, bool isDefault, String name})>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ChoiceModelImpl extends _ChoiceModel {
-  const _$ChoiceModelImpl(
-      {@JsonKey(name: '_id') required this.id,
-      required this.name,
-      this.isRequired = true,
-      final List<({int additionalPrice, bool isDefault, String name})>
-          choiceDetails = const <({
-        bool isDefault,
-        int additionalPrice,
-        String name
-      })>[]})
-      : _choiceDetails = choiceDetails,
-        super._();
-
-  @override
-  @JsonKey(name: '_id')
-  final String id;
-  @override
-  final String name;
-  @override
-  @JsonKey()
-  final bool isRequired;
-  final List<({int additionalPrice, bool isDefault, String name})>
-      _choiceDetails;
-  @override
-  @JsonKey()
-  List<({int additionalPrice, bool isDefault, String name})> get choiceDetails {
-    if (_choiceDetails is EqualUnmodifiableListView) return _choiceDetails;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_choiceDetails);
-  }
-
-  @override
-  String toString() {
-    return 'ChoiceModel(id: $id, name: $name, isRequired: $isRequired, choiceDetails: $choiceDetails)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChoiceModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.isRequired, isRequired) ||
-                other.isRequired == isRequired) &&
-            const DeepCollectionEquality()
-                .equals(other._choiceDetails, _choiceDetails));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name, isRequired,
-      const DeepCollectionEquality().hash(_choiceDetails));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChoiceModelImplCopyWith<_$ChoiceModelImpl> get copyWith =>
-      __$$ChoiceModelImplCopyWithImpl<_$ChoiceModelImpl>(this, _$identity);
-}
-
-abstract class _ChoiceModel extends ChoiceModel {
-  const factory _ChoiceModel(
-      {@JsonKey(name: '_id') required final String id,
-      required final String name,
-      final bool isRequired,
-      final List<({int additionalPrice, bool isDefault, String name})>
-          choiceDetails}) = _$ChoiceModelImpl;
-  const _ChoiceModel._() : super._();
-
-  @override
-  @JsonKey(name: '_id')
-  String get id;
-  @override
-  String get name;
-  @override
-  bool get isRequired;
-  @override
-  List<({int additionalPrice, bool isDefault, String name})> get choiceDetails;
-  @override
-  @JsonKey(ignore: true)
-  _$$ChoiceModelImplCopyWith<_$ChoiceModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

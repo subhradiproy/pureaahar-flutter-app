@@ -6,7 +6,7 @@ part 'generated/restaurant_entity.freezed.dart';
 @freezed
 sealed class Restaurant with _$Restaurant {
   const factory Restaurant({
-    required String id,
+    required String restaurantId,
     required String name,
     String? description,
     Outlet? nearestOutlet,

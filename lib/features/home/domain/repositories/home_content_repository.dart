@@ -15,4 +15,7 @@ abstract interface class HomeContentRepository {
     required String latitude,
     required String longitude,
   });
+
+  /// Get the outlet information by outlet id
+  TaskEitherFailure<OutletModel> getOutletById(String outletId);
 }

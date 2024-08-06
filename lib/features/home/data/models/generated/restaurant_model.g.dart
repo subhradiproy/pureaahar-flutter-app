@@ -8,7 +8,7 @@ part of '../restaurant_model.dart';
 
 RestaurantModel _$RestaurantModelFromJson(Map<String, dynamic> json) =>
     RestaurantModel(
-      id: json['restaurantId'] as String,
+      restaurantId: json['restaurantId'] as String,
       name: json['restaurantName'] as String,
       description: json['description'] as String?,
       nearestOutlet: json['nearestOutlet'] == null
@@ -21,7 +21,7 @@ RestaurantModel _$RestaurantModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) {
   final val = <String, dynamic>{
-    'restaurantId': instance.id,
+    'restaurantId': instance.restaurantId,
     'restaurantName': instance.name,
   };
 
@@ -39,7 +39,7 @@ Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) {
 }
 
 OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
-      id: json['restaurantId'] as String,
+      id: json['_id'] as String,
       location: _$recordConvert(
         json['outletLocation'],
         ($jsonValue) => (
@@ -73,7 +73,7 @@ OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
 
 Map<String, dynamic> _$OutletModelToJson(OutletModel instance) {
   final val = <String, dynamic>{
-    'restaurantId': instance.id,
+    '_id': instance.id,
     'outletLocation': <String, dynamic>{
       'distance': instance.location.distance,
       'latitude': instance.location.latitude,
@@ -112,27 +112,14 @@ $Rec _$recordConvert<$Rec>(
 
 MenuSectionModel _$MenuSectionModelFromJson(Map<String, dynamic> json) =>
     MenuSectionModel(
+      id: json['_id'] as String,
       category: json['category'] as String,
       position: (json['position'] as num).toInt(),
-      items: (json['items'] as List<dynamic>)
-          .map((e) => _$recordConvert(
-                e,
-                ($jsonValue) => (
-                  itemId: $jsonValue['itemId'] as String,
-                  position: ($jsonValue['position'] as num).toInt(),
-                ),
-              ))
-          .toList(),
     );
 
 Map<String, dynamic> _$MenuSectionModelToJson(MenuSectionModel instance) =>
     <String, dynamic>{
+      '_id': instance.id,
       'category': instance.category,
       'position': instance.position,
-      'items': instance.items
-          .map((e) => <String, dynamic>{
-                'itemId': e.itemId,
-                'position': e.position,
-              })
-          .toList(),
     };

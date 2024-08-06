@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../best_seller_model.dart';
+part of '../menu_item_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-BestSellerModel _$BestSellerModelFromJson(Map<String, dynamic> json) =>
-    BestSellerModel(
+MenuItemModel _$MenuItemModelFromJson(Map<String, dynamic> json) =>
+    MenuItemModel(
       restaurantInfo: _$recordConvert(
         json['restaurantId'],
         ($jsonValue) =>
@@ -51,7 +51,7 @@ BestSellerModel _$BestSellerModelFromJson(Map<String, dynamic> json) =>
       isHappyHourItem: json['isHappyHourItem'] as bool,
     );
 
-Map<String, dynamic> _$BestSellerModelToJson(BestSellerModel instance) {
+Map<String, dynamic> _$MenuItemModelToJson(MenuItemModel instance) {
   final val = <String, dynamic>{
     'restaurantId': <String, dynamic>{
       'restaurantName': instance.restaurantInfo.restaurantName,
@@ -106,14 +106,7 @@ OptionsModel _$OptionsModelFromJson(Map<String, dynamic> json) => OptionsModel(
           .map((e) => ChoiceModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       addons: (json['addons'] as List<dynamic>)
-          .map((e) => _$recordConvert(
-                e,
-                ($jsonValue) => (
-                  additionalPrice:
-                      ($jsonValue['additionalPrice'] as num).toInt(),
-                  name: $jsonValue['name'] as String,
-                ),
-              ))
+          .map((e) => Addons.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -121,41 +114,5 @@ Map<String, dynamic> _$OptionsModelToJson(OptionsModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'choices': instance.choices.map((e) => e.toJson()).toList(),
-      'addons': instance.addons
-          .map((e) => <String, dynamic>{
-                'additionalPrice': e.additionalPrice,
-                'name': e.name,
-              })
-          .toList(),
-    };
-
-ChoiceModel _$ChoiceModelFromJson(Map<String, dynamic> json) => ChoiceModel(
-      id: json['_id'] as String,
-      name: json['name'] as String,
-      isRequired: json['isRequired'] as bool,
-      choiceDetails: (json['choiceDetails'] as List<dynamic>)
-          .map((e) => _$recordConvert(
-                e,
-                ($jsonValue) => (
-                  additionalPrice:
-                      ($jsonValue['additionalPrice'] as num).toInt(),
-                  isDefault: $jsonValue['isDefault'] as bool,
-                  name: $jsonValue['name'] as String,
-                ),
-              ))
-          .toList(),
-    );
-
-Map<String, dynamic> _$ChoiceModelToJson(ChoiceModel instance) =>
-    <String, dynamic>{
-      '_id': instance.id,
-      'name': instance.name,
-      'isRequired': instance.isRequired,
-      'choiceDetails': instance.choiceDetails
-          .map((e) => <String, dynamic>{
-                'additionalPrice': e.additionalPrice,
-                'isDefault': e.isDefault,
-                'name': e.name,
-              })
-          .toList(),
+      'addons': instance.addons.map((e) => e.toJson()).toList(),
     };

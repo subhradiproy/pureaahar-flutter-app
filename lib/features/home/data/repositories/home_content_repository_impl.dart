@@ -16,7 +16,9 @@ HomeContentRepository homeRepository(HomeRepositoryRef ref) =>
     HomeContentRepositoryImpl(api: ref.watch(apiServiceProvider));
 
 class HomeContentRepositoryImpl implements HomeContentRepository {
-  const HomeContentRepositoryImpl({required ApiService api}) : _client = api;
+  const HomeContentRepositoryImpl({
+    required ApiService api,
+  }) : _client = api;
 
   final ApiService _client;
 
@@ -62,4 +64,14 @@ class HomeContentRepositoryImpl implements HomeContentRepository {
         ).then((Response<JSON> r) => RestaurantModel.fromJsonList(r.data)),
         Failure.parseError,
       );
+
+  @override
+  TaskEitherFailure<OutletModel> getOutletById(String outletId) {
+    return TaskEitherFailure<OutletModel>.tryCatch(
+      () async => _client
+          .get<JSON>('/v1/api/restaurants/outlets/$outletId')
+          .then((Response<JSON> json) => OutletModel.fromJson(json.data!)),
+      Failure.parseError,
+    );
+  }
 }

@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Restaurant {
-  String get id => throw _privateConstructorUsedError;
+  String get restaurantId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   Outlet? get nearestOutlet => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $RestaurantCopyWith<$Res> {
       _$RestaurantCopyWithImpl<$Res, Restaurant>;
   @useResult
   $Res call(
-      {String id,
+      {String restaurantId,
       String name,
       String? description,
       Outlet? nearestOutlet,
@@ -56,16 +56,16 @@ class _$RestaurantCopyWithImpl<$Res, $Val extends Restaurant>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? restaurantId = null,
     Object? name = null,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
     Object? serviceableOutlets = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      restaurantId: null == restaurantId
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -108,7 +108,7 @@ abstract class _$$RestaurantImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {String restaurantId,
       String name,
       String? description,
       Outlet? nearestOutlet,
@@ -129,16 +129,16 @@ class __$$RestaurantImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? restaurantId = null,
     Object? name = null,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
     Object? serviceableOutlets = null,
   }) {
     return _then(_$RestaurantImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      restaurantId: null == restaurantId
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -164,7 +164,7 @@ class __$$RestaurantImplCopyWithImpl<$Res>
 
 class _$RestaurantImpl implements _Restaurant {
   const _$RestaurantImpl(
-      {required this.id,
+      {required this.restaurantId,
       required this.name,
       this.description,
       this.nearestOutlet,
@@ -172,7 +172,7 @@ class _$RestaurantImpl implements _Restaurant {
       : _serviceableOutlets = serviceableOutlets;
 
   @override
-  final String id;
+  final String restaurantId;
   @override
   final String name;
   @override
@@ -191,7 +191,7 @@ class _$RestaurantImpl implements _Restaurant {
 
   @override
   String toString() {
-    return 'Restaurant(id: $id, name: $name, description: $description, nearestOutlet: $nearestOutlet, serviceableOutlets: $serviceableOutlets)';
+    return 'Restaurant(restaurantId: $restaurantId, name: $name, description: $description, nearestOutlet: $nearestOutlet, serviceableOutlets: $serviceableOutlets)';
   }
 
   @override
@@ -199,7 +199,8 @@ class _$RestaurantImpl implements _Restaurant {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RestaurantImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.restaurantId, restaurantId) ||
+                other.restaurantId == restaurantId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -210,7 +211,7 @@ class _$RestaurantImpl implements _Restaurant {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description,
+  int get hashCode => Object.hash(runtimeType, restaurantId, name, description,
       nearestOutlet, const DeepCollectionEquality().hash(_serviceableOutlets));
 
   @JsonKey(ignore: true)
@@ -222,14 +223,14 @@ class _$RestaurantImpl implements _Restaurant {
 
 abstract class _Restaurant implements Restaurant {
   const factory _Restaurant(
-      {required final String id,
+      {required final String restaurantId,
       required final String name,
       final String? description,
       final Outlet? nearestOutlet,
       final List<Outlet> serviceableOutlets}) = _$RestaurantImpl;
 
   @override
-  String get id;
+  String get restaurantId;
   @override
   String get name;
   @override

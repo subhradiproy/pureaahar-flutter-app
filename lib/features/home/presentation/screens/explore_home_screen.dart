@@ -86,7 +86,7 @@ class ExploreHomeScreen extends HookConsumerWidget {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 40),
             sliver: AsyncValueWidget<List<Restaurant>>(
               value: ref.watch(restaurantListProvider),
               loading: () => const SliverToBoxAdapter(
@@ -102,8 +102,8 @@ class ExploreHomeScreen extends HookConsumerWidget {
                   mainAxisExtent: 200,
                 ),
                 itemBuilder: (_, int index) => RestaurantCard(
-                  restaurant: item[index],
-                  key: ValueKey<String>(item[index].id),
+                  item: item[index],
+                  key: ValueKey<String>(item[index].restaurantId),
                 ),
                 itemCount: item.length,
               ),

@@ -6,6 +6,7 @@ enum AppRoute {
   pageNotFound('/404', 'PAGE_NOT_FOUND'),
   home('/app/explore', 'EXPLORE'),
   meals('/app/meals', 'MEALS'),
+  productListing('/app/brand/:id', 'PRODUCT_LISTING'),
   ;
 
   /// AppRoute Constructor

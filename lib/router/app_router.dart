@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -7,6 +8,7 @@ import '../features/authentication/presentation/screens/login_screen.dart';
 import '../features/authentication/presentation/screens/verification_screen.dart';
 import '../features/home/presentation/screens/explore_home_screen.dart';
 import '../features/home/presentation/widgets/nested_scaffold_nav.dart';
+import '../features/product_listing/screens/product_listing_screen.dart';
 import 'routes/routes.dart';
 
 part 'generated/app_router.g.dart';
@@ -22,6 +24,7 @@ class AppRouter extends _$AppRouter {
     ref.onDispose(() => router?.dispose());
     return router ??= GoRouter(
       navigatorKey: _root,
+      debugLogDiagnostics: kDebugMode,
       initialLocation: AppRoute.home.path,
       routes: <RouteBase>[
         GoRoute(
@@ -74,6 +77,21 @@ class AppRouter extends _$AppRouter {
               ],
             ),
           ],
+        ),
+        GoRoute(
+          path: AppRoute.productListing.path,
+          name: AppRoute.productListing.name,
+          redirect: (BuildContext context, GoRouterState state) {
+            final String? restaurantId = state.pathParameters['id'];
+            if (restaurantId == null || restaurantId.isEmpty) {
+              return AppRoute.pageNotFound.path;
+            }
+            return null;
+          },
+          builder: (_, GoRouterState state) => ProductListingScreen(
+            key: state.pageKey,
+            restaurantId: state.pathParameters['id']!,
+          ),
         ),
       ],
     );
