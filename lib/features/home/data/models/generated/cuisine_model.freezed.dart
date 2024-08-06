@@ -22,7 +22,6 @@ mixin _$CuisineModel {
   @JsonKey(name: 'cuisineImageUrl')
   String get url => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CuisineModelCopyWith<CuisineModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -121,7 +120,7 @@ class __$$CuisineModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable(createFactory: false)
+
 class _$CuisineModelImpl extends _CuisineModel {
   const _$CuisineModelImpl(
       {@JsonKey(name: '_id') required this.id,
@@ -153,7 +152,6 @@ class _$CuisineModelImpl extends _CuisineModel {
             (identical(other.url, url) || other.url == url));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, url);
 
@@ -162,13 +160,6 @@ class _$CuisineModelImpl extends _CuisineModel {
   @pragma('vm:prefer-inline')
   _$$CuisineModelImplCopyWith<_$CuisineModelImpl> get copyWith =>
       __$$CuisineModelImplCopyWithImpl<_$CuisineModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CuisineModelImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _CuisineModel extends CuisineModel {

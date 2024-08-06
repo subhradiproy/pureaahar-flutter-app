@@ -22,7 +22,6 @@ mixin _$RestaurantBannerModel {
   @JsonKey(name: 'bannerImageUrl')
   String get url => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RestaurantBannerModelCopyWith<RestaurantBannerModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -124,7 +123,7 @@ class __$$RestaurantBannerModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable(createFactory: false)
+
 class _$RestaurantBannerModelImpl extends _RestaurantBannerModel {
   const _$RestaurantBannerModelImpl(
       {@JsonKey(name: '_id') required this.id,
@@ -156,7 +155,6 @@ class _$RestaurantBannerModelImpl extends _RestaurantBannerModel {
             (identical(other.url, url) || other.url == url));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, url);
 
@@ -166,13 +164,6 @@ class _$RestaurantBannerModelImpl extends _RestaurantBannerModel {
   _$$RestaurantBannerModelImplCopyWith<_$RestaurantBannerModelImpl>
       get copyWith => __$$RestaurantBannerModelImplCopyWithImpl<
           _$RestaurantBannerModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RestaurantBannerModelImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _RestaurantBannerModel extends RestaurantBannerModel {

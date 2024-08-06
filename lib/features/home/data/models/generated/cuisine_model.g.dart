@@ -18,10 +18,3 @@ Map<String, dynamic> _$CuisineModelToJson(CuisineModel instance) =>
       'name': instance.name,
       'cuisineImageUrl': instance.url,
     };
-
-Map<String, dynamic> _$$CuisineModelImplToJson(_$CuisineModelImpl instance) =>
-    <String, dynamic>{
-      '_id': instance.id,
-      'name': instance.name,
-      'cuisineImageUrl': instance.url,
-    };

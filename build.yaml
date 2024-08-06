@@ -21,7 +21,7 @@ targets:
       freezed:
         options:
           from_json: false
-          create_to_json: false
+          to_json: false
           generate_for:
             include:
               - lib/features/**/domain/entities/*.dart
