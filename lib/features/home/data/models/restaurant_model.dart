@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' show TimeOfDay;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../app/typedefs/typedefs.dart' show JSON;
 import '../../../../core/models/entity_mapper.dart';
 import '../../../../core/models/json_parsers/time_of_day_convertor.dart';
 import '../../domain/entities/restaurant_entity.dart';
@@ -31,8 +32,9 @@ sealed class RestaurantModel
   static List<RestaurantModel> fromJsonList(Map<String, Object?>? json) {
     return switch (json) {
       null => <RestaurantModel>[],
-      {'restaurantOutlets': final List<Map<String, Object?>> r} =>
-        r.map(RestaurantModel.fromJson).toList(),
+      {'restaurantOutlets': final List<dynamic>? list} =>
+        list?.cast<JSON>().map(RestaurantModel.fromJson).toList() ??
+            <RestaurantModel>[],
       _ => throw const FormatException('Invalid JSON format'),
     };
   }

@@ -19,7 +19,7 @@ sealed class RestaurantBannerModel
 
   const RestaurantBannerModel._();
 
-  factory RestaurantBannerModel.fromJson(Map<String, dynamic> json) =>
+  factory RestaurantBannerModel.fromJson(Map<String, Object?> json) =>
       _$RestaurantBannerModelFromJson(json);
 
   @override

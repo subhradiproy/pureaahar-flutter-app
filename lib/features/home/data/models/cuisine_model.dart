@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../app/typedefs/typedefs.dart' show JSON;
 import '../../../../core/models/entity_mapper.dart';
 import '../../domain/entities/cuisine_entity.dart';
 
@@ -23,8 +24,9 @@ sealed class CuisineModel with _$CuisineModel implements EntityMapper<Cuisine> {
   static List<CuisineModel> fromJsonList(Map<String, Object?>? json) {
     return switch (json) {
       null => <CuisineModel>[],
-      {'data': final List<Map<String, Object?>>? list} =>
-        list?.map(CuisineModel.fromJson).toList() ?? <CuisineModel>[],
+      {'data': final List<dynamic>? cuisines} =>
+        cuisines?.cast<JSON>().map(CuisineModel.fromJson).toList() ??
+            <CuisineModel>[],
       _ => throw const FormatException('Invalid JSON format'),
     };
   }
