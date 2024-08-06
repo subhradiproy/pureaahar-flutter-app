@@ -267,10 +267,10 @@ mixin _$OutletModel {
       throw _privateConstructorUsedError;
   @JsonKey(name: 'acceptingOrder', defaultValue: false)
   bool get isAcceptingOrder => throw _privateConstructorUsedError;
-  String? get rating => throw _privateConstructorUsedError;
   List<String> get certifications => throw _privateConstructorUsedError;
   List<MenuSectionModel> get menuSections => throw _privateConstructorUsedError;
   bool get isOpened => throw _privateConstructorUsedError;
+  String? get rating => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
   double? get distanceDelta => throw _privateConstructorUsedError;
 
@@ -294,10 +294,10 @@ abstract class $OutletModelCopyWith<$Res> {
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       bool isAcceptingOrder,
-      String? rating,
       List<String> certifications,
       List<MenuSectionModel> menuSections,
       bool isOpened,
+      String? rating,
       int? ratingCount,
       double? distanceDelta});
 }
@@ -320,10 +320,10 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
     Object? outletAddress = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
-    Object? rating = freezed,
     Object? certifications = null,
     Object? menuSections = null,
     Object? isOpened = null,
+    Object? rating = freezed,
     Object? ratingCount = freezed,
     Object? distanceDelta = freezed,
   }) {
@@ -348,10 +348,6 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
           ? _value.isAcceptingOrder
           : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
               as bool,
-      rating: freezed == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as String?,
       certifications: null == certifications
           ? _value.certifications
           : certifications // ignore: cast_nullable_to_non_nullable
@@ -364,6 +360,10 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
           ? _value.isOpened
           : isOpened // ignore: cast_nullable_to_non_nullable
               as bool,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String?,
       ratingCount: freezed == ratingCount
           ? _value.ratingCount
           : ratingCount // ignore: cast_nullable_to_non_nullable
@@ -393,10 +393,10 @@ abstract class _$$OutletModelImplCopyWith<$Res>
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       bool isAcceptingOrder,
-      String? rating,
       List<String> certifications,
       List<MenuSectionModel> menuSections,
       bool isOpened,
+      String? rating,
       int? ratingCount,
       double? distanceDelta});
 }
@@ -417,10 +417,10 @@ class __$$OutletModelImplCopyWithImpl<$Res>
     Object? outletAddress = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
-    Object? rating = freezed,
     Object? certifications = null,
     Object? menuSections = null,
     Object? isOpened = null,
+    Object? rating = freezed,
     Object? ratingCount = freezed,
     Object? distanceDelta = freezed,
   }) {
@@ -445,10 +445,6 @@ class __$$OutletModelImplCopyWithImpl<$Res>
           ? _value.isAcceptingOrder
           : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
               as bool,
-      rating: freezed == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as String?,
       certifications: null == certifications
           ? _value._certifications
           : certifications // ignore: cast_nullable_to_non_nullable
@@ -461,6 +457,10 @@ class __$$OutletModelImplCopyWithImpl<$Res>
           ? _value.isOpened
           : isOpened // ignore: cast_nullable_to_non_nullable
               as bool,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String?,
       ratingCount: freezed == ratingCount
           ? _value.ratingCount
           : ratingCount // ignore: cast_nullable_to_non_nullable
@@ -483,10 +483,10 @@ class _$OutletModelImpl extends _OutletModel {
       @TimeOfDayConvertor.twentyFourHour() required this.timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       required this.isAcceptingOrder,
-      this.rating,
       final List<String> certifications = const <String>[],
       final List<MenuSectionModel> menuSections = const <MenuSectionModel>[],
       this.isOpened = false,
+      this.rating,
       this.ratingCount,
       this.distanceDelta})
       : _certifications = certifications,
@@ -507,8 +507,6 @@ class _$OutletModelImpl extends _OutletModel {
   @override
   @JsonKey(name: 'acceptingOrder', defaultValue: false)
   final bool isAcceptingOrder;
-  @override
-  final String? rating;
   final List<String> _certifications;
   @override
   @JsonKey()
@@ -531,13 +529,15 @@ class _$OutletModelImpl extends _OutletModel {
   @JsonKey()
   final bool isOpened;
   @override
+  final String? rating;
+  @override
   final int? ratingCount;
   @override
   final double? distanceDelta;
 
   @override
   String toString() {
-    return 'OutletModel(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menuSections: $menuSections, isOpened: $isOpened, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'OutletModel(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, certifications: $certifications, menuSections: $menuSections, isOpened: $isOpened, rating: $rating, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -553,13 +553,13 @@ class _$OutletModelImpl extends _OutletModel {
             (identical(other.timing, timing) || other.timing == timing) &&
             (identical(other.isAcceptingOrder, isAcceptingOrder) ||
                 other.isAcceptingOrder == isAcceptingOrder) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
             const DeepCollectionEquality()
                 .equals(other._certifications, _certifications) &&
             const DeepCollectionEquality()
                 .equals(other._menuSections, _menuSections) &&
             (identical(other.isOpened, isOpened) ||
                 other.isOpened == isOpened) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.ratingCount, ratingCount) ||
                 other.ratingCount == ratingCount) &&
             (identical(other.distanceDelta, distanceDelta) ||
@@ -574,10 +574,10 @@ class _$OutletModelImpl extends _OutletModel {
       outletAddress,
       timing,
       isAcceptingOrder,
-      rating,
       const DeepCollectionEquality().hash(_certifications),
       const DeepCollectionEquality().hash(_menuSections),
       isOpened,
+      rating,
       ratingCount,
       distanceDelta);
 
@@ -602,10 +602,10 @@ abstract class _OutletModel extends OutletModel {
       required final ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
       required final bool isAcceptingOrder,
-      final String? rating,
       final List<String> certifications,
       final List<MenuSectionModel> menuSections,
       final bool isOpened,
+      final String? rating,
       final int? ratingCount,
       final double? distanceDelta}) = _$OutletModelImpl;
   const _OutletModel._() : super._();
@@ -625,13 +625,13 @@ abstract class _OutletModel extends OutletModel {
   @JsonKey(name: 'acceptingOrder', defaultValue: false)
   bool get isAcceptingOrder;
   @override
-  String? get rating;
-  @override
   List<String> get certifications;
   @override
   List<MenuSectionModel> get menuSections;
   @override
   bool get isOpened;
+  @override
+  String? get rating;
   @override
   int? get ratingCount;
   @override

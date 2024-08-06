@@ -63,10 +63,10 @@ sealed class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
     required ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
     @JsonKey(name: 'acceptingOrder', defaultValue: false)
     required bool isAcceptingOrder,
-    String? rating,
     @Default(<String>[]) List<String> certifications,
     @Default(<MenuSectionModel>[]) List<MenuSectionModel> menuSections,
     @Default(false) bool isOpened,
+    String? rating,
     int? ratingCount,
     double? distanceDelta,
   }) = _OutletModel;

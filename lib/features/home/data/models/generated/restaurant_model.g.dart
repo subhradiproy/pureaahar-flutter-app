@@ -59,7 +59,6 @@ OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
         ),
       ),
       isAcceptingOrder: json['acceptingOrder'] as bool? ?? false,
-      rating: json['rating'] as String?,
       certifications: (json['certifications'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -67,6 +66,7 @@ OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
           .map((e) => MenuSectionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       isOpened: json['isOpened'] as bool,
+      rating: json['rating'] as String?,
       ratingCount: (json['ratingCount'] as num?)?.toInt(),
       distanceDelta: (json['distanceDelta'] as num?)?.toDouble(),
     );
@@ -87,6 +87,9 @@ Map<String, dynamic> _$OutletModelToJson(OutletModel instance) {
           .toJson(instance.timing.toTime),
     },
     'acceptingOrder': instance.isAcceptingOrder,
+    'certifications': instance.certifications,
+    'menuSections': instance.menuSections.map((e) => e.toJson()).toList(),
+    'isOpened': instance.isOpened,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -96,9 +99,6 @@ Map<String, dynamic> _$OutletModelToJson(OutletModel instance) {
   }
 
   writeNotNull('rating', instance.rating);
-  val['certifications'] = instance.certifications;
-  val['menuSections'] = instance.menuSections.map((e) => e.toJson()).toList();
-  val['isOpened'] = instance.isOpened;
   writeNotNull('ratingCount', instance.ratingCount);
   writeNotNull('distanceDelta', instance.distanceDelta);
   return val;
