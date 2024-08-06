@@ -39,8 +39,8 @@ Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) {
 }
 
 OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
-      restaurantId: json['restaurantId'] as String,
-      outletLocation: _$recordConvert(
+      id: json['restaurantId'] as String,
+      location: _$recordConvert(
         json['outletLocation'],
         ($jsonValue) => (
           distance: ($jsonValue['distance'] as num).toDouble(),
@@ -73,11 +73,11 @@ OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
 
 Map<String, dynamic> _$OutletModelToJson(OutletModel instance) {
   final val = <String, dynamic>{
-    'restaurantId': instance.restaurantId,
+    'restaurantId': instance.id,
     'outletLocation': <String, dynamic>{
-      'distance': instance.outletLocation.distance,
-      'latitude': instance.outletLocation.latitude,
-      'longitude': instance.outletLocation.longitude,
+      'distance': instance.location.distance,
+      'latitude': instance.location.latitude,
+      'longitude': instance.location.longitude,
     },
     'outletAddress': instance.outletAddress,
     'timing': <String, dynamic>{

@@ -24,6 +24,143 @@ mixin _$RestaurantModel {
   OutletModel? get nearestOutlet => throw _privateConstructorUsedError;
   List<OutletModel> get serviceableOutlets =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RestaurantModelCopyWith<RestaurantModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RestaurantModelCopyWith<$Res> {
+  factory $RestaurantModelCopyWith(
+          RestaurantModel value, $Res Function(RestaurantModel) then) =
+      _$RestaurantModelCopyWithImpl<$Res, RestaurantModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'restaurantId') String id,
+      @JsonKey(name: 'restaurantName') String name,
+      String? description,
+      OutletModel? nearestOutlet,
+      List<OutletModel> serviceableOutlets});
+
+  $OutletModelCopyWith<$Res>? get nearestOutlet;
+}
+
+/// @nodoc
+class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
+    implements $RestaurantModelCopyWith<$Res> {
+  _$RestaurantModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? description = freezed,
+    Object? nearestOutlet = freezed,
+    Object? serviceableOutlets = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nearestOutlet: freezed == nearestOutlet
+          ? _value.nearestOutlet
+          : nearestOutlet // ignore: cast_nullable_to_non_nullable
+              as OutletModel?,
+      serviceableOutlets: null == serviceableOutlets
+          ? _value.serviceableOutlets
+          : serviceableOutlets // ignore: cast_nullable_to_non_nullable
+              as List<OutletModel>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OutletModelCopyWith<$Res>? get nearestOutlet {
+    if (_value.nearestOutlet == null) {
+      return null;
+    }
+
+    return $OutletModelCopyWith<$Res>(_value.nearestOutlet!, (value) {
+      return _then(_value.copyWith(nearestOutlet: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$RestaurantModelImplCopyWith<$Res>
+    implements $RestaurantModelCopyWith<$Res> {
+  factory _$$RestaurantModelImplCopyWith(_$RestaurantModelImpl value,
+          $Res Function(_$RestaurantModelImpl) then) =
+      __$$RestaurantModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'restaurantId') String id,
+      @JsonKey(name: 'restaurantName') String name,
+      String? description,
+      OutletModel? nearestOutlet,
+      List<OutletModel> serviceableOutlets});
+
+  @override
+  $OutletModelCopyWith<$Res>? get nearestOutlet;
+}
+
+/// @nodoc
+class __$$RestaurantModelImplCopyWithImpl<$Res>
+    extends _$RestaurantModelCopyWithImpl<$Res, _$RestaurantModelImpl>
+    implements _$$RestaurantModelImplCopyWith<$Res> {
+  __$$RestaurantModelImplCopyWithImpl(
+      _$RestaurantModelImpl _value, $Res Function(_$RestaurantModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? description = freezed,
+    Object? nearestOutlet = freezed,
+    Object? serviceableOutlets = null,
+  }) {
+    return _then(_$RestaurantModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nearestOutlet: freezed == nearestOutlet
+          ? _value.nearestOutlet
+          : nearestOutlet // ignore: cast_nullable_to_non_nullable
+              as OutletModel?,
+      serviceableOutlets: null == serviceableOutlets
+          ? _value._serviceableOutlets
+          : serviceableOutlets // ignore: cast_nullable_to_non_nullable
+              as List<OutletModel>,
+    ));
+  }
 }
 
 /// @nodoc
@@ -81,6 +218,13 @@ class _$RestaurantModelImpl extends _RestaurantModel {
   @override
   int get hashCode => Object.hash(runtimeType, id, name, description,
       nearestOutlet, const DeepCollectionEquality().hash(_serviceableOutlets));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RestaurantModelImplCopyWith<_$RestaurantModelImpl> get copyWith =>
+      __$$RestaurantModelImplCopyWithImpl<_$RestaurantModelImpl>(
+          this, _$identity);
 }
 
 abstract class _RestaurantModel extends RestaurantModel {
@@ -104,12 +248,18 @@ abstract class _RestaurantModel extends RestaurantModel {
   OutletModel? get nearestOutlet;
   @override
   List<OutletModel> get serviceableOutlets;
+  @override
+  @JsonKey(ignore: true)
+  _$$RestaurantModelImplCopyWith<_$RestaurantModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$OutletModel {
-  String get restaurantId => throw _privateConstructorUsedError;
-  ({double distance, double latitude, double longitude}) get outletLocation =>
+  @JsonKey(name: 'restaurantId')
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'outletLocation')
+  ({double distance, double latitude, double longitude}) get location =>
       throw _privateConstructorUsedError;
   String get outletAddress => throw _privateConstructorUsedError;
   @TimeOfDayConvertor.twentyFourHour()
@@ -123,14 +273,212 @@ mixin _$OutletModel {
   bool get isOpened => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
   double? get distanceDelta => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $OutletModelCopyWith<OutletModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OutletModelCopyWith<$Res> {
+  factory $OutletModelCopyWith(
+          OutletModel value, $Res Function(OutletModel) then) =
+      _$OutletModelCopyWithImpl<$Res, OutletModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'restaurantId') String id,
+      @JsonKey(name: 'outletLocation')
+      ({double distance, double latitude, double longitude}) location,
+      String outletAddress,
+      @TimeOfDayConvertor.twentyFourHour()
+      ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
+      @JsonKey(name: 'acceptingOrder', defaultValue: false)
+      bool isAcceptingOrder,
+      String? rating,
+      List<String> certifications,
+      List<MenuSectionModel> menuSections,
+      bool isOpened,
+      int? ratingCount,
+      double? distanceDelta});
+}
+
+/// @nodoc
+class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
+    implements $OutletModelCopyWith<$Res> {
+  _$OutletModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? location = null,
+    Object? outletAddress = null,
+    Object? timing = null,
+    Object? isAcceptingOrder = null,
+    Object? rating = freezed,
+    Object? certifications = null,
+    Object? menuSections = null,
+    Object? isOpened = null,
+    Object? ratingCount = freezed,
+    Object? distanceDelta = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as ({double distance, double latitude, double longitude}),
+      outletAddress: null == outletAddress
+          ? _value.outletAddress
+          : outletAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      timing: null == timing
+          ? _value.timing
+          : timing // ignore: cast_nullable_to_non_nullable
+              as ({TimeOfDay fromTime, TimeOfDay toTime}),
+      isAcceptingOrder: null == isAcceptingOrder
+          ? _value.isAcceptingOrder
+          : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String?,
+      certifications: null == certifications
+          ? _value.certifications
+          : certifications // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      menuSections: null == menuSections
+          ? _value.menuSections
+          : menuSections // ignore: cast_nullable_to_non_nullable
+              as List<MenuSectionModel>,
+      isOpened: null == isOpened
+          ? _value.isOpened
+          : isOpened // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ratingCount: freezed == ratingCount
+          ? _value.ratingCount
+          : ratingCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      distanceDelta: freezed == distanceDelta
+          ? _value.distanceDelta
+          : distanceDelta // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OutletModelImplCopyWith<$Res>
+    implements $OutletModelCopyWith<$Res> {
+  factory _$$OutletModelImplCopyWith(
+          _$OutletModelImpl value, $Res Function(_$OutletModelImpl) then) =
+      __$$OutletModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'restaurantId') String id,
+      @JsonKey(name: 'outletLocation')
+      ({double distance, double latitude, double longitude}) location,
+      String outletAddress,
+      @TimeOfDayConvertor.twentyFourHour()
+      ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
+      @JsonKey(name: 'acceptingOrder', defaultValue: false)
+      bool isAcceptingOrder,
+      String? rating,
+      List<String> certifications,
+      List<MenuSectionModel> menuSections,
+      bool isOpened,
+      int? ratingCount,
+      double? distanceDelta});
+}
+
+/// @nodoc
+class __$$OutletModelImplCopyWithImpl<$Res>
+    extends _$OutletModelCopyWithImpl<$Res, _$OutletModelImpl>
+    implements _$$OutletModelImplCopyWith<$Res> {
+  __$$OutletModelImplCopyWithImpl(
+      _$OutletModelImpl _value, $Res Function(_$OutletModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? location = null,
+    Object? outletAddress = null,
+    Object? timing = null,
+    Object? isAcceptingOrder = null,
+    Object? rating = freezed,
+    Object? certifications = null,
+    Object? menuSections = null,
+    Object? isOpened = null,
+    Object? ratingCount = freezed,
+    Object? distanceDelta = freezed,
+  }) {
+    return _then(_$OutletModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as ({double distance, double latitude, double longitude}),
+      outletAddress: null == outletAddress
+          ? _value.outletAddress
+          : outletAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      timing: null == timing
+          ? _value.timing
+          : timing // ignore: cast_nullable_to_non_nullable
+              as ({TimeOfDay fromTime, TimeOfDay toTime}),
+      isAcceptingOrder: null == isAcceptingOrder
+          ? _value.isAcceptingOrder
+          : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String?,
+      certifications: null == certifications
+          ? _value._certifications
+          : certifications // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      menuSections: null == menuSections
+          ? _value._menuSections
+          : menuSections // ignore: cast_nullable_to_non_nullable
+              as List<MenuSectionModel>,
+      isOpened: null == isOpened
+          ? _value.isOpened
+          : isOpened // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ratingCount: freezed == ratingCount
+          ? _value.ratingCount
+          : ratingCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      distanceDelta: freezed == distanceDelta
+          ? _value.distanceDelta
+          : distanceDelta // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OutletModelImpl extends _OutletModel {
   const _$OutletModelImpl(
-      {required this.restaurantId,
-      required this.outletLocation,
+      {@JsonKey(name: 'restaurantId') required this.id,
+      @JsonKey(name: 'outletLocation') required this.location,
       required this.outletAddress,
       @TimeOfDayConvertor.twentyFourHour() required this.timing,
       @JsonKey(name: 'acceptingOrder', defaultValue: false)
@@ -146,9 +494,11 @@ class _$OutletModelImpl extends _OutletModel {
         super._();
 
   @override
-  final String restaurantId;
+  @JsonKey(name: 'restaurantId')
+  final String id;
   @override
-  final ({double distance, double latitude, double longitude}) outletLocation;
+  @JsonKey(name: 'outletLocation')
+  final ({double distance, double latitude, double longitude}) location;
   @override
   final String outletAddress;
   @override
@@ -187,7 +537,7 @@ class _$OutletModelImpl extends _OutletModel {
 
   @override
   String toString() {
-    return 'OutletModel(restaurantId: $restaurantId, outletLocation: $outletLocation, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menuSections: $menuSections, isOpened: $isOpened, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'OutletModel(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menuSections: $menuSections, isOpened: $isOpened, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -195,10 +545,9 @@ class _$OutletModelImpl extends _OutletModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OutletModelImpl &&
-            (identical(other.restaurantId, restaurantId) ||
-                other.restaurantId == restaurantId) &&
-            (identical(other.outletLocation, outletLocation) ||
-                other.outletLocation == outletLocation) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
             (identical(other.outletAddress, outletAddress) ||
                 other.outletAddress == outletAddress) &&
             (identical(other.timing, timing) || other.timing == timing) &&
@@ -220,8 +569,8 @@ class _$OutletModelImpl extends _OutletModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      restaurantId,
-      outletLocation,
+      id,
+      location,
       outletAddress,
       timing,
       isAcceptingOrder,
@@ -231,16 +580,23 @@ class _$OutletModelImpl extends _OutletModel {
       isOpened,
       ratingCount,
       distanceDelta);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OutletModelImplCopyWith<_$OutletModelImpl> get copyWith =>
+      __$$OutletModelImplCopyWithImpl<_$OutletModelImpl>(this, _$identity);
 }
 
 abstract class _OutletModel extends OutletModel {
   const factory _OutletModel(
-      {required final String restaurantId,
+      {@JsonKey(name: 'restaurantId') required final String id,
+      @JsonKey(name: 'outletLocation')
       required final ({
         double distance,
         double latitude,
         double longitude
-      }) outletLocation,
+      }) location,
       required final String outletAddress,
       @TimeOfDayConvertor.twentyFourHour()
       required final ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
@@ -255,9 +611,11 @@ abstract class _OutletModel extends OutletModel {
   const _OutletModel._() : super._();
 
   @override
-  String get restaurantId;
+  @JsonKey(name: 'restaurantId')
+  String get id;
   @override
-  ({double distance, double latitude, double longitude}) get outletLocation;
+  @JsonKey(name: 'outletLocation')
+  ({double distance, double latitude, double longitude}) get location;
   @override
   String get outletAddress;
   @override
@@ -278,6 +636,10 @@ abstract class _OutletModel extends OutletModel {
   int? get ratingCount;
   @override
   double? get distanceDelta;
+  @override
+  @JsonKey(ignore: true)
+  _$$OutletModelImplCopyWith<_$OutletModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -286,6 +648,102 @@ mixin _$MenuSectionModel {
   int get position => throw _privateConstructorUsedError;
   List<({String itemId, int position})> get items =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MenuSectionModelCopyWith<MenuSectionModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MenuSectionModelCopyWith<$Res> {
+  factory $MenuSectionModelCopyWith(
+          MenuSectionModel value, $Res Function(MenuSectionModel) then) =
+      _$MenuSectionModelCopyWithImpl<$Res, MenuSectionModel>;
+  @useResult
+  $Res call(
+      {String category,
+      int position,
+      List<({String itemId, int position})> items});
+}
+
+/// @nodoc
+class _$MenuSectionModelCopyWithImpl<$Res, $Val extends MenuSectionModel>
+    implements $MenuSectionModelCopyWith<$Res> {
+  _$MenuSectionModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? position = null,
+    Object? items = null,
+  }) {
+    return _then(_value.copyWith(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<({String itemId, int position})>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MenuSectionImplCopyWith<$Res>
+    implements $MenuSectionModelCopyWith<$Res> {
+  factory _$$MenuSectionImplCopyWith(
+          _$MenuSectionImpl value, $Res Function(_$MenuSectionImpl) then) =
+      __$$MenuSectionImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String category,
+      int position,
+      List<({String itemId, int position})> items});
+}
+
+/// @nodoc
+class __$$MenuSectionImplCopyWithImpl<$Res>
+    extends _$MenuSectionModelCopyWithImpl<$Res, _$MenuSectionImpl>
+    implements _$$MenuSectionImplCopyWith<$Res> {
+  __$$MenuSectionImplCopyWithImpl(
+      _$MenuSectionImpl _value, $Res Function(_$MenuSectionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? position = null,
+    Object? items = null,
+  }) {
+    return _then(_$MenuSectionImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<({String itemId, int position})>,
+    ));
+  }
 }
 
 /// @nodoc
@@ -294,7 +752,10 @@ class _$MenuSectionImpl extends _MenuSection {
   const _$MenuSectionImpl(
       {required this.category,
       this.position = 1,
-      final List<({String itemId, int position})> items = const <MenuItem>[]})
+      final List<({String itemId, int position})> items = const <({
+        String itemId,
+        int position
+      })>[]})
       : _items = items,
         super._();
 
@@ -332,6 +793,12 @@ class _$MenuSectionImpl extends _MenuSection {
   @override
   int get hashCode => Object.hash(runtimeType, category, position,
       const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MenuSectionImplCopyWith<_$MenuSectionImpl> get copyWith =>
+      __$$MenuSectionImplCopyWithImpl<_$MenuSectionImpl>(this, _$identity);
 }
 
 abstract class _MenuSection extends MenuSectionModel {
@@ -347,4 +814,8 @@ abstract class _MenuSection extends MenuSectionModel {
   int get position;
   @override
   List<({String itemId, int position})> get items;
+  @override
+  @JsonKey(ignore: true)
+  _$$MenuSectionImplCopyWith<_$MenuSectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

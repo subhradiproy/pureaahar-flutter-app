@@ -39,7 +39,7 @@ class ExploreHomeScreen extends HookConsumerWidget {
                 SizedBox.fromSize(
                   size: const Size.fromHeight(120),
                   child: AsyncValueWidget<List<Cuisine>>(
-                    value: ref.watch(cuisineProvider),
+                    value: ref.watch(cuisineListProvider),
                     loading: () => const Center(
                       child: CircularProgressIndicator(),
                     ),

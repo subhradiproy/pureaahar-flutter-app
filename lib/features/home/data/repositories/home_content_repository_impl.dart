@@ -7,6 +7,7 @@ import '../../../../core/services/api_service.dart';
 import '../../domain/repositories/home_content_repository.dart';
 import '../models/cuisine_model.dart';
 import '../models/restaurant_banner_model.dart';
+import '../models/restaurant_model.dart';
 
 part 'generated/home_content_repository_impl.g.dart';
 
@@ -39,14 +40,26 @@ class HomeContentRepositoryImpl implements HomeContentRepository {
   @override
   TaskEitherFailure<List<CuisineModel>> getCuisines() {
     return TaskEitherFailure<List<CuisineModel>>.tryCatch(
-      () async => _client.get<JSON>('/v1/api/restaurants/cuisines').then(
-        (Response<JSON> json) {
-          final List<Object?>? cuisines = json.data?['data'] as List<Object?>?;
-          if (cuisines == null) return <CuisineModel>[];
-          return cuisines.cast<JSON>().map(CuisineModel.fromJson).toList();
-        },
-      ),
+      () async => _client
+          .get<JSON>('/v1/api/restaurants/cuisines')
+          .then((Response<JSON> json) => CuisineModel.fromJsonList(json.data)),
       Failure.parseError,
     );
   }
+
+  @override
+  TaskEitherFailure<List<RestaurantModel>> getRestaurants({
+    required String latitude,
+    required String longitude,
+  }) =>
+      TaskEitherFailure<List<RestaurantModel>>.tryCatch(
+        () async => _client.post<JSON>(
+          '/v1/api/restaurants/landing-page-restaurants',
+          data: <String, String>{
+            'latitude': '22.5764753',
+            'longitude': '88.4306861',
+          },
+        ).then((Response<JSON> r) => RestaurantModel.fromJsonList(r.data)),
+        Failure.parseError,
+      );
 }

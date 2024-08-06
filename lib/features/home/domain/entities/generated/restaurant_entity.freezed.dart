@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Restaurant {
-  String get restaurantId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   Outlet? get nearestOutlet => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $RestaurantCopyWith<$Res> {
       _$RestaurantCopyWithImpl<$Res, Restaurant>;
   @useResult
   $Res call(
-      {String restaurantId,
+      {String id,
       String name,
       String? description,
       Outlet? nearestOutlet,
@@ -56,16 +56,16 @@ class _$RestaurantCopyWithImpl<$Res, $Val extends Restaurant>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantId = null,
+    Object? id = null,
     Object? name = null,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
     Object? serviceableOutlets = null,
   }) {
     return _then(_value.copyWith(
-      restaurantId: null == restaurantId
-          ? _value.restaurantId
-          : restaurantId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -108,7 +108,7 @@ abstract class _$$RestaurantImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String restaurantId,
+      {String id,
       String name,
       String? description,
       Outlet? nearestOutlet,
@@ -129,16 +129,16 @@ class __$$RestaurantImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantId = null,
+    Object? id = null,
     Object? name = null,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
     Object? serviceableOutlets = null,
   }) {
     return _then(_$RestaurantImpl(
-      restaurantId: null == restaurantId
-          ? _value.restaurantId
-          : restaurantId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -162,18 +162,17 @@ class __$$RestaurantImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RestaurantImpl extends _Restaurant {
+class _$RestaurantImpl implements _Restaurant {
   const _$RestaurantImpl(
-      {required this.restaurantId,
+      {required this.id,
       required this.name,
       this.description,
       this.nearestOutlet,
       final List<Outlet> serviceableOutlets = const <Outlet>[]})
-      : _serviceableOutlets = serviceableOutlets,
-        super._();
+      : _serviceableOutlets = serviceableOutlets;
 
   @override
-  final String restaurantId;
+  final String id;
   @override
   final String name;
   @override
@@ -192,7 +191,7 @@ class _$RestaurantImpl extends _Restaurant {
 
   @override
   String toString() {
-    return 'Restaurant(restaurantId: $restaurantId, name: $name, description: $description, nearestOutlet: $nearestOutlet, serviceableOutlets: $serviceableOutlets)';
+    return 'Restaurant(id: $id, name: $name, description: $description, nearestOutlet: $nearestOutlet, serviceableOutlets: $serviceableOutlets)';
   }
 
   @override
@@ -200,8 +199,7 @@ class _$RestaurantImpl extends _Restaurant {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RestaurantImpl &&
-            (identical(other.restaurantId, restaurantId) ||
-                other.restaurantId == restaurantId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -212,7 +210,7 @@ class _$RestaurantImpl extends _Restaurant {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, restaurantId, name, description,
+  int get hashCode => Object.hash(runtimeType, id, name, description,
       nearestOutlet, const DeepCollectionEquality().hash(_serviceableOutlets));
 
   @JsonKey(ignore: true)
@@ -222,17 +220,16 @@ class _$RestaurantImpl extends _Restaurant {
       __$$RestaurantImplCopyWithImpl<_$RestaurantImpl>(this, _$identity);
 }
 
-abstract class _Restaurant extends Restaurant {
+abstract class _Restaurant implements Restaurant {
   const factory _Restaurant(
-      {required final String restaurantId,
+      {required final String id,
       required final String name,
       final String? description,
       final Outlet? nearestOutlet,
       final List<Outlet> serviceableOutlets}) = _$RestaurantImpl;
-  const _Restaurant._() : super._();
 
   @override
-  String get restaurantId;
+  String get id;
   @override
   String get name;
   @override
@@ -249,8 +246,8 @@ abstract class _Restaurant extends Restaurant {
 
 /// @nodoc
 mixin _$Outlet {
-  String get restaurantId => throw _privateConstructorUsedError;
-  ({double distance, double latitude, double longitude}) get outletLocation =>
+  String get id => throw _privateConstructorUsedError;
+  ({double distance, double latitude, double longitude}) get location =>
       throw _privateConstructorUsedError;
   String get outletAddress => throw _privateConstructorUsedError;
   ({TimeOfDay fromTime, TimeOfDay toTime}) get timing =>
@@ -258,7 +255,7 @@ mixin _$Outlet {
   bool get isAcceptingOrder => throw _privateConstructorUsedError;
   String? get rating => throw _privateConstructorUsedError;
   List<String> get certifications => throw _privateConstructorUsedError;
-  List<MenuSection> get menuSections => throw _privateConstructorUsedError;
+  List<MenuSection> get menus => throw _privateConstructorUsedError;
   bool get isOpened => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
   double? get distanceDelta => throw _privateConstructorUsedError;
@@ -273,14 +270,14 @@ abstract class $OutletCopyWith<$Res> {
       _$OutletCopyWithImpl<$Res, Outlet>;
   @useResult
   $Res call(
-      {String restaurantId,
-      ({double distance, double latitude, double longitude}) outletLocation,
+      {String id,
+      ({double distance, double latitude, double longitude}) location,
       String outletAddress,
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       bool isAcceptingOrder,
       String? rating,
       List<String> certifications,
-      List<MenuSection> menuSections,
+      List<MenuSection> menus,
       bool isOpened,
       int? ratingCount,
       double? distanceDelta});
@@ -299,26 +296,26 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantId = null,
-    Object? outletLocation = null,
+    Object? id = null,
+    Object? location = null,
     Object? outletAddress = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
     Object? rating = freezed,
     Object? certifications = null,
-    Object? menuSections = null,
+    Object? menus = null,
     Object? isOpened = null,
     Object? ratingCount = freezed,
     Object? distanceDelta = freezed,
   }) {
     return _then(_value.copyWith(
-      restaurantId: null == restaurantId
-          ? _value.restaurantId
-          : restaurantId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      outletLocation: null == outletLocation
-          ? _value.outletLocation
-          : outletLocation // ignore: cast_nullable_to_non_nullable
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as ({double distance, double latitude, double longitude}),
       outletAddress: null == outletAddress
           ? _value.outletAddress
@@ -340,9 +337,9 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
           ? _value.certifications
           : certifications // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      menuSections: null == menuSections
-          ? _value.menuSections
-          : menuSections // ignore: cast_nullable_to_non_nullable
+      menus: null == menus
+          ? _value.menus
+          : menus // ignore: cast_nullable_to_non_nullable
               as List<MenuSection>,
       isOpened: null == isOpened
           ? _value.isOpened
@@ -368,14 +365,14 @@ abstract class _$$OutletImplCopyWith<$Res> implements $OutletCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String restaurantId,
-      ({double distance, double latitude, double longitude}) outletLocation,
+      {String id,
+      ({double distance, double latitude, double longitude}) location,
       String outletAddress,
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       bool isAcceptingOrder,
       String? rating,
       List<String> certifications,
-      List<MenuSection> menuSections,
+      List<MenuSection> menus,
       bool isOpened,
       int? ratingCount,
       double? distanceDelta});
@@ -392,26 +389,26 @@ class __$$OutletImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantId = null,
-    Object? outletLocation = null,
+    Object? id = null,
+    Object? location = null,
     Object? outletAddress = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
     Object? rating = freezed,
     Object? certifications = null,
-    Object? menuSections = null,
+    Object? menus = null,
     Object? isOpened = null,
     Object? ratingCount = freezed,
     Object? distanceDelta = freezed,
   }) {
     return _then(_$OutletImpl(
-      restaurantId: null == restaurantId
-          ? _value.restaurantId
-          : restaurantId // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      outletLocation: null == outletLocation
-          ? _value.outletLocation
-          : outletLocation // ignore: cast_nullable_to_non_nullable
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as ({double distance, double latitude, double longitude}),
       outletAddress: null == outletAddress
           ? _value.outletAddress
@@ -433,9 +430,9 @@ class __$$OutletImplCopyWithImpl<$Res>
           ? _value._certifications
           : certifications // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      menuSections: null == menuSections
-          ? _value._menuSections
-          : menuSections // ignore: cast_nullable_to_non_nullable
+      menus: null == menus
+          ? _value._menus
+          : menus // ignore: cast_nullable_to_non_nullable
               as List<MenuSection>,
       isOpened: null == isOpened
           ? _value.isOpened
@@ -455,27 +452,26 @@ class __$$OutletImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OutletImpl extends _Outlet {
+class _$OutletImpl implements _Outlet {
   const _$OutletImpl(
-      {required this.restaurantId,
-      required this.outletLocation,
+      {required this.id,
+      required this.location,
       required this.outletAddress,
       required this.timing,
       this.isAcceptingOrder = false,
       this.rating,
       final List<String> certifications = const <String>[],
-      final List<MenuSection> menuSections = const <MenuSection>[],
+      final List<MenuSection> menus = const <MenuSection>[],
       this.isOpened = false,
       this.ratingCount,
       this.distanceDelta})
       : _certifications = certifications,
-        _menuSections = menuSections,
-        super._();
+        _menus = menus;
 
   @override
-  final String restaurantId;
+  final String id;
   @override
-  final ({double distance, double latitude, double longitude}) outletLocation;
+  final ({double distance, double latitude, double longitude}) location;
   @override
   final String outletAddress;
   @override
@@ -494,13 +490,13 @@ class _$OutletImpl extends _Outlet {
     return EqualUnmodifiableListView(_certifications);
   }
 
-  final List<MenuSection> _menuSections;
+  final List<MenuSection> _menus;
   @override
   @JsonKey()
-  List<MenuSection> get menuSections {
-    if (_menuSections is EqualUnmodifiableListView) return _menuSections;
+  List<MenuSection> get menus {
+    if (_menus is EqualUnmodifiableListView) return _menus;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_menuSections);
+    return EqualUnmodifiableListView(_menus);
   }
 
   @override
@@ -513,7 +509,7 @@ class _$OutletImpl extends _Outlet {
 
   @override
   String toString() {
-    return 'Outlet(restaurantId: $restaurantId, outletLocation: $outletLocation, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menuSections: $menuSections, isOpened: $isOpened, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'Outlet(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menus: $menus, isOpened: $isOpened, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -521,10 +517,9 @@ class _$OutletImpl extends _Outlet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OutletImpl &&
-            (identical(other.restaurantId, restaurantId) ||
-                other.restaurantId == restaurantId) &&
-            (identical(other.outletLocation, outletLocation) ||
-                other.outletLocation == outletLocation) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
             (identical(other.outletAddress, outletAddress) ||
                 other.outletAddress == outletAddress) &&
             (identical(other.timing, timing) || other.timing == timing) &&
@@ -533,8 +528,7 @@ class _$OutletImpl extends _Outlet {
             (identical(other.rating, rating) || other.rating == rating) &&
             const DeepCollectionEquality()
                 .equals(other._certifications, _certifications) &&
-            const DeepCollectionEquality()
-                .equals(other._menuSections, _menuSections) &&
+            const DeepCollectionEquality().equals(other._menus, _menus) &&
             (identical(other.isOpened, isOpened) ||
                 other.isOpened == isOpened) &&
             (identical(other.ratingCount, ratingCount) ||
@@ -546,14 +540,14 @@ class _$OutletImpl extends _Outlet {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      restaurantId,
-      outletLocation,
+      id,
+      location,
       outletAddress,
       timing,
       isAcceptingOrder,
       rating,
       const DeepCollectionEquality().hash(_certifications),
-      const DeepCollectionEquality().hash(_menuSections),
+      const DeepCollectionEquality().hash(_menus),
       isOpened,
       ratingCount,
       distanceDelta);
@@ -565,29 +559,28 @@ class _$OutletImpl extends _Outlet {
       __$$OutletImplCopyWithImpl<_$OutletImpl>(this, _$identity);
 }
 
-abstract class _Outlet extends Outlet {
+abstract class _Outlet implements Outlet {
   const factory _Outlet(
-      {required final String restaurantId,
+      {required final String id,
       required final ({
         double distance,
         double latitude,
         double longitude
-      }) outletLocation,
+      }) location,
       required final String outletAddress,
       required final ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       final bool isAcceptingOrder,
       final String? rating,
       final List<String> certifications,
-      final List<MenuSection> menuSections,
+      final List<MenuSection> menus,
       final bool isOpened,
       final int? ratingCount,
       final double? distanceDelta}) = _$OutletImpl;
-  const _Outlet._() : super._();
 
   @override
-  String get restaurantId;
+  String get id;
   @override
-  ({double distance, double latitude, double longitude}) get outletLocation;
+  ({double distance, double latitude, double longitude}) get location;
   @override
   String get outletAddress;
   @override
@@ -599,7 +592,7 @@ abstract class _Outlet extends Outlet {
   @override
   List<String> get certifications;
   @override
-  List<MenuSection> get menuSections;
+  List<MenuSection> get menus;
   @override
   bool get isOpened;
   @override
@@ -718,13 +711,15 @@ class __$$MenuSectionImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuSectionImpl extends _MenuSection {
+class _$MenuSectionImpl implements _MenuSection {
   const _$MenuSectionImpl(
       {required this.category,
       this.position = 1,
-      final List<({String itemId, int position})> items = const <MenuItem>[]})
-      : _items = items,
-        super._();
+      final List<({String itemId, int position})> items = const <({
+        String itemId,
+        int position
+      })>[]})
+      : _items = items;
 
   @override
   final String category;
@@ -768,12 +763,11 @@ class _$MenuSectionImpl extends _MenuSection {
       __$$MenuSectionImplCopyWithImpl<_$MenuSectionImpl>(this, _$identity);
 }
 
-abstract class _MenuSection extends MenuSection {
+abstract class _MenuSection implements MenuSection {
   const factory _MenuSection(
       {required final String category,
       final int position,
       final List<({String itemId, int position})> items}) = _$MenuSectionImpl;
-  const _MenuSection._() : super._();
 
   @override
   String get category;

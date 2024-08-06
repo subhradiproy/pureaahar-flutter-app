@@ -17,8 +17,17 @@ sealed class CuisineModel with _$CuisineModel implements EntityMapper<Cuisine> {
 
   const CuisineModel._();
 
-  factory CuisineModel.fromJson(Map<String, dynamic> json) =>
+  factory CuisineModel.fromJson(Map<String, Object?> json) =>
       _$CuisineModelFromJson(json);
+
+  static List<CuisineModel> fromJsonList(Map<String, Object?>? json) {
+    return switch (json) {
+      null => <CuisineModel>[],
+      {'data': final List<Map<String, Object?>>? list} =>
+        list?.map(CuisineModel.fromJson).toList() ?? <CuisineModel>[],
+      _ => throw const FormatException('Invalid JSON format'),
+    };
+  }
 
   @override
   Cuisine toEntity() {
