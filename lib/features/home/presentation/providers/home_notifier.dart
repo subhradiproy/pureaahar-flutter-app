@@ -11,7 +11,7 @@ import '../../domain/entities/restaurant_banner_entity.dart';
 part 'generated/home_notifier.g.dart';
 
 @riverpod
-FutureOr<List<RestaurantBannerEntity>> restaurantBanner(
+FutureOr<List<RestaurantBanner>> restaurantBanner(
   RestaurantBannerRef ref,
 ) async =>
     ref
@@ -22,7 +22,7 @@ FutureOr<List<RestaurantBannerEntity>> restaurantBanner(
         .run();
 
 @riverpod
-FutureOr<List<CuisineEntity>> cuisine(CuisineRef ref) async => ref
+FutureOr<List<Cuisine>> cuisine(CuisineRef ref) async => ref
     .read(homeRepositoryProvider)
     .getCuisines()
     .map((List<CuisineModel> r) => r.toEntityList())

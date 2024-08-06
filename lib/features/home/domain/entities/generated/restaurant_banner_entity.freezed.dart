@@ -15,30 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$RestaurantBannerEntity {
+mixin _$RestaurantBanner {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RestaurantBannerEntityCopyWith<RestaurantBannerEntity> get copyWith =>
+  $RestaurantBannerCopyWith<RestaurantBanner> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RestaurantBannerEntityCopyWith<$Res> {
-  factory $RestaurantBannerEntityCopyWith(RestaurantBannerEntity value,
-          $Res Function(RestaurantBannerEntity) then) =
-      _$RestaurantBannerEntityCopyWithImpl<$Res, RestaurantBannerEntity>;
+abstract class $RestaurantBannerCopyWith<$Res> {
+  factory $RestaurantBannerCopyWith(
+          RestaurantBanner value, $Res Function(RestaurantBanner) then) =
+      _$RestaurantBannerCopyWithImpl<$Res, RestaurantBanner>;
   @useResult
   $Res call({String id, String name, String imageUrl});
 }
 
 /// @nodoc
-class _$RestaurantBannerEntityCopyWithImpl<$Res,
-        $Val extends RestaurantBannerEntity>
-    implements $RestaurantBannerEntityCopyWith<$Res> {
-  _$RestaurantBannerEntityCopyWithImpl(this._value, this._then);
+class _$RestaurantBannerCopyWithImpl<$Res, $Val extends RestaurantBanner>
+    implements $RestaurantBannerCopyWith<$Res> {
+  _$RestaurantBannerCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -70,25 +69,22 @@ class _$RestaurantBannerEntityCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$RestaurantBannerEntityImplCopyWith<$Res>
-    implements $RestaurantBannerEntityCopyWith<$Res> {
-  factory _$$RestaurantBannerEntityImplCopyWith(
-          _$RestaurantBannerEntityImpl value,
-          $Res Function(_$RestaurantBannerEntityImpl) then) =
-      __$$RestaurantBannerEntityImplCopyWithImpl<$Res>;
+abstract class _$$RestaurantBannerImplCopyWith<$Res>
+    implements $RestaurantBannerCopyWith<$Res> {
+  factory _$$RestaurantBannerImplCopyWith(_$RestaurantBannerImpl value,
+          $Res Function(_$RestaurantBannerImpl) then) =
+      __$$RestaurantBannerImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, String imageUrl});
 }
 
 /// @nodoc
-class __$$RestaurantBannerEntityImplCopyWithImpl<$Res>
-    extends _$RestaurantBannerEntityCopyWithImpl<$Res,
-        _$RestaurantBannerEntityImpl>
-    implements _$$RestaurantBannerEntityImplCopyWith<$Res> {
-  __$$RestaurantBannerEntityImplCopyWithImpl(
-      _$RestaurantBannerEntityImpl _value,
-      $Res Function(_$RestaurantBannerEntityImpl) _then)
+class __$$RestaurantBannerImplCopyWithImpl<$Res>
+    extends _$RestaurantBannerCopyWithImpl<$Res, _$RestaurantBannerImpl>
+    implements _$$RestaurantBannerImplCopyWith<$Res> {
+  __$$RestaurantBannerImplCopyWithImpl(_$RestaurantBannerImpl _value,
+      $Res Function(_$RestaurantBannerImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +94,7 @@ class __$$RestaurantBannerEntityImplCopyWithImpl<$Res>
     Object? name = null,
     Object? imageUrl = null,
   }) {
-    return _then(_$RestaurantBannerEntityImpl(
+    return _then(_$RestaurantBannerImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -117,8 +113,8 @@ class __$$RestaurantBannerEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RestaurantBannerEntityImpl implements _RestaurantBannerEntity {
-  const _$RestaurantBannerEntityImpl(
+class _$RestaurantBannerImpl implements _RestaurantBanner {
+  const _$RestaurantBannerImpl(
       {required this.id, required this.name, required this.imageUrl});
 
   @override
@@ -130,14 +126,14 @@ class _$RestaurantBannerEntityImpl implements _RestaurantBannerEntity {
 
   @override
   String toString() {
-    return 'RestaurantBannerEntity(id: $id, name: $name, imageUrl: $imageUrl)';
+    return 'RestaurantBanner(id: $id, name: $name, imageUrl: $imageUrl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RestaurantBannerEntityImpl &&
+            other is _$RestaurantBannerImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -150,16 +146,16 @@ class _$RestaurantBannerEntityImpl implements _RestaurantBannerEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantBannerEntityImplCopyWith<_$RestaurantBannerEntityImpl>
-      get copyWith => __$$RestaurantBannerEntityImplCopyWithImpl<
-          _$RestaurantBannerEntityImpl>(this, _$identity);
+  _$$RestaurantBannerImplCopyWith<_$RestaurantBannerImpl> get copyWith =>
+      __$$RestaurantBannerImplCopyWithImpl<_$RestaurantBannerImpl>(
+          this, _$identity);
 }
 
-abstract class _RestaurantBannerEntity implements RestaurantBannerEntity {
-  const factory _RestaurantBannerEntity(
+abstract class _RestaurantBanner implements RestaurantBanner {
+  const factory _RestaurantBanner(
       {required final String id,
       required final String name,
-      required final String imageUrl}) = _$RestaurantBannerEntityImpl;
+      required final String imageUrl}) = _$RestaurantBannerImpl;
 
   @override
   String get id;
@@ -169,6 +165,6 @@ abstract class _RestaurantBannerEntity implements RestaurantBannerEntity {
   String get imageUrl;
   @override
   @JsonKey(ignore: true)
-  _$$RestaurantBannerEntityImplCopyWith<_$RestaurantBannerEntityImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RestaurantBannerImplCopyWith<_$RestaurantBannerImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

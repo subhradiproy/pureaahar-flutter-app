@@ -96,24 +96,20 @@ class AppText extends StatelessWidget {
 extension AppTextStyle on TextStyle {
   static TextStyle get _base => GoogleFonts.poppins();
 
-  static TextStyle get headline {
-    return _base.copyWith(
-      fontSize: 32,
-      letterSpacing: -0.4,
-      fontWeight: FontWeight.w600,
-    );
-  }
+  static TextStyle get headline => _base.copyWith(
+        fontSize: 32,
+        letterSpacing: -0.4,
+        fontWeight: FontWeight.w600,
+      );
 
   static TextStyle get title1 =>
       _base.copyWith(fontSize: 24, fontWeight: FontWeight.w400);
 
-  static TextStyle get title2 {
-    return _base.copyWith(
-      fontSize: 18,
-      letterSpacing: -0.4,
-      fontWeight: FontWeight.w600,
-    );
-  }
+  static TextStyle get title2 => _base.copyWith(
+        fontSize: 18,
+        letterSpacing: -0.4,
+        fontWeight: FontWeight.w600,
+      );
 
   static TextStyle get title3 =>
       _base.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
@@ -121,27 +117,17 @@ extension AppTextStyle on TextStyle {
   static TextStyle get body1 =>
       _base.copyWith(fontSize: 18, fontWeight: FontWeight.w400);
 
-  static TextStyle get body2 {
-    return _base.copyWith(
-      fontSize: 16,
-      letterSpacing: -0.4,
-      fontWeight: FontWeight.w500,
-    );
-  }
+  static TextStyle get body2 => _base.copyWith(
+        fontSize: 16,
+        letterSpacing: -0.4,
+        fontWeight: FontWeight.w500,
+      );
 
   static TextStyle get paragraph1 =>
       _base.copyWith(fontSize: 14, fontWeight: FontWeight.w600);
 
   static TextStyle get paragraph2 =>
       _base.copyWith(fontSize: 12, fontWeight: FontWeight.w400);
-
-  static TextStyle get button {
-    return _base.copyWith(
-      fontSize: 16,
-      letterSpacing: -0.4,
-      fontWeight: FontWeight.w500,
-    );
-  }
 
   static TextStyle get label1 =>
       _base.copyWith(fontSize: 18, fontWeight: FontWeight.w400);

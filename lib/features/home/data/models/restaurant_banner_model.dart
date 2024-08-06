@@ -10,8 +10,7 @@ part 'generated/restaurant_banner_model.g.dart';
 @JsonSerializable()
 sealed class RestaurantBannerModel
     with _$RestaurantBannerModel
-    implements EntityMapper<RestaurantBannerEntity> {
-  @Implements<EntityMapper<RestaurantBannerEntity>>()
+    implements EntityMapper<RestaurantBanner> {
   const factory RestaurantBannerModel({
     @JsonKey(name: '_id') required String id,
     required String name,
@@ -24,8 +23,8 @@ sealed class RestaurantBannerModel
       _$RestaurantBannerModelFromJson(json);
 
   @override
-  RestaurantBannerEntity toEntity() {
-    return RestaurantBannerEntity(
+  RestaurantBanner toEntity() {
+    return RestaurantBanner(
       id: id,
       name: name,
       imageUrl: url,

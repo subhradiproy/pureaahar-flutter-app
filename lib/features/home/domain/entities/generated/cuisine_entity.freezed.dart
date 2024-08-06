@@ -15,29 +15,27 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CuisineEntity {
+mixin _$Cuisine {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CuisineEntityCopyWith<CuisineEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CuisineCopyWith<Cuisine> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CuisineEntityCopyWith<$Res> {
-  factory $CuisineEntityCopyWith(
-          CuisineEntity value, $Res Function(CuisineEntity) then) =
-      _$CuisineEntityCopyWithImpl<$Res, CuisineEntity>;
+abstract class $CuisineCopyWith<$Res> {
+  factory $CuisineCopyWith(Cuisine value, $Res Function(Cuisine) then) =
+      _$CuisineCopyWithImpl<$Res, Cuisine>;
   @useResult
   $Res call({String id, String name, String imageUrl});
 }
 
 /// @nodoc
-class _$CuisineEntityCopyWithImpl<$Res, $Val extends CuisineEntity>
-    implements $CuisineEntityCopyWith<$Res> {
-  _$CuisineEntityCopyWithImpl(this._value, this._then);
+class _$CuisineCopyWithImpl<$Res, $Val extends Cuisine>
+    implements $CuisineCopyWith<$Res> {
+  _$CuisineCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,22 +67,21 @@ class _$CuisineEntityCopyWithImpl<$Res, $Val extends CuisineEntity>
 }
 
 /// @nodoc
-abstract class _$$CuisineEntityImplCopyWith<$Res>
-    implements $CuisineEntityCopyWith<$Res> {
-  factory _$$CuisineEntityImplCopyWith(
-          _$CuisineEntityImpl value, $Res Function(_$CuisineEntityImpl) then) =
-      __$$CuisineEntityImplCopyWithImpl<$Res>;
+abstract class _$$CuisineImplCopyWith<$Res> implements $CuisineCopyWith<$Res> {
+  factory _$$CuisineImplCopyWith(
+          _$CuisineImpl value, $Res Function(_$CuisineImpl) then) =
+      __$$CuisineImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, String imageUrl});
 }
 
 /// @nodoc
-class __$$CuisineEntityImplCopyWithImpl<$Res>
-    extends _$CuisineEntityCopyWithImpl<$Res, _$CuisineEntityImpl>
-    implements _$$CuisineEntityImplCopyWith<$Res> {
-  __$$CuisineEntityImplCopyWithImpl(
-      _$CuisineEntityImpl _value, $Res Function(_$CuisineEntityImpl) _then)
+class __$$CuisineImplCopyWithImpl<$Res>
+    extends _$CuisineCopyWithImpl<$Res, _$CuisineImpl>
+    implements _$$CuisineImplCopyWith<$Res> {
+  __$$CuisineImplCopyWithImpl(
+      _$CuisineImpl _value, $Res Function(_$CuisineImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +91,7 @@ class __$$CuisineEntityImplCopyWithImpl<$Res>
     Object? name = null,
     Object? imageUrl = null,
   }) {
-    return _then(_$CuisineEntityImpl(
+    return _then(_$CuisineImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -113,8 +110,8 @@ class __$$CuisineEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CuisineEntityImpl implements _CuisineEntity {
-  const _$CuisineEntityImpl(
+class _$CuisineImpl implements _Cuisine {
+  const _$CuisineImpl(
       {required this.id, required this.name, required this.imageUrl});
 
   @override
@@ -126,14 +123,14 @@ class _$CuisineEntityImpl implements _CuisineEntity {
 
   @override
   String toString() {
-    return 'CuisineEntity(id: $id, name: $name, imageUrl: $imageUrl)';
+    return 'Cuisine(id: $id, name: $name, imageUrl: $imageUrl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CuisineEntityImpl &&
+            other is _$CuisineImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -146,15 +143,15 @@ class _$CuisineEntityImpl implements _CuisineEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CuisineEntityImplCopyWith<_$CuisineEntityImpl> get copyWith =>
-      __$$CuisineEntityImplCopyWithImpl<_$CuisineEntityImpl>(this, _$identity);
+  _$$CuisineImplCopyWith<_$CuisineImpl> get copyWith =>
+      __$$CuisineImplCopyWithImpl<_$CuisineImpl>(this, _$identity);
 }
 
-abstract class _CuisineEntity implements CuisineEntity {
-  const factory _CuisineEntity(
+abstract class _Cuisine implements Cuisine {
+  const factory _Cuisine(
       {required final String id,
       required final String name,
-      required final String imageUrl}) = _$CuisineEntityImpl;
+      required final String imageUrl}) = _$CuisineImpl;
 
   @override
   String get id;
@@ -164,6 +161,6 @@ abstract class _CuisineEntity implements CuisineEntity {
   String get imageUrl;
   @override
   @JsonKey(ignore: true)
-  _$$CuisineEntityImplCopyWith<_$CuisineEntityImpl> get copyWith =>
+  _$$CuisineImplCopyWith<_$CuisineImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

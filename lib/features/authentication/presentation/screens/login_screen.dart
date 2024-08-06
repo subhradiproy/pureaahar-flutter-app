@@ -129,7 +129,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 14, bottom: 4),
-            child: AppText('Your Phone Number', style: AppTextStyle.button),
+            child: AppText('Your Phone Number', style: AppTextStyle.body2),
           ),
           PhoneTextField(
             controller: _controller,
@@ -147,7 +147,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: AppText('OR', style: AppTextStyle.button),
+                  child: AppText('OR', style: AppTextStyle.body2),
                 ),
                 const Expanded(
                   child: Divider(color: AppColors.gray1, thickness: 1),

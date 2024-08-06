@@ -171,8 +171,7 @@ class _$CuisineModelImpl extends _CuisineModel {
   }
 }
 
-abstract class _CuisineModel extends CuisineModel
-    implements EntityMapper<CuisineEntity> {
+abstract class _CuisineModel extends CuisineModel {
   const factory _CuisineModel(
           {@JsonKey(name: '_id') required final String id,
           required final String name,

@@ -175,8 +175,7 @@ class _$RestaurantBannerModelImpl extends _RestaurantBannerModel {
   }
 }
 
-abstract class _RestaurantBannerModel extends RestaurantBannerModel
-    implements EntityMapper<RestaurantBannerEntity> {
+abstract class _RestaurantBannerModel extends RestaurantBannerModel {
   const factory _RestaurantBannerModel(
           {@JsonKey(name: '_id') required final String id,
           required final String name,

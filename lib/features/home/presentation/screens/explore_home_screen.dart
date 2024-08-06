@@ -38,18 +38,13 @@ class ExploreHomeScreen extends HookConsumerWidget {
                 ),
                 SizedBox.fromSize(
                   size: const Size.fromHeight(120),
-                  child: AsyncValueWidget<List<CuisineEntity>>(
+                  child: AsyncValueWidget<List<Cuisine>>(
                     value: ref.watch(cuisineProvider),
                     loading: () => const Center(
                       child: CircularProgressIndicator(),
                     ),
-                    error: (Object p0, StackTrace p1) => Center(
-                      child: AppText(
-                        'Error: $p1',
-                        style: AppTextStyle.label2,
-                      ),
-                    ),
-                    data: (List<CuisineEntity> p0) => ListView.builder(
+                    error: (Object p0, StackTrace p1) => const SizedBox(),
+                    data: (List<Cuisine> p0) => ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: p0.length,
                       itemExtent: 100,
@@ -65,7 +60,7 @@ class ExploreHomeScreen extends HookConsumerWidget {
                               p0[index].name,
                               maxLines: 2,
                               textAlign: TextAlign.center,
-                              style: AppTextStyle.paragraph1,
+                              style: AppTextStyle.body2,
                             ),
                           ],
                         ),
