@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/constants/app_colors.dart';
+import '../../../../router/routes/routes.dart';
 import '../../../../shared/widgets/app_text.dart';
 import '../../domain/entities/brand_entity.dart';
 
@@ -32,20 +34,45 @@ class BrandSection extends StatelessWidget {
               itemCount: brands.length,
               itemExtent: 163,
               physics: const PageScrollPhysics(),
-              itemBuilder: (_, int index) => _brandItem(index),
+              itemBuilder: (_, int index) => _BrandItem(
+                brand: brands[index],
+                isLast: index == brands.length - 1,
+                key: ValueKey<String>(brands[index].restaurantId),
+                onTap: () => context.pushNamed(
+                  AppRoute.productListing.name,
+                  pathParameters: <String, String>{
+                    'id': brands[index].restaurantId,
+                  },
+                ),
+              ),
             ),
           ),
         ],
       ),
     );
   }
+}
 
-  /// List item for an individual brand
-  GestureDetector _brandItem(int index) {
+/// Individual brand item ( Private class )
+class _BrandItem extends StatelessWidget {
+  const _BrandItem({
+    required this.brand,
+    this.isLast = false,
+    super.key,
+    this.onTap,
+  });
+
+  final Brand brand;
+  final VoidCallback? onTap;
+  final bool isLast;
+
+  @override
+  Widget build(BuildContext context) {
+    final bool enabled = brand.nearestOutlet?.isAcceptingOrder ?? true;
     return GestureDetector(
-      onTap: () {},
+      onTap: enabled ? onTap : null,
       child: Container(
-        margin: EdgeInsets.only(right: index == brands.length - 1 ? 0 : 12),
+        margin: EdgeInsets.only(right: isLast ? 0 : 12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
@@ -59,7 +86,7 @@ class BrandSection extends StatelessWidget {
         ),
         clipBehavior: Clip.hardEdge,
         child: LayoutBuilder(
-          builder: (_, BoxConstraints layout) => Stack(
+          builder: (_, BoxConstraints constraints) => Stack(
             children: <Widget>[
               Positioned(
                 top: 0,
@@ -67,37 +94,13 @@ class BrandSection extends StatelessWidget {
                 right: 0,
                 child: AspectRatio(
                   aspectRatio: 13 / 10,
-                  child: Image.network(
-                    brands[index].background,
-                    fit: BoxFit.cover,
+                  child: Hero(
+                    tag: brand.restaurantId,
+                    child: Image.network(brand.background, fit: BoxFit.cover),
                   ),
                 ),
               ),
-              if (brands[index].logo != null)
-                Align(
-                  alignment: const Alignment(0, -0.7),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-                      child: Container(
-                        alignment: Alignment.center,
-                        constraints: BoxConstraints.tightFor(
-                          height: layout.maxHeight * 0.38,
-                          width: layout.maxWidth * 0.6,
-                        ),
-                        color: Colors.white.withOpacity(0.43),
-                        child: AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Image.network(
-                            brands[index].logo!,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              if (brand.logo != null) _buildLogo(constraints),
               Positioned(
                 bottom: 0,
                 left: 0,
@@ -105,7 +108,7 @@ class BrandSection extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(6),
                   constraints: BoxConstraints(
-                    maxHeight: layout.maxHeight * 0.48,
+                    maxHeight: constraints.maxHeight * 0.48,
                   ),
                   decoration: const BoxDecoration(
                     color: Colors.white,
@@ -113,51 +116,83 @@ class BrandSection extends StatelessWidget {
                       bottom: Radius.circular(8),
                     ),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: AppText(
-                          brands[index].name,
-                          maxLines: 1,
-                          style: AppTextStyle.paragraph1,
-                        ),
-                      ),
-                      const SizedBox(height: 3),
-                      if (brands[index].nearestOutlet?.isAcceptingOrder ==
-                          false) ...<Widget>[
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: AppText(
-                            '[Currently not accepting orders]',
-                            maxLines: 1,
-                            style: AppTextStyle.link.copyWith(
-                              color: AppColors.error,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 3),
-                      ],
-                      if (brands[index].description?.isNotEmpty ?? false)
-                        AppText(
-                          brands[index].description!,
-                          maxLines: 3,
-                          style: AppTextStyle.paragraph1.copyWith(
-                            color: AppColors.gray2,
-                            fontSize: 10,
-                          ),
-                        ),
-                    ],
-                  ),
+                  child: _buildInfo(enabled),
                 ),
               ),
-              if (brands[index].nearestOutlet?.isAcceptingOrder == false)
+              if (!enabled)
                 const Positioned.fill(
                   child: ColoredBox(color: Colors.white54),
                 ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the brand information section
+  Column _buildInfo(bool enabled) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: AppText(
+            brand.name,
+            maxLines: 1,
+            style: AppTextStyle.paragraph1,
+          ),
+        ),
+        const SizedBox(height: 3),
+        if (!enabled) ...<Widget>[
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: AppText(
+              '[Currently not accepting orders]',
+              maxLines: 1,
+              style: AppTextStyle.link.copyWith(
+                color: AppColors.error,
+              ),
+            ),
+          ),
+          const SizedBox(height: 3),
+        ],
+        if (brand.description?.isNotEmpty ?? false)
+          AppText(
+            brand.description!,
+            maxLines: 3,
+            style: AppTextStyle.paragraph1.copyWith(
+              color: AppColors.gray2,
+              fontSize: 10,
+            ),
+          ),
+      ],
+    );
+  }
+
+  /// Builds the logo of the brand if available
+  Align _buildLogo(BoxConstraints layout) {
+    return Align(
+      alignment: const Alignment(0, -0.7),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(6),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+          child: Container(
+            alignment: Alignment.center,
+            constraints: BoxConstraints.tightFor(
+              height: layout.maxHeight * 0.38,
+              width: layout.maxWidth * 0.6,
+            ),
+            color: Colors.white.withOpacity(0.43),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Image.network(
+                brand.logo!,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
       ),
