@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../app/constants/app_colors.dart';
-import '../../../../router/routes/routes.dart';
-import '../../../../shared/widgets/app_text.dart';
-import '../../domain/entities/restaurant_entity.dart';
+import '../../app/constants/app_colors.dart';
+import '../../features/home/domain/entities/brand_entity.dart';
+import 'app_text.dart';
 
-@immutable
-class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({required this.item, super.key});
+class BrandCardWidget extends StatelessWidget {
+  const BrandCardWidget({required this.item, this.onTap, super.key});
 
-  final Restaurant item;
+  final Brand item;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final bool isOutOfService = item.nearestOutlet?.isOpened == false ||
-        item.nearestOutlet?.isAcceptingOrder == false;
     return GestureDetector(
-      onTap: () => context.pushNamed(
-        AppRoute.productListing.name,
-        pathParameters: <String, String>{'id': item.restaurantId},
-      ),
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -74,10 +67,8 @@ class RestaurantCard extends StatelessWidget {
                         maxLines: 1,
                         style: AppTextStyle.paragraph1,
                       ),
-                      if (item.nearestOutlet?.isOpened == true)
-                        AppText('[Outlet is closed]', style: AppTextStyle.link),
                       if (item.nearestOutlet?.isAcceptingOrder ==
-                          true) ...<Widget>[
+                          false) ...<Widget>[
                         const SizedBox(height: 2),
                         FittedBox(
                           fit: BoxFit.scaleDown,
@@ -90,21 +81,20 @@ class RestaurantCard extends StatelessWidget {
                           ),
                         ),
                       ],
-                      AppText(
-                        item.description?.isEmpty ?? true
-                            ? 'Pure Veg meals bfjbffbsbfbshbb'
-                            : item.description!,
-                        maxLines: 2,
-                        style: AppTextStyle.paragraph1.copyWith(
-                          color: AppColors.gray2,
-                          fontSize: 10,
+                      if (item.description?.isNotEmpty ?? false)
+                        AppText(
+                          item.description!,
+                          maxLines: 2,
+                          style: AppTextStyle.paragraph1.copyWith(
+                            color: AppColors.gray2,
+                            fontSize: 10,
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
               ),
-              if (isOutOfService)
+              if (item.nearestOutlet?.isAcceptingOrder == false)
                 const Positioned.fill(child: ColoredBox(color: Colors.white54)),
             ],
           ),

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../data/models/choice_and_addons_model.dart';
-import 'restaurant_entity.dart';
+import 'brand_entity.dart';
 
 part 'generated/menu_item_entity.freezed.dart';
 

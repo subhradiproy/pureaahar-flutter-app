@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/models/entity_mapper.dart';
 import '../../domain/entities/menu_item_entity.dart';
 import 'choice_and_addons_model.dart';
-import 'restaurant_model.dart';
+import 'brand_model.dart';
 
 part 'generated/menu_item_model.freezed.dart';
 part 'generated/menu_item_model.g.dart';

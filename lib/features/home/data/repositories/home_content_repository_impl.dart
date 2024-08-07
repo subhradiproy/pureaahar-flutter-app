@@ -7,7 +7,7 @@ import '../../../../core/services/api_service.dart';
 import '../../domain/repositories/home_content_repository.dart';
 import '../models/cuisine_model.dart';
 import '../models/restaurant_banner_model.dart';
-import '../models/restaurant_model.dart';
+import '../models/brand_model.dart';
 
 part 'generated/home_content_repository_impl.g.dart';
 
@@ -50,18 +50,18 @@ class HomeContentRepositoryImpl implements HomeContentRepository {
   }
 
   @override
-  TaskEitherFailure<List<RestaurantModel>> getRestaurants({
+  TaskEitherFailure<List<BrandModel>> getRestaurants({
     required String latitude,
     required String longitude,
   }) =>
-      TaskEitherFailure<List<RestaurantModel>>.tryCatch(
+      TaskEitherFailure<List<BrandModel>>.tryCatch(
         () async => _client.post<JSON>(
           '/v1/api/restaurants/landing-page-restaurants',
           data: <String, String>{
             'latitude': '22.5764753',
             'longitude': '88.4306861',
           },
-        ).then((Response<JSON> r) => RestaurantModel.fromJsonList(r.data)),
+        ).then((Response<JSON> r) => BrandModel.fromJsonList(r.data)),
         Failure.parseError,
       );
 

@@ -1,7 +1,7 @@
 import '../../../../app/typedefs/typedefs.dart';
+import '../../data/models/brand_model.dart';
 import '../../data/models/cuisine_model.dart';
 import '../../data/models/restaurant_banner_model.dart';
-import '../../data/models/restaurant_model.dart';
 
 abstract interface class HomeContentRepository {
   /// Get the list of advertisement banners
@@ -11,7 +11,7 @@ abstract interface class HomeContentRepository {
   TaskEitherFailure<List<CuisineModel>> getCuisines();
 
   /// Get the list of restaurants
-  TaskEitherFailure<List<RestaurantModel>> getRestaurants({
+  TaskEitherFailure<List<BrandModel>> getRestaurants({
     required String latitude,
     required String longitude,
   });

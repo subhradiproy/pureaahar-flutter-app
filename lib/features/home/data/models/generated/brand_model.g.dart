@@ -1,15 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../restaurant_model.dart';
+part of '../brand_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RestaurantModel _$RestaurantModelFromJson(Map<String, dynamic> json) =>
-    RestaurantModel(
+BrandModel _$BrandModelFromJson(Map<String, dynamic> json) => BrandModel(
       restaurantId: json['restaurantId'] as String,
       name: json['restaurantName'] as String,
+      background: json['bg'] as String,
+      logo: json['logo'] as String?,
       description: json['description'] as String?,
       nearestOutlet: json['nearestOutlet'] == null
           ? null
@@ -19,10 +20,11 @@ RestaurantModel _$RestaurantModelFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) {
+Map<String, dynamic> _$BrandModelToJson(BrandModel instance) {
   final val = <String, dynamic>{
     'restaurantId': instance.restaurantId,
     'restaurantName': instance.name,
+    'bg': instance.background,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -31,6 +33,7 @@ Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) {
     }
   }
 
+  writeNotNull('logo', instance.logo);
   writeNotNull('description', instance.description);
   writeNotNull('nearestOutlet', instance.nearestOutlet?.toJson());
   val['serviceableOutlets'] =

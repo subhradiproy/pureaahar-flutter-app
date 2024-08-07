@@ -3,17 +3,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'menu_item_entity.dart';
 
-part 'generated/restaurant_entity.freezed.dart';
+part 'generated/brand_entity.freezed.dart';
 
 @freezed
-sealed class Restaurant with _$Restaurant {
-  const factory Restaurant({
+sealed class Brand with _$Brand {
+  const factory Brand({
     required String restaurantId,
     required String name,
-    String? description,
-    Outlet? nearestOutlet,
+    required String background,
+    required String? description,
+    required Outlet? nearestOutlet,
+    required String? logo,
     @Default(<Outlet>[]) List<Outlet> serviceableOutlets,
-  }) = _Restaurant;
+  }) = _Brand;
 }
 
 @freezed

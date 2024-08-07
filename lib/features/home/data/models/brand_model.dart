@@ -3,48 +3,48 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/models/entity_mapper.dart';
 import '../../../../core/models/json_parsers/time_of_day_convertor.dart';
-import '../../domain/entities/restaurant_entity.dart';
+import '../../domain/entities/brand_entity.dart';
 import 'menu_item_model.dart';
 
-part 'generated/restaurant_model.freezed.dart';
-part 'generated/restaurant_model.g.dart';
+part 'generated/brand_model.freezed.dart';
+part 'generated/brand_model.g.dart';
 
 @freezed
 @JsonSerializable()
-class RestaurantModel
-    with _$RestaurantModel
-    implements EntityMapper<Restaurant> {
-  const factory RestaurantModel({
+class BrandModel with _$BrandModel implements EntityMapper<Brand> {
+  const factory BrandModel({
     required String restaurantId,
     @JsonKey(name: 'restaurantName') required String name,
+    @JsonKey(name: 'bg') required String background,
+    String? logo,
     String? description,
     OutletModel? nearestOutlet,
     @Default(<OutletModel>[]) List<OutletModel> serviceableOutlets,
-  }) = _RestaurantModel;
+  }) = _BrandModel;
 
-  const RestaurantModel._();
+  const BrandModel._();
 
-  factory RestaurantModel.fromJson(Map<String, Object?> json) =>
-      _$RestaurantModelFromJson(json);
+  factory BrandModel.fromJson(Map<String, Object?> json) =>
+      _$BrandModelFromJson(json);
 
-  Map<String, Object?> toJson() => _$RestaurantModelToJson(this);
+  Map<String, Object?> toJson() => _$BrandModelToJson(this);
 
-  static List<RestaurantModel> fromJsonList(Map<String, Object?>? json) {
+  static List<BrandModel> fromJsonList(Map<String, Object?>? json) {
     return switch (json) {
-      null => <RestaurantModel>[],
-      {'restaurantOutlets': final List<dynamic> outlets} => outlets
-          .cast<Map<String, Object?>>()
-          .map(RestaurantModel.fromJson)
-          .toList(),
+      null => <BrandModel>[],
+      {'restaurantOutlets': final List<dynamic> outlets} =>
+        outlets.cast<Map<String, Object?>>().map(BrandModel.fromJson).toList(),
       _ => throw const FormatException('Invalid JSON format'),
     };
   }
 
   @override
-  Restaurant toEntity() {
-    return Restaurant(
+  Brand toEntity() {
+    return Brand(
       restaurantId: restaurantId,
       name: name,
+      background: background,
+      logo: logo,
       description: description,
       nearestOutlet: nearestOutlet?.toEntity(),
       serviceableOutlets: serviceableOutlets.toEntityList(),
@@ -52,16 +52,16 @@ class RestaurantModel
   }
 }
 
-/// Custom JSON parser for the menu sections
-//TODO: Implement the custom JSON parser for the menu sections
+@override
 List<MenuSectionModel> _menuFromJson(List<Object?> json) {
-  final List<Map<String, Object?>> array = json.cast<Map<String, Object?>>();
-  return switch (array) {
-    [{'category': String}, ...] => <MenuSectionModel>[],
-    // [{'category': Map<String, Object?> }, ...] =>
-    //   array.map(MenuSectionModel.fromJson).toList(),
-    _ => throw const FormatException('Invalid JSON format'),
-  };
+  return json.cast<Map<String, Object?>>().fold<List<MenuSectionModel>>(
+    <MenuSectionModel>[],
+    (List<MenuSectionModel> prev, Map<String, Object?> e) => switch (e) {
+      {'category': final Map<String, Object?> menu} => prev
+        ..add(MenuSectionModel.fromJson(menu)),
+      _ => prev,
+    },
+  );
 }
 
 @freezed
@@ -105,9 +105,9 @@ class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
       rating: rating,
       certifications: certifications,
       menus: menuSections.toEntityList(),
-      isOpened: isOpened,
       ratingCount: ratingCount,
       distanceDelta: distanceDelta,
+      isOpened: isOpened,
     );
   }
 }

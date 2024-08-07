@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../restaurant_model.dart';
+part of '../brand_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,29 +15,34 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$RestaurantModel {
+mixin _$BrandModel {
   String get restaurantId => throw _privateConstructorUsedError;
   @JsonKey(name: 'restaurantName')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bg')
+  String get background => throw _privateConstructorUsedError;
+  String? get logo => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   OutletModel? get nearestOutlet => throw _privateConstructorUsedError;
   List<OutletModel> get serviceableOutlets =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RestaurantModelCopyWith<RestaurantModel> get copyWith =>
+  $BrandModelCopyWith<BrandModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RestaurantModelCopyWith<$Res> {
-  factory $RestaurantModelCopyWith(
-          RestaurantModel value, $Res Function(RestaurantModel) then) =
-      _$RestaurantModelCopyWithImpl<$Res, RestaurantModel>;
+abstract class $BrandModelCopyWith<$Res> {
+  factory $BrandModelCopyWith(
+          BrandModel value, $Res Function(BrandModel) then) =
+      _$BrandModelCopyWithImpl<$Res, BrandModel>;
   @useResult
   $Res call(
       {String restaurantId,
       @JsonKey(name: 'restaurantName') String name,
+      @JsonKey(name: 'bg') String background,
+      String? logo,
       String? description,
       OutletModel? nearestOutlet,
       List<OutletModel> serviceableOutlets});
@@ -46,9 +51,9 @@ abstract class $RestaurantModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
-    implements $RestaurantModelCopyWith<$Res> {
-  _$RestaurantModelCopyWithImpl(this._value, this._then);
+class _$BrandModelCopyWithImpl<$Res, $Val extends BrandModel>
+    implements $BrandModelCopyWith<$Res> {
+  _$BrandModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -60,6 +65,8 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
   $Res call({
     Object? restaurantId = null,
     Object? name = null,
+    Object? background = null,
+    Object? logo = freezed,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
     Object? serviceableOutlets = null,
@@ -73,6 +80,14 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      background: null == background
+          ? _value.background
+          : background // ignore: cast_nullable_to_non_nullable
+              as String,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -102,16 +117,18 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
 }
 
 /// @nodoc
-abstract class _$$RestaurantModelImplCopyWith<$Res>
-    implements $RestaurantModelCopyWith<$Res> {
-  factory _$$RestaurantModelImplCopyWith(_$RestaurantModelImpl value,
-          $Res Function(_$RestaurantModelImpl) then) =
-      __$$RestaurantModelImplCopyWithImpl<$Res>;
+abstract class _$$BrandModelImplCopyWith<$Res>
+    implements $BrandModelCopyWith<$Res> {
+  factory _$$BrandModelImplCopyWith(
+          _$BrandModelImpl value, $Res Function(_$BrandModelImpl) then) =
+      __$$BrandModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String restaurantId,
       @JsonKey(name: 'restaurantName') String name,
+      @JsonKey(name: 'bg') String background,
+      String? logo,
       String? description,
       OutletModel? nearestOutlet,
       List<OutletModel> serviceableOutlets});
@@ -121,11 +138,11 @@ abstract class _$$RestaurantModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RestaurantModelImplCopyWithImpl<$Res>
-    extends _$RestaurantModelCopyWithImpl<$Res, _$RestaurantModelImpl>
-    implements _$$RestaurantModelImplCopyWith<$Res> {
-  __$$RestaurantModelImplCopyWithImpl(
-      _$RestaurantModelImpl _value, $Res Function(_$RestaurantModelImpl) _then)
+class __$$BrandModelImplCopyWithImpl<$Res>
+    extends _$BrandModelCopyWithImpl<$Res, _$BrandModelImpl>
+    implements _$$BrandModelImplCopyWith<$Res> {
+  __$$BrandModelImplCopyWithImpl(
+      _$BrandModelImpl _value, $Res Function(_$BrandModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -133,11 +150,13 @@ class __$$RestaurantModelImplCopyWithImpl<$Res>
   $Res call({
     Object? restaurantId = null,
     Object? name = null,
+    Object? background = null,
+    Object? logo = freezed,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
     Object? serviceableOutlets = null,
   }) {
-    return _then(_$RestaurantModelImpl(
+    return _then(_$BrandModelImpl(
       restaurantId: null == restaurantId
           ? _value.restaurantId
           : restaurantId // ignore: cast_nullable_to_non_nullable
@@ -146,6 +165,14 @@ class __$$RestaurantModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      background: null == background
+          ? _value.background
+          : background // ignore: cast_nullable_to_non_nullable
+              as String,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -164,10 +191,12 @@ class __$$RestaurantModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RestaurantModelImpl extends _RestaurantModel {
-  const _$RestaurantModelImpl(
+class _$BrandModelImpl extends _BrandModel {
+  const _$BrandModelImpl(
       {required this.restaurantId,
       @JsonKey(name: 'restaurantName') required this.name,
+      @JsonKey(name: 'bg') required this.background,
+      this.logo,
       this.description,
       this.nearestOutlet,
       final List<OutletModel> serviceableOutlets = const <OutletModel>[]})
@@ -179,6 +208,11 @@ class _$RestaurantModelImpl extends _RestaurantModel {
   @override
   @JsonKey(name: 'restaurantName')
   final String name;
+  @override
+  @JsonKey(name: 'bg')
+  final String background;
+  @override
+  final String? logo;
   @override
   final String? description;
   @override
@@ -195,17 +229,20 @@ class _$RestaurantModelImpl extends _RestaurantModel {
 
   @override
   String toString() {
-    return 'RestaurantModel(restaurantId: $restaurantId, name: $name, description: $description, nearestOutlet: $nearestOutlet, serviceableOutlets: $serviceableOutlets)';
+    return 'BrandModel(restaurantId: $restaurantId, name: $name, background: $background, logo: $logo, description: $description, nearestOutlet: $nearestOutlet, serviceableOutlets: $serviceableOutlets)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RestaurantModelImpl &&
+            other is _$BrandModelImpl &&
             (identical(other.restaurantId, restaurantId) ||
                 other.restaurantId == restaurantId) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.background, background) ||
+                other.background == background) &&
+            (identical(other.logo, logo) || other.logo == logo) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.nearestOutlet, nearestOutlet) ||
@@ -215,31 +252,44 @@ class _$RestaurantModelImpl extends _RestaurantModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, restaurantId, name, description,
-      nearestOutlet, const DeepCollectionEquality().hash(_serviceableOutlets));
+  int get hashCode => Object.hash(
+      runtimeType,
+      restaurantId,
+      name,
+      background,
+      logo,
+      description,
+      nearestOutlet,
+      const DeepCollectionEquality().hash(_serviceableOutlets));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RestaurantModelImplCopyWith<_$RestaurantModelImpl> get copyWith =>
-      __$$RestaurantModelImplCopyWithImpl<_$RestaurantModelImpl>(
-          this, _$identity);
+  _$$BrandModelImplCopyWith<_$BrandModelImpl> get copyWith =>
+      __$$BrandModelImplCopyWithImpl<_$BrandModelImpl>(this, _$identity);
 }
 
-abstract class _RestaurantModel extends RestaurantModel {
-  const factory _RestaurantModel(
+abstract class _BrandModel extends BrandModel {
+  const factory _BrandModel(
       {required final String restaurantId,
       @JsonKey(name: 'restaurantName') required final String name,
+      @JsonKey(name: 'bg') required final String background,
+      final String? logo,
       final String? description,
       final OutletModel? nearestOutlet,
-      final List<OutletModel> serviceableOutlets}) = _$RestaurantModelImpl;
-  const _RestaurantModel._() : super._();
+      final List<OutletModel> serviceableOutlets}) = _$BrandModelImpl;
+  const _BrandModel._() : super._();
 
   @override
   String get restaurantId;
   @override
   @JsonKey(name: 'restaurantName')
   String get name;
+  @override
+  @JsonKey(name: 'bg')
+  String get background;
+  @override
+  String? get logo;
   @override
   String? get description;
   @override
@@ -248,7 +298,7 @@ abstract class _RestaurantModel extends RestaurantModel {
   List<OutletModel> get serviceableOutlets;
   @override
   @JsonKey(ignore: true)
-  _$$RestaurantModelImplCopyWith<_$RestaurantModelImpl> get copyWith =>
+  _$$BrandModelImplCopyWith<_$BrandModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
