@@ -22,7 +22,7 @@ class CuisineSection extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final double mainAxisExtent =
-        useMemoized<double>(_computeExtent, <Object?>[cuisines.length]);
+        useMemoized<double>(_computeExtent, <int>[cuisines.length]);
     return Container(
       constraints: const BoxConstraints(maxHeight: 240),
       margin: const EdgeInsets.only(top: 30),
@@ -51,9 +51,12 @@ class CuisineSection extends HookWidget {
               itemBuilder: (_, int index) => Column(
                 children: <Widget>[
                   Expanded(
-                    child: Image.network(
-                      cuisines[index].imageUrl,
-                      fit: BoxFit.cover,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Image.network(
+                        cuisines[index].imageUrl,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -79,7 +82,6 @@ class CuisineSection extends HookWidget {
   double _computeExtent({double baseWidth = 26.0, double charWidth = 4.0}) {
     final int maxCharLength =
         cuisines.fold<int>(0, (int a, Cuisine b) => math.max(a, b.name.length));
-    print('charLength: $maxCharLength');
     return baseWidth + maxCharLength * charWidth;
   }
 }
