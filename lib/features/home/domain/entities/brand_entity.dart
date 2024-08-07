@@ -16,6 +16,16 @@ sealed class Brand with _$Brand {
     required String? logo,
     @Default(<Outlet>[]) List<Outlet> serviceableOutlets,
   }) = _Brand;
+
+  const Brand._();
+
+  /// Check if the brand is open and can show in the UI
+  bool canShow() => nearestOutlet?.isOpen ?? false;
+
+  bool isNearby({required double latitude, required double longitude}) {
+    final double distance = nearestOutlet?.location.distance ?? 0;
+    return distance <= 5;
+  }
 }
 
 @freezed
@@ -29,7 +39,7 @@ sealed class Outlet with _$Outlet {
     String? rating,
     @Default(<String>[]) List<String> certifications,
     @Default(<MenuSection>[]) List<MenuSection> menus,
-    @Default(false) bool isOpened,
+    @Default(false) bool isOpen,
     int? ratingCount,
     double? distanceDelta,
   }) = _Outlet;

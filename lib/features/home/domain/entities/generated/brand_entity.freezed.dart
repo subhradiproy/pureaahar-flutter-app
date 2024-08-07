@@ -185,7 +185,7 @@ class __$$BrandImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BrandImpl implements _Brand {
+class _$BrandImpl extends _Brand {
   const _$BrandImpl(
       {required this.restaurantId,
       required this.name,
@@ -194,7 +194,8 @@ class _$BrandImpl implements _Brand {
       required this.nearestOutlet,
       required this.logo,
       final List<Outlet> serviceableOutlets = const <Outlet>[]})
-      : _serviceableOutlets = serviceableOutlets;
+      : _serviceableOutlets = serviceableOutlets,
+        super._();
 
   @override
   final String restaurantId;
@@ -260,7 +261,7 @@ class _$BrandImpl implements _Brand {
       __$$BrandImplCopyWithImpl<_$BrandImpl>(this, _$identity);
 }
 
-abstract class _Brand implements Brand {
+abstract class _Brand extends Brand {
   const factory _Brand(
       {required final String restaurantId,
       required final String name,
@@ -269,6 +270,7 @@ abstract class _Brand implements Brand {
       required final Outlet? nearestOutlet,
       required final String? logo,
       final List<Outlet> serviceableOutlets}) = _$BrandImpl;
+  const _Brand._() : super._();
 
   @override
   String get restaurantId;
@@ -302,7 +304,7 @@ mixin _$Outlet {
   String? get rating => throw _privateConstructorUsedError;
   List<String> get certifications => throw _privateConstructorUsedError;
   List<MenuSection> get menus => throw _privateConstructorUsedError;
-  bool get isOpened => throw _privateConstructorUsedError;
+  bool get isOpen => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
   double? get distanceDelta => throw _privateConstructorUsedError;
 
@@ -324,7 +326,7 @@ abstract class $OutletCopyWith<$Res> {
       String? rating,
       List<String> certifications,
       List<MenuSection> menus,
-      bool isOpened,
+      bool isOpen,
       int? ratingCount,
       double? distanceDelta});
 }
@@ -350,7 +352,7 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
     Object? rating = freezed,
     Object? certifications = null,
     Object? menus = null,
-    Object? isOpened = null,
+    Object? isOpen = null,
     Object? ratingCount = freezed,
     Object? distanceDelta = freezed,
   }) {
@@ -387,9 +389,9 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
           ? _value.menus
           : menus // ignore: cast_nullable_to_non_nullable
               as List<MenuSection>,
-      isOpened: null == isOpened
-          ? _value.isOpened
-          : isOpened // ignore: cast_nullable_to_non_nullable
+      isOpen: null == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
               as bool,
       ratingCount: freezed == ratingCount
           ? _value.ratingCount
@@ -419,7 +421,7 @@ abstract class _$$OutletImplCopyWith<$Res> implements $OutletCopyWith<$Res> {
       String? rating,
       List<String> certifications,
       List<MenuSection> menus,
-      bool isOpened,
+      bool isOpen,
       int? ratingCount,
       double? distanceDelta});
 }
@@ -443,7 +445,7 @@ class __$$OutletImplCopyWithImpl<$Res>
     Object? rating = freezed,
     Object? certifications = null,
     Object? menus = null,
-    Object? isOpened = null,
+    Object? isOpen = null,
     Object? ratingCount = freezed,
     Object? distanceDelta = freezed,
   }) {
@@ -480,9 +482,9 @@ class __$$OutletImplCopyWithImpl<$Res>
           ? _value._menus
           : menus // ignore: cast_nullable_to_non_nullable
               as List<MenuSection>,
-      isOpened: null == isOpened
-          ? _value.isOpened
-          : isOpened // ignore: cast_nullable_to_non_nullable
+      isOpen: null == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
               as bool,
       ratingCount: freezed == ratingCount
           ? _value.ratingCount
@@ -508,7 +510,7 @@ class _$OutletImpl implements _Outlet {
       this.rating,
       final List<String> certifications = const <String>[],
       final List<MenuSection> menus = const <MenuSection>[],
-      this.isOpened = false,
+      this.isOpen = false,
       this.ratingCount,
       this.distanceDelta})
       : _certifications = certifications,
@@ -547,7 +549,7 @@ class _$OutletImpl implements _Outlet {
 
   @override
   @JsonKey()
-  final bool isOpened;
+  final bool isOpen;
   @override
   final int? ratingCount;
   @override
@@ -555,7 +557,7 @@ class _$OutletImpl implements _Outlet {
 
   @override
   String toString() {
-    return 'Outlet(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menus: $menus, isOpened: $isOpened, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'Outlet(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menus: $menus, isOpen: $isOpen, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -575,8 +577,7 @@ class _$OutletImpl implements _Outlet {
             const DeepCollectionEquality()
                 .equals(other._certifications, _certifications) &&
             const DeepCollectionEquality().equals(other._menus, _menus) &&
-            (identical(other.isOpened, isOpened) ||
-                other.isOpened == isOpened) &&
+            (identical(other.isOpen, isOpen) || other.isOpen == isOpen) &&
             (identical(other.ratingCount, ratingCount) ||
                 other.ratingCount == ratingCount) &&
             (identical(other.distanceDelta, distanceDelta) ||
@@ -594,7 +595,7 @@ class _$OutletImpl implements _Outlet {
       rating,
       const DeepCollectionEquality().hash(_certifications),
       const DeepCollectionEquality().hash(_menus),
-      isOpened,
+      isOpen,
       ratingCount,
       distanceDelta);
 
@@ -619,7 +620,7 @@ abstract class _Outlet implements Outlet {
       final String? rating,
       final List<String> certifications,
       final List<MenuSection> menus,
-      final bool isOpened,
+      final bool isOpen,
       final int? ratingCount,
       final double? distanceDelta}) = _$OutletImpl;
 
@@ -640,7 +641,7 @@ abstract class _Outlet implements Outlet {
   @override
   List<MenuSection> get menus;
   @override
-  bool get isOpened;
+  bool get isOpen;
   @override
   int? get ratingCount;
   @override

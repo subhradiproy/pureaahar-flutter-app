@@ -35,20 +35,19 @@ final cuisineListProvider = AutoDisposeFutureProvider<List<Cuisine>>.internal(
 );
 
 typedef CuisineListRef = AutoDisposeFutureProviderRef<List<Cuisine>>;
-String _$restaurantListHash() => r'eec532ff81a1197d3c2fb9a75ae3cd04b5f13a18';
+String _$brandsListHash() => r'0066c3838012ace321d671b8757f99ded8a0ee2d';
 
-/// See also [restaurantList].
-@ProviderFor(restaurantList)
-final restaurantListProvider = AutoDisposeFutureProvider<List<Brand>>.internal(
-  restaurantList,
-  name: r'restaurantListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$restaurantListHash,
+/// See also [brandsList].
+@ProviderFor(brandsList)
+final brandsListProvider = AutoDisposeFutureProvider<List<Brand>>.internal(
+  brandsList,
+  name: r'brandsListProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$brandsListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef RestaurantListRef = AutoDisposeFutureProviderRef<List<Brand>>;
+typedef BrandsListRef = AutoDisposeFutureProviderRef<List<Brand>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

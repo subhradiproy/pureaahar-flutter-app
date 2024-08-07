@@ -29,9 +29,9 @@ FutureOr<List<Cuisine>> cuisineList(CuisineListRef ref) async => ref
     .run();
 
 @riverpod
-FutureOr<List<Brand>> restaurantList(RestaurantListRef ref) async => ref
+FutureOr<List<Brand>> brandsList(BrandsListRef ref) async => ref
     .read(homeRepositoryProvider)
     .getRestaurants(latitude: '22.5764753', longitude: '88.4306861')
-    .map((List<BrandModel> r) => r.toEntityList())
+    .map((List<BrandModel> r) => r.toEntityListWhere((Brand e) => e.canShow()))
     .getOrElse((Failure l) => throw l)
     .run();

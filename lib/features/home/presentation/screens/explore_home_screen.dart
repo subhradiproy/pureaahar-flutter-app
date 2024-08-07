@@ -3,8 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../shared/widgets/async_widget.dart';
+import '../../domain/entities/brand_entity.dart';
 import '../../domain/entities/cuisine_entity.dart';
 import '../providers/home_notifier.dart';
+import '../widgets/brand_section.dart';
 import '../widgets/cuisine_section.dart';
 import '../widgets/explore_app_bar.dart';
 
@@ -19,47 +21,64 @@ class ExploreHomeScreen extends HookConsumerWidget {
         controller: scrollController,
         slivers: <Widget>[
           ExploreAppBar(scrollController: scrollController),
-          SliverToBoxAdapter(
-            child: AsyncValueWidget<List<Cuisine>>(
-              value: ref.watch(cuisineListProvider),
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              error: (Object p0, StackTrace p1) => const SizedBox(),
-              data: (List<Cuisine> list) => CuisineSection(cuisines: list),
-            ),
+          _buildCuisines(ref),
+          _buildReels(),
+          _buildBrands(ref),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 100),
           ),
-          // SliverPadding(
-          //   padding: const EdgeInsets.fromLTRB(12, 24, 12, 12),
-          //   sliver: SliverToBoxAdapter(
-          //     child: AppText('Brands & Services', style: AppTextStyle.title3),
-          //   ),
-          // ),
-          // SliverPadding(
-          //   padding: const EdgeInsets.fromLTRB(12, 0, 12, 40),
-          //   sliver: AsyncValueWidget<List<Restaurant>>(
-          //     value: ref.watch(restaurantListProvider),
-          //     loading: () => const SliverToBoxAdapter(
-          //       child: Center(child: CircularProgressIndicator()),
-          //     ),
-          //     error: (Object p0, StackTrace p1) =>
-          //         const SliverToBoxAdapter(child: SizedBox()),
-          //     data: (List<Restaurant> item) => SliverGrid.builder(
-          //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //         crossAxisCount: 2,
-          //         crossAxisSpacing: 10,
-          //         mainAxisSpacing: 10,
-          //         mainAxisExtent: 200,
-          //       ),
-          //       itemBuilder: (_, int index) => BrandCard(
-          //         item: item[index],
-          //         key: ValueKey<String>(item[index].restaurantId),
-          //       ),
-          //       itemCount: item.length,
-          //     ),
-          //   ),
-          // ),
         ],
+      ),
+    );
+  }
+
+  /// Builds the cuisines section
+  SliverToBoxAdapter _buildCuisines(WidgetRef ref) {
+    return SliverToBoxAdapter(
+      child: AsyncValueWidget<List<Cuisine>>(
+        value: ref.watch(cuisineListProvider),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        error: (Object p0, StackTrace p1) => const SizedBox(),
+        data: (List<Cuisine> list) => CuisineSection(cuisines: list),
+      ),
+    );
+  }
+
+  /// Builds the reels section
+  SliverToBoxAdapter _buildReels() {
+    return SliverToBoxAdapter(
+      child: Container(
+        height: 230,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: const Center(
+          child: Text('Reels Section'),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the brands section
+  SliverToBoxAdapter _buildBrands(WidgetRef ref) {
+    return SliverToBoxAdapter(
+      child: AsyncValueWidget<List<Brand>>(
+        value: ref.watch(brandsListProvider),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        error: (Object p0, StackTrace p1) => const SizedBox(),
+        data: (List<Brand> list) => BrandSection(brands: list),
       ),
     );
   }

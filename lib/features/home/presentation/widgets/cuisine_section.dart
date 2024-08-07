@@ -29,7 +29,7 @@ class CuisineSection extends HookWidget {
       color: const Color(0xFFFFEFE2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
             padding: textPadding,

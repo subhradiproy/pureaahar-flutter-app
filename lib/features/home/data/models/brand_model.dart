@@ -107,7 +107,7 @@ class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
       menus: menuSections.toEntityList(),
       ratingCount: ratingCount,
       distanceDelta: distanceDelta,
-      isOpened: isOpened,
+      isOpen: isOpened,
     );
   }
 }
