@@ -4,10 +4,17 @@ import 'package:go_router/go_router.dart';
 import '../../../shared/widgets/search_field.dart';
 
 class ProductListAppbar extends StatelessWidget {
-  const ProductListAppbar({this.expandedHeight = 275, super.key});
+  const ProductListAppbar({
+    required this.brandUrl,
+    this.expandedHeight = 275,
+    super.key,
+  });
 
   /// The height of the appbar when expanded
   final double expandedHeight;
+
+  /// Image Url of the brand
+  final String brandUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +28,34 @@ class ProductListAppbar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: const EdgeInsets.only(bottom: 15),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.vertical(
-              bottom: Radius.circular(25),
-            ),
-            child: Image.network(
-              'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
-              fit: BoxFit.cover,
-            ),
+          child: Stack(
+            children: <Widget>[
+              Positioned.fill(
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    bottom: Radius.circular(25),
+                  ),
+                  child: Image.network(brandUrl, fit: BoxFit.cover),
+                ),
+              ),
+              const Positioned(
+                height: kToolbarHeight + 50,
+                left: 0,
+                right: 0,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: <Color>[
+                        Colors.white70,
+                        Colors.white12,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         stretchModes: const <StretchMode>[
