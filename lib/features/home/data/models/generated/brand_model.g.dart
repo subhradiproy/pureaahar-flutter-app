@@ -143,16 +143,29 @@ MenuSectionModel _$MenuSectionModelFromJson(Map<String, dynamic> json) =>
       id: json['_id'] as String,
       category: MenuSectionCategoryModel.fromJson(
           json['category'] as Map<String, dynamic>),
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => _$recordConvert(
+                    e,
+                    ($jsonValue) => (
+                      itemId: MenuItemModel.fromJson(
+                          $jsonValue['itemId'] as Map<String, dynamic>),
+                      position: ($jsonValue['position'] as num).toInt(),
+                    ),
+                  ))
+              .toList() ??
+          [],
       position: (json['position'] as num).toInt(),
-      items: (json['items'] as List<dynamic>)
-          .map((e) => MenuItemModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
     );
 
 Map<String, dynamic> _$MenuSectionModelToJson(MenuSectionModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'category': instance.category.toJson(),
+      'items': instance.items
+          .map((e) => <String, dynamic>{
+                'itemId': e.itemId.toJson(),
+                'position': e.position,
+              })
+          .toList(),
       'position': instance.position,
-      'items': instance.items.map((e) => e.toJson()).toList(),
     };

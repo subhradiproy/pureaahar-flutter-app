@@ -16,12 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MenuItemModel {
-  @JsonKey(name: 'restaurantId')
-  ({String restaurantName}) get restaurantInfo =>
-      throw _privateConstructorUsedError;
   MenuOptionsModel get options => throw _privateConstructorUsedError;
-  @JsonKey(name: 'outletId')
-  OutletModel get outletInfo => throw _privateConstructorUsedError;
+  String get outletId => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   List<String> get cuisines => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
@@ -37,7 +33,6 @@ mixin _$MenuItemModel {
   int? get happyHourPrice => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
   bool get isInStock => throw _privateConstructorUsedError;
-  bool get isVeg => throw _privateConstructorUsedError;
   bool get isHappyHourItem => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -52,9 +47,8 @@ abstract class $MenuItemModelCopyWith<$Res> {
       _$MenuItemModelCopyWithImpl<$Res, MenuItemModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'restaurantId') ({String restaurantName}) restaurantInfo,
-      MenuOptionsModel options,
-      @JsonKey(name: 'outletId') OutletModel outletInfo,
+      {MenuOptionsModel options,
+      String outletId,
       String categoryId,
       List<String> cuisines,
       String itemName,
@@ -67,11 +61,9 @@ abstract class $MenuItemModelCopyWith<$Res> {
       int? happyHourPrice,
       List<String> tags,
       bool isInStock,
-      bool isVeg,
       bool isHappyHourItem});
 
   $MenuOptionsModelCopyWith<$Res> get options;
-  $OutletModelCopyWith<$Res> get outletInfo;
 }
 
 /// @nodoc
@@ -87,9 +79,8 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantInfo = null,
     Object? options = null,
-    Object? outletInfo = null,
+    Object? outletId = null,
     Object? categoryId = null,
     Object? cuisines = null,
     Object? itemName = null,
@@ -102,22 +93,17 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
     Object? happyHourPrice = freezed,
     Object? tags = null,
     Object? isInStock = null,
-    Object? isVeg = null,
     Object? isHappyHourItem = null,
   }) {
     return _then(_value.copyWith(
-      restaurantInfo: null == restaurantInfo
-          ? _value.restaurantInfo
-          : restaurantInfo // ignore: cast_nullable_to_non_nullable
-              as ({String restaurantName}),
       options: null == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as MenuOptionsModel,
-      outletInfo: null == outletInfo
-          ? _value.outletInfo
-          : outletInfo // ignore: cast_nullable_to_non_nullable
-              as OutletModel,
+      outletId: null == outletId
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -166,10 +152,6 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.isInStock
           : isInStock // ignore: cast_nullable_to_non_nullable
               as bool,
-      isVeg: null == isVeg
-          ? _value.isVeg
-          : isVeg // ignore: cast_nullable_to_non_nullable
-              as bool,
       isHappyHourItem: null == isHappyHourItem
           ? _value.isHappyHourItem
           : isHappyHourItem // ignore: cast_nullable_to_non_nullable
@@ -184,14 +166,6 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
       return _then(_value.copyWith(options: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $OutletModelCopyWith<$Res> get outletInfo {
-    return $OutletModelCopyWith<$Res>(_value.outletInfo, (value) {
-      return _then(_value.copyWith(outletInfo: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -203,9 +177,8 @@ abstract class _$$MenuItemModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'restaurantId') ({String restaurantName}) restaurantInfo,
-      MenuOptionsModel options,
-      @JsonKey(name: 'outletId') OutletModel outletInfo,
+      {MenuOptionsModel options,
+      String outletId,
       String categoryId,
       List<String> cuisines,
       String itemName,
@@ -218,13 +191,10 @@ abstract class _$$MenuItemModelImplCopyWith<$Res>
       int? happyHourPrice,
       List<String> tags,
       bool isInStock,
-      bool isVeg,
       bool isHappyHourItem});
 
   @override
   $MenuOptionsModelCopyWith<$Res> get options;
-  @override
-  $OutletModelCopyWith<$Res> get outletInfo;
 }
 
 /// @nodoc
@@ -238,9 +208,8 @@ class __$$MenuItemModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantInfo = null,
     Object? options = null,
-    Object? outletInfo = null,
+    Object? outletId = null,
     Object? categoryId = null,
     Object? cuisines = null,
     Object? itemName = null,
@@ -253,22 +222,17 @@ class __$$MenuItemModelImplCopyWithImpl<$Res>
     Object? happyHourPrice = freezed,
     Object? tags = null,
     Object? isInStock = null,
-    Object? isVeg = null,
     Object? isHappyHourItem = null,
   }) {
     return _then(_$MenuItemModelImpl(
-      restaurantInfo: null == restaurantInfo
-          ? _value.restaurantInfo
-          : restaurantInfo // ignore: cast_nullable_to_non_nullable
-              as ({String restaurantName}),
       options: null == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as MenuOptionsModel,
-      outletInfo: null == outletInfo
-          ? _value.outletInfo
-          : outletInfo // ignore: cast_nullable_to_non_nullable
-              as OutletModel,
+      outletId: null == outletId
+          ? _value.outletId
+          : outletId // ignore: cast_nullable_to_non_nullable
+              as String,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -317,10 +281,6 @@ class __$$MenuItemModelImplCopyWithImpl<$Res>
           ? _value.isInStock
           : isInStock // ignore: cast_nullable_to_non_nullable
               as bool,
-      isVeg: null == isVeg
-          ? _value.isVeg
-          : isVeg // ignore: cast_nullable_to_non_nullable
-              as bool,
       isHappyHourItem: null == isHappyHourItem
           ? _value.isHappyHourItem
           : isHappyHourItem // ignore: cast_nullable_to_non_nullable
@@ -333,9 +293,8 @@ class __$$MenuItemModelImplCopyWithImpl<$Res>
 
 class _$MenuItemModelImpl extends _MenuItemModel {
   const _$MenuItemModelImpl(
-      {@JsonKey(name: 'restaurantId') required this.restaurantInfo,
-      required this.options,
-      @JsonKey(name: 'outletId') required this.outletInfo,
+      {required this.options,
+      required this.outletId,
       required this.categoryId,
       required final List<String> cuisines,
       required this.itemName,
@@ -352,7 +311,6 @@ class _$MenuItemModelImpl extends _MenuItemModel {
       this.happyHourPrice,
       final List<String> tags = const <String>[],
       this.isInStock = false,
-      this.isVeg = false,
       this.isHappyHourItem = false})
       : _cuisines = cuisines,
         _pricing = pricing,
@@ -361,13 +319,9 @@ class _$MenuItemModelImpl extends _MenuItemModel {
         super._();
 
   @override
-  @JsonKey(name: 'restaurantId')
-  final ({String restaurantName}) restaurantInfo;
-  @override
   final MenuOptionsModel options;
   @override
-  @JsonKey(name: 'outletId')
-  final OutletModel outletInfo;
+  final String outletId;
   @override
   final String categoryId;
   final List<String> _cuisines;
@@ -423,14 +377,11 @@ class _$MenuItemModelImpl extends _MenuItemModel {
   final bool isInStock;
   @override
   @JsonKey()
-  final bool isVeg;
-  @override
-  @JsonKey()
   final bool isHappyHourItem;
 
   @override
   String toString() {
-    return 'MenuItemModel(restaurantInfo: $restaurantInfo, options: $options, outletInfo: $outletInfo, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemDescription: $itemDescription, itemImageUrl: $itemImageUrl, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
+    return 'MenuItemModel(options: $options, outletId: $outletId, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemDescription: $itemDescription, itemImageUrl: $itemImageUrl, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isHappyHourItem: $isHappyHourItem)';
   }
 
   @override
@@ -438,11 +389,9 @@ class _$MenuItemModelImpl extends _MenuItemModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MenuItemModelImpl &&
-            (identical(other.restaurantInfo, restaurantInfo) ||
-                other.restaurantInfo == restaurantInfo) &&
             (identical(other.options, options) || other.options == options) &&
-            (identical(other.outletInfo, outletInfo) ||
-                other.outletInfo == outletInfo) &&
+            (identical(other.outletId, outletId) ||
+                other.outletId == outletId) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             const DeepCollectionEquality().equals(other._cuisines, _cuisines) &&
@@ -461,7 +410,6 @@ class _$MenuItemModelImpl extends _MenuItemModel {
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.isInStock, isInStock) ||
                 other.isInStock == isInStock) &&
-            (identical(other.isVeg, isVeg) || other.isVeg == isVeg) &&
             (identical(other.isHappyHourItem, isHappyHourItem) ||
                 other.isHappyHourItem == isHappyHourItem));
   }
@@ -469,9 +417,8 @@ class _$MenuItemModelImpl extends _MenuItemModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      restaurantInfo,
       options,
-      outletInfo,
+      outletId,
       categoryId,
       const DeepCollectionEquality().hash(_cuisines),
       itemName,
@@ -484,7 +431,6 @@ class _$MenuItemModelImpl extends _MenuItemModel {
       happyHourPrice,
       const DeepCollectionEquality().hash(_tags),
       isInStock,
-      isVeg,
       isHappyHourItem);
 
   @JsonKey(ignore: true)
@@ -496,10 +442,8 @@ class _$MenuItemModelImpl extends _MenuItemModel {
 
 abstract class _MenuItemModel extends MenuItemModel {
   const factory _MenuItemModel(
-      {@JsonKey(name: 'restaurantId')
-      required final ({String restaurantName}) restaurantInfo,
-      required final MenuOptionsModel options,
-      @JsonKey(name: 'outletId') required final OutletModel outletInfo,
+      {required final MenuOptionsModel options,
+      required final String outletId,
       required final String categoryId,
       required final List<String> cuisines,
       required final String itemName,
@@ -512,18 +456,13 @@ abstract class _MenuItemModel extends MenuItemModel {
       final int? happyHourPrice,
       final List<String> tags,
       final bool isInStock,
-      final bool isVeg,
       final bool isHappyHourItem}) = _$MenuItemModelImpl;
   const _MenuItemModel._() : super._();
 
   @override
-  @JsonKey(name: 'restaurantId')
-  ({String restaurantName}) get restaurantInfo;
-  @override
   MenuOptionsModel get options;
   @override
-  @JsonKey(name: 'outletId')
-  OutletModel get outletInfo;
+  String get outletId;
   @override
   String get categoryId;
   @override
@@ -549,8 +488,6 @@ abstract class _MenuItemModel extends MenuItemModel {
   List<String> get tags;
   @override
   bool get isInStock;
-  @override
-  bool get isVeg;
   @override
   bool get isHappyHourItem;
   @override

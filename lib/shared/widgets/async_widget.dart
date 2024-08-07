@@ -13,6 +13,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
     this.skipLoadingOnRefresh = true,
     this.skipLoadingOnHasValue = false,
     this.skipError = false,
+    this.builder,
   });
 
   /// [value] is the async value to be displayed.
@@ -47,6 +48,9 @@ class AsyncValueWidget<T> extends StatelessWidget {
   /// [skipLoadingOnHasValue] (false by default) decides whether to invoke
   /// [data] instead of [loading] if a previous [value] is available.
   final bool skipLoadingOnHasValue;
+
+  /// Custom Builder to customize the behavior of the widget
+  final AsyncWidgetBuilder<T>? builder;
 
   @override
   Widget build(BuildContext context) {

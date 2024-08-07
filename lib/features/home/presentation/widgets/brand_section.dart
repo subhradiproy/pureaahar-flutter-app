@@ -41,7 +41,8 @@ class BrandSection extends StatelessWidget {
                 onTap: () => context.pushNamed(
                   AppRoute.productListing.name,
                   pathParameters: <String, String>{
-                    'id': brands[index].restaurantId,
+                    'id': brands[index].nearestOutlet?.id ??
+                        brands[index].restaurantId,
                   },
                 ),
               ),
@@ -94,10 +95,7 @@ class _BrandItem extends StatelessWidget {
                 right: 0,
                 child: AspectRatio(
                   aspectRatio: 13 / 10,
-                  child: Hero(
-                    tag: brand.restaurantId,
-                    child: Image.network(brand.background, fit: BoxFit.cover),
-                  ),
+                  child: Image.network(brand.background, fit: BoxFit.cover),
                 ),
               ),
               if (brand.logo != null) _buildLogo(constraints),

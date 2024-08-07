@@ -8,15 +8,9 @@ part of '../menu_item_model.dart';
 
 MenuItemModel _$MenuItemModelFromJson(Map<String, dynamic> json) =>
     MenuItemModel(
-      restaurantInfo: _$recordConvert(
-        json['restaurantId'],
-        ($jsonValue) =>
-            (restaurantName: $jsonValue['restaurantName'] as String,),
-      ),
       options:
           MenuOptionsModel.fromJson(json['options'] as Map<String, dynamic>),
-      outletInfo:
-          OutletModel.fromJson(json['outletId'] as Map<String, dynamic>),
+      outletId: json['outletId'] as String,
       categoryId: json['categoryId'] as String,
       cuisines:
           (json['cuisines'] as List<dynamic>).map((e) => e as String).toList(),
@@ -48,17 +42,13 @@ MenuItemModel _$MenuItemModelFromJson(Map<String, dynamic> json) =>
       happyHourPrice: (json['happyHourPrice'] as num?)?.toInt(),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
       isInStock: json['isInStock'] as bool,
-      isVeg: json['isVeg'] as bool,
       isHappyHourItem: json['isHappyHourItem'] as bool,
     );
 
 Map<String, dynamic> _$MenuItemModelToJson(MenuItemModel instance) {
   final val = <String, dynamic>{
-    'restaurantId': <String, dynamic>{
-      'restaurantName': instance.restaurantInfo.restaurantName,
-    },
     'options': instance.options.toJson(),
-    'outletId': instance.outletInfo.toJson(),
+    'outletId': instance.outletId,
     'categoryId': instance.categoryId,
     'cuisines': instance.cuisines,
     'itemName': instance.itemName,
@@ -90,7 +80,6 @@ Map<String, dynamic> _$MenuItemModelToJson(MenuItemModel instance) {
   writeNotNull('happyHourPrice', instance.happyHourPrice);
   val['tags'] = instance.tags;
   val['isInStock'] = instance.isInStock;
-  val['isVeg'] = instance.isVeg;
   val['isHappyHourItem'] = instance.isHappyHourItem;
   return val;
 }

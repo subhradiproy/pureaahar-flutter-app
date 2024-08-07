@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/models/entity_mapper.dart';
 import '../../domain/entities/menu_item_entity.dart';
 import 'choice_and_addons_model.dart';
-import 'brand_model.dart';
 
 part 'generated/menu_item_model.freezed.dart';
 part 'generated/menu_item_model.g.dart';
@@ -12,10 +11,8 @@ part 'generated/menu_item_model.g.dart';
 @JsonSerializable()
 class MenuItemModel with _$MenuItemModel implements EntityMapper<MenuItem> {
   const factory MenuItemModel({
-    @JsonKey(name: 'restaurantId')
-    required ({String restaurantName}) restaurantInfo,
     required MenuOptionsModel options,
-    @JsonKey(name: 'outletId') required OutletModel outletInfo,
+    required String outletId,
     required String categoryId,
     required List<String> cuisines,
     required String itemName,
@@ -30,7 +27,6 @@ class MenuItemModel with _$MenuItemModel implements EntityMapper<MenuItem> {
     int? happyHourPrice,
     @Default(<String>[]) List<String> tags,
     @Default(false) bool isInStock,
-    @Default(false) bool isVeg,
     @Default(false) bool isHappyHourItem,
   }) = _MenuItemModel;
 
@@ -44,9 +40,7 @@ class MenuItemModel with _$MenuItemModel implements EntityMapper<MenuItem> {
   @override
   MenuItem toEntity() {
     return MenuItem(
-      restaurantName: restaurantInfo.restaurantName,
       options: options.toEntity(),
-      outletInfo: outletInfo.toEntity(),
       categoryId: categoryId,
       cuisines: cuisines,
       itemName: itemName,

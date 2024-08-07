@@ -966,8 +966,10 @@ mixin _$MenuSectionModel {
   @JsonKey(name: '_id')
   String get id => throw _privateConstructorUsedError;
   MenuSectionCategoryModel get category => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+  List<({MenuItemModel itemId, int position})> get items =>
+      throw _privateConstructorUsedError;
   int get position => throw _privateConstructorUsedError;
-  List<MenuItemModel> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenuSectionModelCopyWith<MenuSectionModel> get copyWith =>
@@ -983,8 +985,9 @@ abstract class $MenuSectionModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String id,
       MenuSectionCategoryModel category,
-      int position,
-      List<MenuItemModel> items});
+      @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+      List<({MenuItemModel itemId, int position})> items,
+      int position});
 
   $MenuSectionCategoryModelCopyWith<$Res> get category;
 }
@@ -1004,8 +1007,8 @@ class _$MenuSectionModelCopyWithImpl<$Res, $Val extends MenuSectionModel>
   $Res call({
     Object? id = null,
     Object? category = null,
-    Object? position = null,
     Object? items = null,
+    Object? position = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1016,14 +1019,14 @@ class _$MenuSectionModelCopyWithImpl<$Res, $Val extends MenuSectionModel>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MenuSectionCategoryModel,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<({MenuItemModel itemId, int position})>,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<MenuItemModel>,
     ) as $Val);
   }
 
@@ -1047,8 +1050,9 @@ abstract class _$$MenuSectionModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: '_id') String id,
       MenuSectionCategoryModel category,
-      int position,
-      List<MenuItemModel> items});
+      @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+      List<({MenuItemModel itemId, int position})> items,
+      int position});
 
   @override
   $MenuSectionCategoryModelCopyWith<$Res> get category;
@@ -1067,8 +1071,8 @@ class __$$MenuSectionModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? category = null,
-    Object? position = null,
     Object? items = null,
+    Object? position = null,
   }) {
     return _then(_$MenuSectionModelImpl(
       id: null == id
@@ -1079,14 +1083,14 @@ class __$$MenuSectionModelImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MenuSectionCategoryModel,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<({MenuItemModel itemId, int position})>,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      items: null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<MenuItemModel>,
     ));
   }
 }
@@ -1097,8 +1101,12 @@ class _$MenuSectionModelImpl extends _MenuSectionModel {
   const _$MenuSectionModelImpl(
       {@JsonKey(name: '_id') required this.id,
       required this.category,
-      this.position = 1,
-      final List<MenuItemModel> items = const <MenuItemModel>[]})
+      @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+      final List<({MenuItemModel itemId, int position})> items = const <({
+        int position,
+        MenuItemModel itemId
+      })>[],
+      this.position = 1})
       : _items = items,
         super._();
 
@@ -1107,21 +1115,22 @@ class _$MenuSectionModelImpl extends _MenuSectionModel {
   final String id;
   @override
   final MenuSectionCategoryModel category;
+  final List<({MenuItemModel itemId, int position})> _items;
   @override
-  @JsonKey()
-  final int position;
-  final List<MenuItemModel> _items;
-  @override
-  @JsonKey()
-  List<MenuItemModel> get items {
+  @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+  List<({MenuItemModel itemId, int position})> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
 
   @override
+  @JsonKey()
+  final int position;
+
+  @override
   String toString() {
-    return 'MenuSectionModel(id: $id, category: $category, position: $position, items: $items)';
+    return 'MenuSectionModel(id: $id, category: $category, items: $items, position: $position)';
   }
 
   @override
@@ -1132,14 +1141,14 @@ class _$MenuSectionModelImpl extends _MenuSectionModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.position, position) ||
-                other.position == position) &&
-            const DeepCollectionEquality().equals(other._items, _items));
+                other.position == position));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, category, position,
-      const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(runtimeType, id, category,
+      const DeepCollectionEquality().hash(_items), position);
 
   @JsonKey(ignore: true)
   @override
@@ -1153,8 +1162,9 @@ abstract class _MenuSectionModel extends MenuSectionModel {
   const factory _MenuSectionModel(
       {@JsonKey(name: '_id') required final String id,
       required final MenuSectionCategoryModel category,
-      final int position,
-      final List<MenuItemModel> items}) = _$MenuSectionModelImpl;
+      @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+      final List<({MenuItemModel itemId, int position})> items,
+      final int position}) = _$MenuSectionModelImpl;
   const _MenuSectionModel._() : super._();
 
   @override
@@ -1163,9 +1173,10 @@ abstract class _MenuSectionModel extends MenuSectionModel {
   @override
   MenuSectionCategoryModel get category;
   @override
-  int get position;
+  @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+  List<({MenuItemModel itemId, int position})> get items;
   @override
-  List<MenuItemModel> get items;
+  int get position;
   @override
   @JsonKey(ignore: true)
   _$$MenuSectionModelImplCopyWith<_$MenuSectionModelImpl> get copyWith =>

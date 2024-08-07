@@ -5,9 +5,9 @@ import '../../../../core/exceptions/app_exception.dart';
 import '../../../../core/providers/global_providers.dart';
 import '../../../../core/services/api_service.dart';
 import '../../domain/repositories/home_content_repository.dart';
+import '../models/brand_model.dart';
 import '../models/cuisine_model.dart';
 import '../models/restaurant_banner_model.dart';
-import '../models/brand_model.dart';
 
 part 'generated/home_content_repository_impl.g.dart';
 

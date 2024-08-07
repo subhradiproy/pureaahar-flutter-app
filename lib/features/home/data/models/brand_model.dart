@@ -52,13 +52,12 @@ class BrandModel with _$BrandModel implements EntityMapper<Brand> {
   }
 }
 
-@override
-List<MenuSectionModel> _menuFromJson(List<Object?> json) {
+List<MenuSectionModel> _menuFromJson(List<dynamic> json) {
   return json.cast<Map<String, Object?>>().fold<List<MenuSectionModel>>(
     <MenuSectionModel>[],
     (List<MenuSectionModel> prev, Map<String, Object?> e) => switch (e) {
-      {'category': final Map<String, Object?> menu} => prev
-        ..add(MenuSectionModel.fromJson(menu)),
+      {'category': Map<String, Object?> _} => prev
+        ..add(MenuSectionModel.fromJson(e)),
       _ => prev,
     },
   );
@@ -89,8 +88,12 @@ class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
 
   const OutletModel._();
 
-  factory OutletModel.fromJson(Map<String, Object?> json) =>
-      _$OutletModelFromJson(json);
+  factory OutletModel.fromJson(Map<String, Object?> json) {
+    return switch (json) {
+      {'outlet': final Map<String, Object?> map} => _$OutletModelFromJson(map),
+      _ => _$OutletModelFromJson(json),
+    };
+  }
 
   Map<String, Object?> toJson() => _$OutletModelToJson(this);
 
@@ -156,14 +159,16 @@ class MenuSectionModel
   const factory MenuSectionModel({
     @JsonKey(name: '_id') required String id,
     required MenuSectionCategoryModel category,
+    @JsonKey(defaultValue: <({int position, MenuItemModel itemId})>[])
+    @Default(<({int position, MenuItemModel itemId})>[])
+    List<({int position, MenuItemModel itemId})> items,
     @Default(1) int position,
-    @Default(<MenuItemModel>[]) List<MenuItemModel> items,
   }) = _MenuSectionModel;
-
-  const MenuSectionModel._();
 
   factory MenuSectionModel.fromJson(Map<String, Object?> json) =>
       _$MenuSectionModelFromJson(json);
+
+  const MenuSectionModel._();
 
   Map<String, Object?> toJson() => _$MenuSectionModelToJson(this);
 
@@ -176,7 +181,11 @@ class MenuSectionModel
       id: id,
       category: category.toEntity(),
       position: position,
-      items: items.toEntityList(),
+      items: items.map(
+        (({MenuItemModel itemId, int position}) e) {
+          return e.itemId.toEntity();
+        },
+      ).toList(),
     );
   }
 }

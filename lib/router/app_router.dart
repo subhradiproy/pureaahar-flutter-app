@@ -82,10 +82,8 @@ class AppRouter extends _$AppRouter {
           path: AppRoute.productListing.path,
           name: AppRoute.productListing.name,
           redirect: (BuildContext context, GoRouterState state) {
-            final String? restaurantId = state.pathParameters['id'];
-            if (restaurantId == null || restaurantId.isEmpty) {
-              return AppRoute.pageNotFound.path;
-            }
+            final String? id = state.pathParameters['id'];
+            if (id?.isEmpty ?? true) return AppRoute.pageNotFound.path;
             return null;
           },
           builder: (_, GoRouterState state) => ProductListingScreen(

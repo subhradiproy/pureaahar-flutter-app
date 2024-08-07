@@ -16,9 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MenuItem {
-  String get restaurantName => throw _privateConstructorUsedError;
   MenuOptions get options => throw _privateConstructorUsedError;
-  Outlet get outletInfo => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   List<String> get cuisines => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
@@ -47,9 +45,7 @@ abstract class $MenuItemCopyWith<$Res> {
       _$MenuItemCopyWithImpl<$Res, MenuItem>;
   @useResult
   $Res call(
-      {String restaurantName,
-      MenuOptions options,
-      Outlet outletInfo,
+      {MenuOptions options,
       String categoryId,
       List<String> cuisines,
       String itemName,
@@ -66,7 +62,6 @@ abstract class $MenuItemCopyWith<$Res> {
       bool isHappyHourItem});
 
   $MenuOptionsCopyWith<$Res> get options;
-  $OutletCopyWith<$Res> get outletInfo;
 }
 
 /// @nodoc
@@ -82,9 +77,7 @@ class _$MenuItemCopyWithImpl<$Res, $Val extends MenuItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantName = null,
     Object? options = null,
-    Object? outletInfo = null,
     Object? categoryId = null,
     Object? cuisines = null,
     Object? itemName = null,
@@ -101,18 +94,10 @@ class _$MenuItemCopyWithImpl<$Res, $Val extends MenuItem>
     Object? isHappyHourItem = null,
   }) {
     return _then(_value.copyWith(
-      restaurantName: null == restaurantName
-          ? _value.restaurantName
-          : restaurantName // ignore: cast_nullable_to_non_nullable
-              as String,
       options: null == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as MenuOptions,
-      outletInfo: null == outletInfo
-          ? _value.outletInfo
-          : outletInfo // ignore: cast_nullable_to_non_nullable
-              as Outlet,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -179,14 +164,6 @@ class _$MenuItemCopyWithImpl<$Res, $Val extends MenuItem>
       return _then(_value.copyWith(options: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $OutletCopyWith<$Res> get outletInfo {
-    return $OutletCopyWith<$Res>(_value.outletInfo, (value) {
-      return _then(_value.copyWith(outletInfo: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -198,9 +175,7 @@ abstract class _$$MenuItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String restaurantName,
-      MenuOptions options,
-      Outlet outletInfo,
+      {MenuOptions options,
       String categoryId,
       List<String> cuisines,
       String itemName,
@@ -218,8 +193,6 @@ abstract class _$$MenuItemImplCopyWith<$Res>
 
   @override
   $MenuOptionsCopyWith<$Res> get options;
-  @override
-  $OutletCopyWith<$Res> get outletInfo;
 }
 
 /// @nodoc
@@ -233,9 +206,7 @@ class __$$MenuItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? restaurantName = null,
     Object? options = null,
-    Object? outletInfo = null,
     Object? categoryId = null,
     Object? cuisines = null,
     Object? itemName = null,
@@ -252,18 +223,10 @@ class __$$MenuItemImplCopyWithImpl<$Res>
     Object? isHappyHourItem = null,
   }) {
     return _then(_$MenuItemImpl(
-      restaurantName: null == restaurantName
-          ? _value.restaurantName
-          : restaurantName // ignore: cast_nullable_to_non_nullable
-              as String,
       options: null == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as MenuOptions,
-      outletInfo: null == outletInfo
-          ? _value.outletInfo
-          : outletInfo // ignore: cast_nullable_to_non_nullable
-              as Outlet,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -328,9 +291,7 @@ class __$$MenuItemImplCopyWithImpl<$Res>
 
 class _$MenuItemImpl implements _MenuItem {
   const _$MenuItemImpl(
-      {required this.restaurantName,
-      required this.options,
-      required this.outletInfo,
+      {required this.options,
       required this.categoryId,
       required final List<String> cuisines,
       required this.itemName,
@@ -355,11 +316,7 @@ class _$MenuItemImpl implements _MenuItem {
         _tags = tags;
 
   @override
-  final String restaurantName;
-  @override
   final MenuOptions options;
-  @override
-  final Outlet outletInfo;
   @override
   final String categoryId;
   final List<String> _cuisines;
@@ -421,7 +378,7 @@ class _$MenuItemImpl implements _MenuItem {
 
   @override
   String toString() {
-    return 'MenuItem(restaurantName: $restaurantName, options: $options, outletInfo: $outletInfo, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemImageUrl: $itemImageUrl, itemDescription: $itemDescription, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
+    return 'MenuItem(options: $options, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemImageUrl: $itemImageUrl, itemDescription: $itemDescription, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
   }
 
   @override
@@ -429,11 +386,7 @@ class _$MenuItemImpl implements _MenuItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MenuItemImpl &&
-            (identical(other.restaurantName, restaurantName) ||
-                other.restaurantName == restaurantName) &&
             (identical(other.options, options) || other.options == options) &&
-            (identical(other.outletInfo, outletInfo) ||
-                other.outletInfo == outletInfo) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             const DeepCollectionEquality().equals(other._cuisines, _cuisines) &&
@@ -460,9 +413,7 @@ class _$MenuItemImpl implements _MenuItem {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      restaurantName,
       options,
-      outletInfo,
       categoryId,
       const DeepCollectionEquality().hash(_cuisines),
       itemName,
@@ -487,9 +438,7 @@ class _$MenuItemImpl implements _MenuItem {
 
 abstract class _MenuItem implements MenuItem {
   const factory _MenuItem(
-      {required final String restaurantName,
-      required final MenuOptions options,
-      required final Outlet outletInfo,
+      {required final MenuOptions options,
       required final String categoryId,
       required final List<String> cuisines,
       required final String itemName,
@@ -506,11 +455,7 @@ abstract class _MenuItem implements MenuItem {
       final bool isHappyHourItem}) = _$MenuItemImpl;
 
   @override
-  String get restaurantName;
-  @override
   MenuOptions get options;
-  @override
-  Outlet get outletInfo;
   @override
   String get categoryId;
   @override
