@@ -85,3 +85,5 @@ class CuisineSection extends HookWidget {
     return baseWidth + maxCharLength * charWidth;
   }
 }
+
+

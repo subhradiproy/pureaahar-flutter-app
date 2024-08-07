@@ -12,12 +12,10 @@ import '../../../../shared/widgets/search_field.dart';
 class ExploreAppBar extends StatelessWidget {
   const ExploreAppBar({
     super.key,
-    this.scrollController,
     this.expandedHeight = 300,
   });
 
   final double expandedHeight;
-  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,6 @@ class ExploreAppBar extends StatelessWidget {
       stretch: true,
       flexibleSpace: _ExploreFlexibleSpaceBar(
         key: const ValueKey<String>('explore'),
-        controller: scrollController,
         collapseMode: CollapseMode.parallax,
         background: Image.asset(
           ImageAsset.bestOffer.path,
@@ -100,7 +97,6 @@ class _ExploreFlexibleSpaceBar extends StatefulWidget {
     this.title,
     this.searchField,
     this.collapseMode = CollapseMode.none,
-    this.controller,
   });
 
   /// The primary contents of the flexible space bar
@@ -119,66 +115,12 @@ class _ExploreFlexibleSpaceBar extends StatefulWidget {
   /// Defaults to [CollapseMode.parallax].
   final CollapseMode collapseMode;
 
-  /// ScrollController to apply snapping effect
-  final ScrollController? controller;
-
   @override
   State<_ExploreFlexibleSpaceBar> createState() =>
       _ExploreFlexibleSpaceBarState();
 }
 
 class _ExploreFlexibleSpaceBarState extends State<_ExploreFlexibleSpaceBar> {
-  ScrollNotificationObserverState? _scrollObserver;
-  FlexibleSpaceBarSettings? _settings;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _settings =
-        context.findAncestorWidgetOfExactType<FlexibleSpaceBarSettings>();
-    _scrollObserver?.removeListener(_handleScroll);
-    _scrollObserver = ScrollNotificationObserver.maybeOf(context);
-    _scrollObserver?.addListener(_handleScroll);
-  }
-
-  @override
-  void dispose() {
-    if (_scrollObserver != null) {
-      _scrollObserver!.removeListener(_handleScroll);
-      _scrollObserver!.dispose();
-      _scrollObserver = null;
-    }
-    super.dispose();
-  }
-
-  /// Handles the scroll notification to apply snapping effect
-  /// End Limit -> 224.0, Start Limit -> 0.0
-  void _handleScroll(ScrollNotification notification) {
-    final bool isAttached =
-        _settings != null && (widget.controller?.hasClients ?? false);
-    // if (isAttached && notification is ScrollEndNotification) {
-    //   final double maxExtent = _settings!.maxExtent;
-    //   final double current = notification.metrics.pixels;
-    //   final double minExtent = _settings!.minExtent;
-    //   if (current >= minExtent && current <= maxExtent) {
-    //     _scrollToOffset(
-    //       current > (maxExtent - minExtent) / 2 ? maxExtent : minExtent,
-    //     );
-    //   }
-    // }
-  }
-
-  // Scrolls to the given offset with animation
-  void _scrollToOffset(double snapValue) {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => widget.controller!.animateTo(
-        snapValue,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      ),
-    );
-  }
-
   // Returns the padding to be applied to the background image when collapsed.
   double _getCollapsePadding(double t, FlexibleSpaceBarSettings settings) {
     return switch (widget.collapseMode) {
