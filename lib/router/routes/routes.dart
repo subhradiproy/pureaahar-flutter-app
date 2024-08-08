@@ -7,6 +7,7 @@ enum AppRoute {
   home('/app/explore', 'EXPLORE'),
   meals('/app/meals', 'MEALS'),
   productListing('/app/brands/:id', 'PRODUCT_LISTING'),
+  brandProduct('/app/brandproduct', 'BRAND_PRODUCT_LISTING'),
   ;
 
   /// AppRoute Constructor

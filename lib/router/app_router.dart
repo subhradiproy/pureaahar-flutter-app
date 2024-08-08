@@ -6,6 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../features/app_startup/presentation/screens/splash_screen.dart';
 import '../features/authentication/presentation/screens/login_screen.dart';
 import '../features/authentication/presentation/screens/verification_screen.dart';
+import '../features/brands_ltem/presentation/screens/brand_product_list.dart';
 import '../features/home/presentation/screens/explore_home_screen.dart';
 import '../features/home/presentation/widgets/nested_scaffold_nav.dart';
 import '../features/product_listing/screens/product_listing_screen.dart';
@@ -90,6 +91,11 @@ class AppRouter extends _$AppRouter {
             key: state.pageKey,
             outletId: state.pathParameters['id']!,
           ),
+        ),
+        GoRoute(
+          path: AppRoute.brandProduct.path,
+          name: AppRoute.brandProduct.name,
+          builder: (_, GoRouterState state) => const BrandProduct(),
         ),
       ],
     );
