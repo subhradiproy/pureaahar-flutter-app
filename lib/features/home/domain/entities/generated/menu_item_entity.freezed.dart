@@ -22,9 +22,10 @@ mixin _$MenuItem {
   String get itemName => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get itemImageUrl => throw _privateConstructorUsedError;
+  int get price => throw _privateConstructorUsedError;
   String? get itemDescription => throw _privateConstructorUsedError;
-  List<({int discountPercent, bool isActive, int price})> get pricing =>
-      throw _privateConstructorUsedError;
+  int get discountPercent => throw _privateConstructorUsedError;
+  bool get isPriceActive => throw _privateConstructorUsedError;
   List<({int rating, String userId})> get reviews =>
       throw _privateConstructorUsedError;
   int? get rating => throw _privateConstructorUsedError;
@@ -51,8 +52,10 @@ abstract class $MenuItemCopyWith<$Res> {
       String itemName,
       String status,
       String itemImageUrl,
+      int price,
       String? itemDescription,
-      List<({int discountPercent, bool isActive, int price})> pricing,
+      int discountPercent,
+      bool isPriceActive,
       List<({int rating, String userId})> reviews,
       int? rating,
       int? happyHourPrice,
@@ -83,8 +86,10 @@ class _$MenuItemCopyWithImpl<$Res, $Val extends MenuItem>
     Object? itemName = null,
     Object? status = null,
     Object? itemImageUrl = null,
+    Object? price = null,
     Object? itemDescription = freezed,
-    Object? pricing = null,
+    Object? discountPercent = null,
+    Object? isPriceActive = null,
     Object? reviews = null,
     Object? rating = freezed,
     Object? happyHourPrice = freezed,
@@ -118,14 +123,22 @@ class _$MenuItemCopyWithImpl<$Res, $Val extends MenuItem>
           ? _value.itemImageUrl
           : itemImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
       itemDescription: freezed == itemDescription
           ? _value.itemDescription
           : itemDescription // ignore: cast_nullable_to_non_nullable
               as String?,
-      pricing: null == pricing
-          ? _value.pricing
-          : pricing // ignore: cast_nullable_to_non_nullable
-              as List<({int discountPercent, bool isActive, int price})>,
+      discountPercent: null == discountPercent
+          ? _value.discountPercent
+          : discountPercent // ignore: cast_nullable_to_non_nullable
+              as int,
+      isPriceActive: null == isPriceActive
+          ? _value.isPriceActive
+          : isPriceActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       reviews: null == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -181,8 +194,10 @@ abstract class _$$MenuItemImplCopyWith<$Res>
       String itemName,
       String status,
       String itemImageUrl,
+      int price,
       String? itemDescription,
-      List<({int discountPercent, bool isActive, int price})> pricing,
+      int discountPercent,
+      bool isPriceActive,
       List<({int rating, String userId})> reviews,
       int? rating,
       int? happyHourPrice,
@@ -212,8 +227,10 @@ class __$$MenuItemImplCopyWithImpl<$Res>
     Object? itemName = null,
     Object? status = null,
     Object? itemImageUrl = null,
+    Object? price = null,
     Object? itemDescription = freezed,
-    Object? pricing = null,
+    Object? discountPercent = null,
+    Object? isPriceActive = null,
     Object? reviews = null,
     Object? rating = freezed,
     Object? happyHourPrice = freezed,
@@ -247,14 +264,22 @@ class __$$MenuItemImplCopyWithImpl<$Res>
           ? _value.itemImageUrl
           : itemImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
       itemDescription: freezed == itemDescription
           ? _value.itemDescription
           : itemDescription // ignore: cast_nullable_to_non_nullable
               as String?,
-      pricing: null == pricing
-          ? _value._pricing
-          : pricing // ignore: cast_nullable_to_non_nullable
-              as List<({int discountPercent, bool isActive, int price})>,
+      discountPercent: null == discountPercent
+          ? _value.discountPercent
+          : discountPercent // ignore: cast_nullable_to_non_nullable
+              as int,
+      isPriceActive: null == isPriceActive
+          ? _value.isPriceActive
+          : isPriceActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       reviews: null == reviews
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -289,7 +314,7 @@ class __$$MenuItemImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MenuItemImpl implements _MenuItem {
+class _$MenuItemImpl extends _MenuItem {
   const _$MenuItemImpl(
       {required this.options,
       required this.categoryId,
@@ -297,9 +322,10 @@ class _$MenuItemImpl implements _MenuItem {
       required this.itemName,
       required this.status,
       required this.itemImageUrl,
+      required this.price,
       this.itemDescription,
-      final List<({int discountPercent, bool isActive, int price})> pricing =
-          const <({int price, int discountPercent, bool isActive})>[],
+      this.discountPercent = 0,
+      this.isPriceActive = true,
       final List<({int rating, String userId})> reviews = const <({
         int rating,
         String userId
@@ -311,9 +337,9 @@ class _$MenuItemImpl implements _MenuItem {
       this.isVeg = false,
       this.isHappyHourItem = false})
       : _cuisines = cuisines,
-        _pricing = pricing,
         _reviews = reviews,
-        _tags = tags;
+        _tags = tags,
+        super._();
 
   @override
   final MenuOptions options;
@@ -334,16 +360,15 @@ class _$MenuItemImpl implements _MenuItem {
   @override
   final String itemImageUrl;
   @override
+  final int price;
+  @override
   final String? itemDescription;
-  final List<({int discountPercent, bool isActive, int price})> _pricing;
   @override
   @JsonKey()
-  List<({int discountPercent, bool isActive, int price})> get pricing {
-    if (_pricing is EqualUnmodifiableListView) return _pricing;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pricing);
-  }
-
+  final int discountPercent;
+  @override
+  @JsonKey()
+  final bool isPriceActive;
   final List<({int rating, String userId})> _reviews;
   @override
   @JsonKey()
@@ -378,7 +403,7 @@ class _$MenuItemImpl implements _MenuItem {
 
   @override
   String toString() {
-    return 'MenuItem(options: $options, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemImageUrl: $itemImageUrl, itemDescription: $itemDescription, pricing: $pricing, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
+    return 'MenuItem(options: $options, categoryId: $categoryId, cuisines: $cuisines, itemName: $itemName, status: $status, itemImageUrl: $itemImageUrl, price: $price, itemDescription: $itemDescription, discountPercent: $discountPercent, isPriceActive: $isPriceActive, reviews: $reviews, rating: $rating, happyHourPrice: $happyHourPrice, tags: $tags, isInStock: $isInStock, isVeg: $isVeg, isHappyHourItem: $isHappyHourItem)';
   }
 
   @override
@@ -395,9 +420,13 @@ class _$MenuItemImpl implements _MenuItem {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.itemImageUrl, itemImageUrl) ||
                 other.itemImageUrl == itemImageUrl) &&
+            (identical(other.price, price) || other.price == price) &&
             (identical(other.itemDescription, itemDescription) ||
                 other.itemDescription == itemDescription) &&
-            const DeepCollectionEquality().equals(other._pricing, _pricing) &&
+            (identical(other.discountPercent, discountPercent) ||
+                other.discountPercent == discountPercent) &&
+            (identical(other.isPriceActive, isPriceActive) ||
+                other.isPriceActive == isPriceActive) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.happyHourPrice, happyHourPrice) ||
@@ -419,8 +448,10 @@ class _$MenuItemImpl implements _MenuItem {
       itemName,
       status,
       itemImageUrl,
+      price,
       itemDescription,
-      const DeepCollectionEquality().hash(_pricing),
+      discountPercent,
+      isPriceActive,
       const DeepCollectionEquality().hash(_reviews),
       rating,
       happyHourPrice,
@@ -436,7 +467,7 @@ class _$MenuItemImpl implements _MenuItem {
       __$$MenuItemImplCopyWithImpl<_$MenuItemImpl>(this, _$identity);
 }
 
-abstract class _MenuItem implements MenuItem {
+abstract class _MenuItem extends MenuItem {
   const factory _MenuItem(
       {required final MenuOptions options,
       required final String categoryId,
@@ -444,8 +475,10 @@ abstract class _MenuItem implements MenuItem {
       required final String itemName,
       required final String status,
       required final String itemImageUrl,
+      required final int price,
       final String? itemDescription,
-      final List<({int discountPercent, bool isActive, int price})> pricing,
+      final int discountPercent,
+      final bool isPriceActive,
       final List<({int rating, String userId})> reviews,
       final int? rating,
       final int? happyHourPrice,
@@ -453,6 +486,7 @@ abstract class _MenuItem implements MenuItem {
       final bool isInStock,
       final bool isVeg,
       final bool isHappyHourItem}) = _$MenuItemImpl;
+  const _MenuItem._() : super._();
 
   @override
   MenuOptions get options;
@@ -467,9 +501,13 @@ abstract class _MenuItem implements MenuItem {
   @override
   String get itemImageUrl;
   @override
+  int get price;
+  @override
   String? get itemDescription;
   @override
-  List<({int discountPercent, bool isActive, int price})> get pricing;
+  int get discountPercent;
+  @override
+  bool get isPriceActive;
   @override
   List<({int rating, String userId})> get reviews;
   @override

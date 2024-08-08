@@ -2,6 +2,7 @@
 enum SvgAsset {
   googleIcon('assets/vectors/google.svg'),
   india('assets/vectors/india.svg'),
+  vegIcon('assets/vectors/veg-icon.svg'),
   tuneSettings('assets/vectors/settings-slider.svg'),
   ;
 

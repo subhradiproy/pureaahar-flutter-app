@@ -13,9 +13,10 @@ sealed class MenuItem with _$MenuItem {
     required String itemName,
     required String status,
     required String itemImageUrl,
+    required int price,
     String? itemDescription,
-    @Default(<({int price, int discountPercent, bool isActive})>[])
-    List<({int price, int discountPercent, bool isActive})> pricing,
+    @Default(0) int discountPercent,
+    @Default(true) bool isPriceActive,
     @Default(<({int rating, String userId})>[])
     List<({int rating, String userId})> reviews,
     int? rating,
@@ -25,6 +26,16 @@ sealed class MenuItem with _$MenuItem {
     @Default(false) bool isVeg,
     @Default(false) bool isHappyHourItem,
   }) = _MenuItem;
+
+  const MenuItem._();
+
+  /// Returns the display amount of the menu item
+  int displayAmount() {
+    if (isDiscounted) return (price - (price * discountPercent / 100)).ceil();
+    return price;
+  }
+
+  bool get isDiscounted => discountPercent > 0 && isPriceActive;
 }
 
 @freezed
