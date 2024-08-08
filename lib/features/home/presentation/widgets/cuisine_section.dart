@@ -24,12 +24,11 @@ class CuisineSection extends HookWidget {
     final double mainAxisExtent =
         useMemoized<double>(_computeExtent, <int>[cuisines.length]);
     return Container(
-      constraints: const BoxConstraints(maxHeight: 240),
+      constraints: const BoxConstraints.tightFor(height: 240),
       margin: const EdgeInsets.only(top: 30),
       color: const Color(0xFFFFEFE2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
             padding: textPadding,
@@ -85,5 +84,3 @@ class CuisineSection extends HookWidget {
     return baseWidth + maxCharLength * charWidth;
   }
 }
-
-

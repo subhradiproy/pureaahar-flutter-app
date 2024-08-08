@@ -298,11 +298,11 @@ mixin _$Outlet {
   ({double distance, double latitude, double longitude}) get location =>
       throw _privateConstructorUsedError;
   String get outletAddress => throw _privateConstructorUsedError;
+  List<String> get filterTags => throw _privateConstructorUsedError;
   ({TimeOfDay fromTime, TimeOfDay toTime}) get timing =>
       throw _privateConstructorUsedError;
   bool get isAcceptingOrder => throw _privateConstructorUsedError;
   String? get rating => throw _privateConstructorUsedError;
-  List<String> get certifications => throw _privateConstructorUsedError;
   List<MenuSection> get menus => throw _privateConstructorUsedError;
   bool get isOpen => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
@@ -321,10 +321,10 @@ abstract class $OutletCopyWith<$Res> {
       {String id,
       ({double distance, double latitude, double longitude}) location,
       String outletAddress,
+      List<String> filterTags,
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       bool isAcceptingOrder,
       String? rating,
-      List<String> certifications,
       List<MenuSection> menus,
       bool isOpen,
       int? ratingCount,
@@ -347,10 +347,10 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
     Object? id = null,
     Object? location = null,
     Object? outletAddress = null,
+    Object? filterTags = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
     Object? rating = freezed,
-    Object? certifications = null,
     Object? menus = null,
     Object? isOpen = null,
     Object? ratingCount = freezed,
@@ -369,6 +369,10 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
           ? _value.outletAddress
           : outletAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      filterTags: null == filterTags
+          ? _value.filterTags
+          : filterTags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       timing: null == timing
           ? _value.timing
           : timing // ignore: cast_nullable_to_non_nullable
@@ -381,10 +385,6 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String?,
-      certifications: null == certifications
-          ? _value.certifications
-          : certifications // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       menus: null == menus
           ? _value.menus
           : menus // ignore: cast_nullable_to_non_nullable
@@ -416,10 +416,10 @@ abstract class _$$OutletImplCopyWith<$Res> implements $OutletCopyWith<$Res> {
       {String id,
       ({double distance, double latitude, double longitude}) location,
       String outletAddress,
+      List<String> filterTags,
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       bool isAcceptingOrder,
       String? rating,
-      List<String> certifications,
       List<MenuSection> menus,
       bool isOpen,
       int? ratingCount,
@@ -440,10 +440,10 @@ class __$$OutletImplCopyWithImpl<$Res>
     Object? id = null,
     Object? location = null,
     Object? outletAddress = null,
+    Object? filterTags = null,
     Object? timing = null,
     Object? isAcceptingOrder = null,
     Object? rating = freezed,
-    Object? certifications = null,
     Object? menus = null,
     Object? isOpen = null,
     Object? ratingCount = freezed,
@@ -462,6 +462,10 @@ class __$$OutletImplCopyWithImpl<$Res>
           ? _value.outletAddress
           : outletAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      filterTags: null == filterTags
+          ? _value._filterTags
+          : filterTags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       timing: null == timing
           ? _value.timing
           : timing // ignore: cast_nullable_to_non_nullable
@@ -474,10 +478,6 @@ class __$$OutletImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String?,
-      certifications: null == certifications
-          ? _value._certifications
-          : certifications // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       menus: null == menus
           ? _value._menus
           : menus // ignore: cast_nullable_to_non_nullable
@@ -505,15 +505,15 @@ class _$OutletImpl implements _Outlet {
       {required this.id,
       required this.location,
       required this.outletAddress,
+      required final List<String> filterTags,
       required this.timing,
       this.isAcceptingOrder = false,
       this.rating,
-      final List<String> certifications = const <String>[],
       final List<MenuSection> menus = const <MenuSection>[],
       this.isOpen = false,
       this.ratingCount,
       this.distanceDelta})
-      : _certifications = certifications,
+      : _filterTags = filterTags,
         _menus = menus;
 
   @override
@@ -522,6 +522,14 @@ class _$OutletImpl implements _Outlet {
   final ({double distance, double latitude, double longitude}) location;
   @override
   final String outletAddress;
+  final List<String> _filterTags;
+  @override
+  List<String> get filterTags {
+    if (_filterTags is EqualUnmodifiableListView) return _filterTags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filterTags);
+  }
+
   @override
   final ({TimeOfDay fromTime, TimeOfDay toTime}) timing;
   @override
@@ -529,15 +537,6 @@ class _$OutletImpl implements _Outlet {
   final bool isAcceptingOrder;
   @override
   final String? rating;
-  final List<String> _certifications;
-  @override
-  @JsonKey()
-  List<String> get certifications {
-    if (_certifications is EqualUnmodifiableListView) return _certifications;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_certifications);
-  }
-
   final List<MenuSection> _menus;
   @override
   @JsonKey()
@@ -557,7 +556,7 @@ class _$OutletImpl implements _Outlet {
 
   @override
   String toString() {
-    return 'Outlet(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, certifications: $certifications, menus: $menus, isOpen: $isOpen, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'Outlet(id: $id, location: $location, outletAddress: $outletAddress, filterTags: $filterTags, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, menus: $menus, isOpen: $isOpen, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -570,12 +569,12 @@ class _$OutletImpl implements _Outlet {
                 other.location == location) &&
             (identical(other.outletAddress, outletAddress) ||
                 other.outletAddress == outletAddress) &&
+            const DeepCollectionEquality()
+                .equals(other._filterTags, _filterTags) &&
             (identical(other.timing, timing) || other.timing == timing) &&
             (identical(other.isAcceptingOrder, isAcceptingOrder) ||
                 other.isAcceptingOrder == isAcceptingOrder) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            const DeepCollectionEquality()
-                .equals(other._certifications, _certifications) &&
             const DeepCollectionEquality().equals(other._menus, _menus) &&
             (identical(other.isOpen, isOpen) || other.isOpen == isOpen) &&
             (identical(other.ratingCount, ratingCount) ||
@@ -590,10 +589,10 @@ class _$OutletImpl implements _Outlet {
       id,
       location,
       outletAddress,
+      const DeepCollectionEquality().hash(_filterTags),
       timing,
       isAcceptingOrder,
       rating,
-      const DeepCollectionEquality().hash(_certifications),
       const DeepCollectionEquality().hash(_menus),
       isOpen,
       ratingCount,
@@ -615,10 +614,10 @@ abstract class _Outlet implements Outlet {
         double longitude
       }) location,
       required final String outletAddress,
+      required final List<String> filterTags,
       required final ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
       final bool isAcceptingOrder,
       final String? rating,
-      final List<String> certifications,
       final List<MenuSection> menus,
       final bool isOpen,
       final int? ratingCount,
@@ -631,13 +630,13 @@ abstract class _Outlet implements Outlet {
   @override
   String get outletAddress;
   @override
+  List<String> get filterTags;
+  @override
   ({TimeOfDay fromTime, TimeOfDay toTime}) get timing;
   @override
   bool get isAcceptingOrder;
   @override
   String? get rating;
-  @override
-  List<String> get certifications;
   @override
   List<MenuSection> get menus;
   @override

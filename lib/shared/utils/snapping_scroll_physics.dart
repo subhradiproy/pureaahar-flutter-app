@@ -69,9 +69,7 @@ class BuilderSnapScrollPhysics extends BaseSnapScrollPhysics {
 
 abstract class BaseSnapScrollPhysics extends ScrollPhysics
     implements SnapScrollPhysics {
-  const BaseSnapScrollPhysics({
-    super.parent,
-  });
+  const BaseSnapScrollPhysics({super.parent});
 
   List<Snap> get snaps;
 
@@ -83,7 +81,6 @@ abstract class BaseSnapScrollPhysics extends ScrollPhysics
   ) {
     final Snap? snap = getSnap(position, proposedEnd, tolerance, velocity);
     if (snap == null) return proposedEnd;
-
     return snap.targetPixelsFor(position, proposedEnd, tolerance, velocity);
   }
 

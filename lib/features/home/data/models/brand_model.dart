@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/models/entity_mapper.dart';
 import '../../../../core/models/json_parsers/time_of_day_convertor.dart';
 import '../../domain/entities/brand_entity.dart';
+import '../../domain/entities/menu_item_entity.dart';
 import 'menu_item_model.dart';
 
 part 'generated/brand_model.freezed.dart';
@@ -99,6 +100,7 @@ class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
 
   @override
   Outlet toEntity() {
+    final List<MenuSection> sections = menuSections.toEntityList();
     return Outlet(
       id: id,
       location: location,
@@ -106,8 +108,12 @@ class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
       timing: timing,
       isAcceptingOrder: isAcceptingOrder,
       rating: rating,
-      certifications: certifications,
-      menus: menuSections.toEntityList(),
+      filterTags: sections.fold<Set<String>>(
+        <String>{},
+        (Set<String> set, MenuSection element) =>
+            set..addAll(element.items.expand((MenuItem item) => item.tags)),
+      ).toList(),
+      menus: sections,
       ratingCount: ratingCount,
       distanceDelta: distanceDelta,
       isOpen: isOpened,

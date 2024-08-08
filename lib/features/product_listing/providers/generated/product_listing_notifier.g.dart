@@ -6,8 +6,7 @@ part of '../product_listing_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$productListingNotifierHash() =>
-    r'92b15b11d8c7b148b023c5b0f03f0d5e99c47323';
+String _$outletDataHash() => r'15c14be91c6b64ebe10435509cdabebc401b609e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,6 +28,135 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// See also [outletData].
+@ProviderFor(outletData)
+const outletDataProvider = OutletDataFamily();
+
+/// See also [outletData].
+class OutletDataFamily extends Family<AsyncValue<Outlet>> {
+  /// See also [outletData].
+  const OutletDataFamily();
+
+  /// See also [outletData].
+  OutletDataProvider call(
+    String outletId,
+  ) {
+    return OutletDataProvider(
+      outletId,
+    );
+  }
+
+  @override
+  OutletDataProvider getProviderOverride(
+    covariant OutletDataProvider provider,
+  ) {
+    return call(
+      provider.outletId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'outletDataProvider';
+}
+
+/// See also [outletData].
+class OutletDataProvider extends AutoDisposeFutureProvider<Outlet> {
+  /// See also [outletData].
+  OutletDataProvider(
+    String outletId,
+  ) : this._internal(
+          (ref) => outletData(
+            ref as OutletDataRef,
+            outletId,
+          ),
+          from: outletDataProvider,
+          name: r'outletDataProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$outletDataHash,
+          dependencies: OutletDataFamily._dependencies,
+          allTransitiveDependencies:
+              OutletDataFamily._allTransitiveDependencies,
+          outletId: outletId,
+        );
+
+  OutletDataProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.outletId,
+  }) : super.internal();
+
+  final String outletId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Outlet> Function(OutletDataRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: OutletDataProvider._internal(
+        (ref) => create(ref as OutletDataRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        outletId: outletId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Outlet> createElement() {
+    return _OutletDataProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is OutletDataProvider && other.outletId == outletId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, outletId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin OutletDataRef on AutoDisposeFutureProviderRef<Outlet> {
+  /// The parameter `outletId` of this provider.
+  String get outletId;
+}
+
+class _OutletDataProviderElement
+    extends AutoDisposeFutureProviderElement<Outlet> with OutletDataRef {
+  _OutletDataProviderElement(super.provider);
+
+  @override
+  String get outletId => (origin as OutletDataProvider).outletId;
+}
+
+String _$productListingNotifierHash() =>
+    r'c7f6ba0e2c9545fecef8ad3b34f7fbc5c2bd05ef';
 
 abstract class _$ProductListingNotifier
     extends BuildlessAutoDisposeAsyncNotifier<Outlet> {

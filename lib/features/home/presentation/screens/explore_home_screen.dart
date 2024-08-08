@@ -25,15 +25,18 @@ class ExploreHomeScreen extends HookConsumerWidget {
         },
         child: CustomScrollView(
           controller: scrollController,
-          physics: SnapScrollPhysics.avoidBetween(0, 224),
+          physics: SnapScrollPhysics(
+            snaps: <Snap>[
+              Snap.avoidZone(0, 224),
+              Snap(484),
+            ],
+          ),
           slivers: <Widget>[
             const ExploreAppBar(),
             _buildCuisines(ref),
             _buildReels(),
             _buildBrands(ref),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 100),
-            ),
+            const SliverToBoxAdapter(child: SizedBox(height: 400)),
           ],
         ),
       ),
