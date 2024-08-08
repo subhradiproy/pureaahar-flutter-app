@@ -53,6 +53,16 @@ sealed class AppTheme {
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
         },
       ),
+      chipTheme: ChipThemeData(
+        backgroundColor: Colors.white,
+        disabledColor: scheme.primary.withOpacity(0.5),
+        selectedColor: scheme.primary,
+        secondarySelectedColor: scheme.primary,
+        brightness: brightness,
+        padding: const EdgeInsets.all(8),
+        side: const BorderSide(color: AppColors.gray2, width: 0.7),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: scheme.surface,

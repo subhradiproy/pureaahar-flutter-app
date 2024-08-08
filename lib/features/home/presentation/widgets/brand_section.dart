@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,18 +9,25 @@ import '../../../../shared/widgets/app_text.dart';
 import '../../domain/entities/brand_entity.dart';
 
 class BrandSection extends StatelessWidget {
-  const BrandSection({super.key, this.brands = const <Brand>[]});
+  const BrandSection({
+    super.key,
+    this.cardHeight = 270,
+    this.brands = const <Brand>[],
+  });
 
   /// List of brands to display
   final List<Brand> brands;
 
-  // minimum height of the widget below this the text will overflow
+  /// Height of the cards
+  final double cardHeight;
+
+  // Minimum height of the widget below this the text will overflow
   double get _minHeight => 268;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _minHeight,
+      height: math.max(_minHeight, cardHeight),
       padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
       color: Colors.white,
       child: Column(
@@ -32,11 +39,11 @@ class BrandSection extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               scrollDirection: Axis.horizontal,
               itemCount: brands.length,
-              itemExtent: 163,
+              itemExtent: 150,
               physics: const PageScrollPhysics(),
               itemBuilder: (_, int index) => _BrandItem(
                 brand: brands[index],
-                isLast: index == brands.length - 1,
+                isLastItem: index == brands.length - 1,
                 key: ValueKey<String>(brands[index].restaurantId),
                 onTap: () => context.pushNamed(
                   AppRoute.productListing.name,
@@ -54,18 +61,23 @@ class BrandSection extends StatelessWidget {
   }
 }
 
-/// Individual brand item ( Private class )
+/// Individual brand item ( Private Widget )
 class _BrandItem extends StatelessWidget {
   const _BrandItem({
     required this.brand,
-    this.isLast = false,
+    this.isLastItem = false,
     super.key,
     this.onTap,
   });
 
+  /// Brand to display
   final Brand brand;
+
+  /// Callback when the item is tapped
   final VoidCallback? onTap;
-  final bool isLast;
+
+  /// Whether this is the last item in the list
+  final bool isLastItem;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +85,7 @@ class _BrandItem extends StatelessWidget {
     return GestureDetector(
       onTap: enabled ? onTap : null,
       child: Container(
-        margin: EdgeInsets.only(right: isLast ? 0 : 12),
+        margin: EdgeInsets.only(right: isLastItem ? 0 : 12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
@@ -94,11 +106,10 @@ class _BrandItem extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: AspectRatio(
-                  aspectRatio: 13 / 10,
+                  aspectRatio: 1,
                   child: Image.network(brand.background, fit: BoxFit.cover),
                 ),
               ),
-              if (brand.logo != null) _buildLogo(constraints),
               Positioned(
                 bottom: 0,
                 left: 0,
@@ -106,7 +117,8 @@ class _BrandItem extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(6),
                   constraints: BoxConstraints(
-                    maxHeight: constraints.maxHeight * 0.48,
+                    minHeight: constraints.maxHeight * 0.34,
+                    maxHeight: constraints.maxHeight * 0.445,
                   ),
                   decoration: const BoxDecoration(
                     color: Colors.white,
@@ -139,19 +151,17 @@ class _BrandItem extends StatelessWidget {
           child: AppText(
             brand.name,
             maxLines: 1,
-            style: AppTextStyle.paragraph1,
+            style: AppTextStyle.paragraph1.copyWith(fontSize: 12),
           ),
         ),
-        const SizedBox(height: 3),
+        const SizedBox(height: 1),
         if (!enabled) ...<Widget>[
           FittedBox(
             fit: BoxFit.scaleDown,
             child: AppText(
               '[Currently not accepting orders]',
               maxLines: 1,
-              style: AppTextStyle.link.copyWith(
-                color: AppColors.error,
-              ),
+              style: AppTextStyle.link.copyWith(color: AppColors.error),
             ),
           ),
           const SizedBox(height: 3),
@@ -160,40 +170,13 @@ class _BrandItem extends StatelessWidget {
           AppText(
             brand.description!,
             maxLines: 3,
+            textAlign: TextAlign.start,
             style: AppTextStyle.paragraph1.copyWith(
               color: AppColors.gray2,
-              fontSize: 10,
+              fontSize: 9,
             ),
           ),
       ],
-    );
-  }
-
-  /// Builds the logo of the brand if available
-  Align _buildLogo(BoxConstraints layout) {
-    return Align(
-      alignment: const Alignment(0, -0.7),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(6),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-          child: Container(
-            alignment: Alignment.center,
-            constraints: BoxConstraints.tightFor(
-              height: layout.maxHeight * 0.38,
-              width: layout.maxWidth * 0.6,
-            ),
-            color: Colors.white.withOpacity(0.43),
-            child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Image.network(
-                brand.logo!,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
