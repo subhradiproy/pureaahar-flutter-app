@@ -31,10 +31,7 @@ class ProductListingScreen extends HookConsumerWidget {
           controller: scrollController,
           physics: SnapScrollPhysics(snaps: <Snap>[Snap.avoidZone(0, 240)]),
           slivers: <Widget>[
-            const ProductListAppbar(
-              brandUrl:
-                  'https://storage.googleapis.com/pureaahar-file-storage-dev/cuisines/images/20686a5d-7176-4aef-b870-265fe0cca1c4.jpeg',
-            ),
+            ProductListAppbar(brandUrl: outlet.parentBrand?.background ?? ''),
             if (outlet.filterTags.isNotEmpty) _buildFilters(outlet),
             for (final MenuSection section in outlet.menus)
               MenuSectionList(section: section),

@@ -10,17 +10,22 @@ import 'menu_item_model.dart';
 part 'generated/brand_model.freezed.dart';
 part 'generated/brand_model.g.dart';
 
+Object? _readId(Map<Object?, Object?> json, String key) {
+  if (json.containsKey(key)) return json[key];
+  return json['_id'];
+}
+
 @freezed
 @JsonSerializable()
 class BrandModel with _$BrandModel implements EntityMapper<Brand> {
   const factory BrandModel({
-    required String restaurantId,
+    @JsonKey(readValue: _readId) required String restaurantId,
     @JsonKey(name: 'restaurantName') required String name,
     @JsonKey(name: 'bg') required String background,
     String? logo,
     String? description,
     OutletModel? nearestOutlet,
-    @Default(<OutletModel>[]) List<OutletModel> serviceableOutlets,
+    List<OutletModel>? serviceableOutlets,
   }) = _BrandModel;
 
   const BrandModel._();
@@ -48,7 +53,7 @@ class BrandModel with _$BrandModel implements EntityMapper<Brand> {
       logo: logo,
       description: description,
       nearestOutlet: nearestOutlet?.toEntity(),
-      serviceableOutlets: serviceableOutlets.toEntityList(),
+      serviceableOutlets: serviceableOutlets?.toEntityList() ?? <Outlet>[],
     );
   }
 }
@@ -62,6 +67,14 @@ List<MenuSectionModel> _menuFromJson(List<dynamic> json) {
       _ => prev,
     },
   );
+}
+
+/// Parse brand only if the restaurantId key is present as object
+BrandModel? _parseBrand(Object? json) {
+  return switch (json) {
+    final Map<String, Object?> map => BrandModel.fromJson(map),
+    _ => null,
+  };
 }
 
 @freezed
@@ -78,6 +91,7 @@ class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
     required bool isAcceptingOrder,
     @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
     required List<MenuSectionModel> menuSections,
+    @JsonKey(name: 'restaurantId', fromJson: _parseBrand) BrandModel? brand,
     @JsonKey(defaultValue: <String>[])
     @Default(<String>[])
     List<String> certifications,
@@ -103,6 +117,7 @@ class OutletModel with _$OutletModel implements EntityMapper<Outlet> {
     final List<MenuSection> sections = menuSections.toEntityList();
     return Outlet(
       id: id,
+      parentBrand: brand?.toEntity(),
       location: location,
       outletAddress: outletAddress,
       timing: timing,

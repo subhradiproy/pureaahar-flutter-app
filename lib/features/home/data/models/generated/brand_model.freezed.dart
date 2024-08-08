@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BrandModel {
+  @JsonKey(readValue: _readId)
   String get restaurantId => throw _privateConstructorUsedError;
   @JsonKey(name: 'restaurantName')
   String get name => throw _privateConstructorUsedError;
@@ -24,7 +25,7 @@ mixin _$BrandModel {
   String? get logo => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   OutletModel? get nearestOutlet => throw _privateConstructorUsedError;
-  List<OutletModel> get serviceableOutlets =>
+  List<OutletModel>? get serviceableOutlets =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,13 +40,13 @@ abstract class $BrandModelCopyWith<$Res> {
       _$BrandModelCopyWithImpl<$Res, BrandModel>;
   @useResult
   $Res call(
-      {String restaurantId,
+      {@JsonKey(readValue: _readId) String restaurantId,
       @JsonKey(name: 'restaurantName') String name,
       @JsonKey(name: 'bg') String background,
       String? logo,
       String? description,
       OutletModel? nearestOutlet,
-      List<OutletModel> serviceableOutlets});
+      List<OutletModel>? serviceableOutlets});
 
   $OutletModelCopyWith<$Res>? get nearestOutlet;
 }
@@ -69,7 +70,7 @@ class _$BrandModelCopyWithImpl<$Res, $Val extends BrandModel>
     Object? logo = freezed,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
-    Object? serviceableOutlets = null,
+    Object? serviceableOutlets = freezed,
   }) {
     return _then(_value.copyWith(
       restaurantId: null == restaurantId
@@ -96,10 +97,10 @@ class _$BrandModelCopyWithImpl<$Res, $Val extends BrandModel>
           ? _value.nearestOutlet
           : nearestOutlet // ignore: cast_nullable_to_non_nullable
               as OutletModel?,
-      serviceableOutlets: null == serviceableOutlets
+      serviceableOutlets: freezed == serviceableOutlets
           ? _value.serviceableOutlets
           : serviceableOutlets // ignore: cast_nullable_to_non_nullable
-              as List<OutletModel>,
+              as List<OutletModel>?,
     ) as $Val);
   }
 
@@ -125,13 +126,13 @@ abstract class _$$BrandModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String restaurantId,
+      {@JsonKey(readValue: _readId) String restaurantId,
       @JsonKey(name: 'restaurantName') String name,
       @JsonKey(name: 'bg') String background,
       String? logo,
       String? description,
       OutletModel? nearestOutlet,
-      List<OutletModel> serviceableOutlets});
+      List<OutletModel>? serviceableOutlets});
 
   @override
   $OutletModelCopyWith<$Res>? get nearestOutlet;
@@ -154,7 +155,7 @@ class __$$BrandModelImplCopyWithImpl<$Res>
     Object? logo = freezed,
     Object? description = freezed,
     Object? nearestOutlet = freezed,
-    Object? serviceableOutlets = null,
+    Object? serviceableOutlets = freezed,
   }) {
     return _then(_$BrandModelImpl(
       restaurantId: null == restaurantId
@@ -181,10 +182,10 @@ class __$$BrandModelImplCopyWithImpl<$Res>
           ? _value.nearestOutlet
           : nearestOutlet // ignore: cast_nullable_to_non_nullable
               as OutletModel?,
-      serviceableOutlets: null == serviceableOutlets
+      serviceableOutlets: freezed == serviceableOutlets
           ? _value._serviceableOutlets
           : serviceableOutlets // ignore: cast_nullable_to_non_nullable
-              as List<OutletModel>,
+              as List<OutletModel>?,
     ));
   }
 }
@@ -193,17 +194,18 @@ class __$$BrandModelImplCopyWithImpl<$Res>
 
 class _$BrandModelImpl extends _BrandModel {
   const _$BrandModelImpl(
-      {required this.restaurantId,
+      {@JsonKey(readValue: _readId) required this.restaurantId,
       @JsonKey(name: 'restaurantName') required this.name,
       @JsonKey(name: 'bg') required this.background,
       this.logo,
       this.description,
       this.nearestOutlet,
-      final List<OutletModel> serviceableOutlets = const <OutletModel>[]})
+      final List<OutletModel>? serviceableOutlets})
       : _serviceableOutlets = serviceableOutlets,
         super._();
 
   @override
+  @JsonKey(readValue: _readId)
   final String restaurantId;
   @override
   @JsonKey(name: 'restaurantName')
@@ -217,14 +219,15 @@ class _$BrandModelImpl extends _BrandModel {
   final String? description;
   @override
   final OutletModel? nearestOutlet;
-  final List<OutletModel> _serviceableOutlets;
+  final List<OutletModel>? _serviceableOutlets;
   @override
-  @JsonKey()
-  List<OutletModel> get serviceableOutlets {
+  List<OutletModel>? get serviceableOutlets {
+    final value = _serviceableOutlets;
+    if (value == null) return null;
     if (_serviceableOutlets is EqualUnmodifiableListView)
       return _serviceableOutlets;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_serviceableOutlets);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -271,16 +274,17 @@ class _$BrandModelImpl extends _BrandModel {
 
 abstract class _BrandModel extends BrandModel {
   const factory _BrandModel(
-      {required final String restaurantId,
+      {@JsonKey(readValue: _readId) required final String restaurantId,
       @JsonKey(name: 'restaurantName') required final String name,
       @JsonKey(name: 'bg') required final String background,
       final String? logo,
       final String? description,
       final OutletModel? nearestOutlet,
-      final List<OutletModel> serviceableOutlets}) = _$BrandModelImpl;
+      final List<OutletModel>? serviceableOutlets}) = _$BrandModelImpl;
   const _BrandModel._() : super._();
 
   @override
+  @JsonKey(readValue: _readId)
   String get restaurantId;
   @override
   @JsonKey(name: 'restaurantName')
@@ -295,7 +299,7 @@ abstract class _BrandModel extends BrandModel {
   @override
   OutletModel? get nearestOutlet;
   @override
-  List<OutletModel> get serviceableOutlets;
+  List<OutletModel>? get serviceableOutlets;
   @override
   @JsonKey(ignore: true)
   _$$BrandModelImplCopyWith<_$BrandModelImpl> get copyWith =>
@@ -317,6 +321,8 @@ mixin _$OutletModel {
   bool get isAcceptingOrder => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
   List<MenuSectionModel> get menuSections => throw _privateConstructorUsedError;
+  @JsonKey(name: 'restaurantId', fromJson: _parseBrand)
+  BrandModel? get brand => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: <String>[])
   List<String> get certifications => throw _privateConstructorUsedError;
   bool get isOpened => throw _privateConstructorUsedError;
@@ -346,11 +352,14 @@ abstract class $OutletModelCopyWith<$Res> {
       bool isAcceptingOrder,
       @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
       List<MenuSectionModel> menuSections,
+      @JsonKey(name: 'restaurantId', fromJson: _parseBrand) BrandModel? brand,
       @JsonKey(defaultValue: <String>[]) List<String> certifications,
       bool isOpened,
       String? rating,
       int? ratingCount,
       double? distanceDelta});
+
+  $BrandModelCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -372,6 +381,7 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
     Object? timing = null,
     Object? isAcceptingOrder = null,
     Object? menuSections = null,
+    Object? brand = freezed,
     Object? certifications = null,
     Object? isOpened = null,
     Object? rating = freezed,
@@ -403,6 +413,10 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
           ? _value.menuSections
           : menuSections // ignore: cast_nullable_to_non_nullable
               as List<MenuSectionModel>,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as BrandModel?,
       certifications: null == certifications
           ? _value.certifications
           : certifications // ignore: cast_nullable_to_non_nullable
@@ -425,6 +439,18 @@ class _$OutletModelCopyWithImpl<$Res, $Val extends OutletModel>
               as double?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BrandModelCopyWith<$Res>? get brand {
+    if (_value.brand == null) {
+      return null;
+    }
+
+    return $BrandModelCopyWith<$Res>(_value.brand!, (value) {
+      return _then(_value.copyWith(brand: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -446,11 +472,15 @@ abstract class _$$OutletModelImplCopyWith<$Res>
       bool isAcceptingOrder,
       @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
       List<MenuSectionModel> menuSections,
+      @JsonKey(name: 'restaurantId', fromJson: _parseBrand) BrandModel? brand,
       @JsonKey(defaultValue: <String>[]) List<String> certifications,
       bool isOpened,
       String? rating,
       int? ratingCount,
       double? distanceDelta});
+
+  @override
+  $BrandModelCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -470,6 +500,7 @@ class __$$OutletModelImplCopyWithImpl<$Res>
     Object? timing = null,
     Object? isAcceptingOrder = null,
     Object? menuSections = null,
+    Object? brand = freezed,
     Object? certifications = null,
     Object? isOpened = null,
     Object? rating = freezed,
@@ -501,6 +532,10 @@ class __$$OutletModelImplCopyWithImpl<$Res>
           ? _value._menuSections
           : menuSections // ignore: cast_nullable_to_non_nullable
               as List<MenuSectionModel>,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as BrandModel?,
       certifications: null == certifications
           ? _value._certifications
           : certifications // ignore: cast_nullable_to_non_nullable
@@ -537,6 +572,7 @@ class _$OutletModelImpl extends _OutletModel {
       required this.isAcceptingOrder,
       @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
       required final List<MenuSectionModel> menuSections,
+      @JsonKey(name: 'restaurantId', fromJson: _parseBrand) this.brand,
       @JsonKey(defaultValue: <String>[])
       final List<String> certifications = const <String>[],
       this.isOpened = false,
@@ -570,6 +606,9 @@ class _$OutletModelImpl extends _OutletModel {
     return EqualUnmodifiableListView(_menuSections);
   }
 
+  @override
+  @JsonKey(name: 'restaurantId', fromJson: _parseBrand)
+  final BrandModel? brand;
   final List<String> _certifications;
   @override
   @JsonKey(defaultValue: <String>[])
@@ -591,7 +630,7 @@ class _$OutletModelImpl extends _OutletModel {
 
   @override
   String toString() {
-    return 'OutletModel(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, menuSections: $menuSections, certifications: $certifications, isOpened: $isOpened, rating: $rating, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'OutletModel(id: $id, location: $location, outletAddress: $outletAddress, timing: $timing, isAcceptingOrder: $isAcceptingOrder, menuSections: $menuSections, brand: $brand, certifications: $certifications, isOpened: $isOpened, rating: $rating, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -609,6 +648,7 @@ class _$OutletModelImpl extends _OutletModel {
                 other.isAcceptingOrder == isAcceptingOrder) &&
             const DeepCollectionEquality()
                 .equals(other._menuSections, _menuSections) &&
+            (identical(other.brand, brand) || other.brand == brand) &&
             const DeepCollectionEquality()
                 .equals(other._certifications, _certifications) &&
             (identical(other.isOpened, isOpened) ||
@@ -629,6 +669,7 @@ class _$OutletModelImpl extends _OutletModel {
       timing,
       isAcceptingOrder,
       const DeepCollectionEquality().hash(_menuSections),
+      brand,
       const DeepCollectionEquality().hash(_certifications),
       isOpened,
       rating,
@@ -658,6 +699,8 @@ abstract class _OutletModel extends OutletModel {
       required final bool isAcceptingOrder,
       @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
       required final List<MenuSectionModel> menuSections,
+      @JsonKey(name: 'restaurantId', fromJson: _parseBrand)
+      final BrandModel? brand,
       @JsonKey(defaultValue: <String>[]) final List<String> certifications,
       final bool isOpened,
       final String? rating,
@@ -682,6 +725,9 @@ abstract class _OutletModel extends OutletModel {
   @override
   @JsonKey(defaultValue: <MenuSectionModel>[], fromJson: _menuFromJson)
   List<MenuSectionModel> get menuSections;
+  @override
+  @JsonKey(name: 'restaurantId', fromJson: _parseBrand)
+  BrandModel? get brand;
   @override
   @JsonKey(defaultValue: <String>[])
   List<String> get certifications;

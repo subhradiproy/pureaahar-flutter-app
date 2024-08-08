@@ -7,7 +7,7 @@ part of '../brand_model.dart';
 // **************************************************************************
 
 BrandModel _$BrandModelFromJson(Map<String, dynamic> json) => BrandModel(
-      restaurantId: json['restaurantId'] as String,
+      restaurantId: _readId(json, 'restaurantId') as String,
       name: json['restaurantName'] as String,
       background: json['bg'] as String,
       logo: json['logo'] as String?,
@@ -15,8 +15,8 @@ BrandModel _$BrandModelFromJson(Map<String, dynamic> json) => BrandModel(
       nearestOutlet: json['nearestOutlet'] == null
           ? null
           : OutletModel.fromJson(json['nearestOutlet'] as Map<String, dynamic>),
-      serviceableOutlets: (json['serviceableOutlets'] as List<dynamic>)
-          .map((e) => OutletModel.fromJson(e as Map<String, dynamic>))
+      serviceableOutlets: (json['serviceableOutlets'] as List<dynamic>?)
+          ?.map((e) => OutletModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -36,8 +36,8 @@ Map<String, dynamic> _$BrandModelToJson(BrandModel instance) {
   writeNotNull('logo', instance.logo);
   writeNotNull('description', instance.description);
   writeNotNull('nearestOutlet', instance.nearestOutlet?.toJson());
-  val['serviceableOutlets'] =
-      instance.serviceableOutlets.map((e) => e.toJson()).toList();
+  writeNotNull('serviceableOutlets',
+      instance.serviceableOutlets?.map((e) => e.toJson()).toList());
   return val;
 }
 
@@ -65,6 +65,7 @@ OutletModel _$OutletModelFromJson(Map<String, dynamic> json) => OutletModel(
       menuSections: json['menuSections'] == null
           ? []
           : _menuFromJson(json['menuSections'] as List),
+      brand: _parseBrand(json['restaurantId']),
       certifications: (json['certifications'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -92,8 +93,6 @@ Map<String, dynamic> _$OutletModelToJson(OutletModel instance) {
     },
     'acceptingOrder': instance.isAcceptingOrder,
     'menuSections': instance.menuSections.map((e) => e.toJson()).toList(),
-    'certifications': instance.certifications,
-    'isOpened': instance.isOpened,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -102,6 +101,9 @@ Map<String, dynamic> _$OutletModelToJson(OutletModel instance) {
     }
   }
 
+  writeNotNull('restaurantId', instance.brand?.toJson());
+  val['certifications'] = instance.certifications;
+  val['isOpened'] = instance.isOpened;
   writeNotNull('rating', instance.rating);
   writeNotNull('ratingCount', instance.ratingCount);
   writeNotNull('distanceDelta', instance.distanceDelta);

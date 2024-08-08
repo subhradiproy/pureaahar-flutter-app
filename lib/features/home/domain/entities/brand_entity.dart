@@ -36,6 +36,7 @@ sealed class Outlet with _$Outlet {
     required String outletAddress,
     required List<String> filterTags,
     required ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
+    Brand? parentBrand,
     @Default(false) bool isAcceptingOrder,
     String? rating,
     @Default(<MenuSection>[]) List<MenuSection> menus,

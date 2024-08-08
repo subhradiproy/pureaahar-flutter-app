@@ -301,6 +301,7 @@ mixin _$Outlet {
   List<String> get filterTags => throw _privateConstructorUsedError;
   ({TimeOfDay fromTime, TimeOfDay toTime}) get timing =>
       throw _privateConstructorUsedError;
+  Brand? get parentBrand => throw _privateConstructorUsedError;
   bool get isAcceptingOrder => throw _privateConstructorUsedError;
   String? get rating => throw _privateConstructorUsedError;
   List<MenuSection> get menus => throw _privateConstructorUsedError;
@@ -323,12 +324,15 @@ abstract class $OutletCopyWith<$Res> {
       String outletAddress,
       List<String> filterTags,
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
+      Brand? parentBrand,
       bool isAcceptingOrder,
       String? rating,
       List<MenuSection> menus,
       bool isOpen,
       int? ratingCount,
       double? distanceDelta});
+
+  $BrandCopyWith<$Res>? get parentBrand;
 }
 
 /// @nodoc
@@ -349,6 +353,7 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
     Object? outletAddress = null,
     Object? filterTags = null,
     Object? timing = null,
+    Object? parentBrand = freezed,
     Object? isAcceptingOrder = null,
     Object? rating = freezed,
     Object? menus = null,
@@ -377,6 +382,10 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
           ? _value.timing
           : timing // ignore: cast_nullable_to_non_nullable
               as ({TimeOfDay fromTime, TimeOfDay toTime}),
+      parentBrand: freezed == parentBrand
+          ? _value.parentBrand
+          : parentBrand // ignore: cast_nullable_to_non_nullable
+              as Brand?,
       isAcceptingOrder: null == isAcceptingOrder
           ? _value.isAcceptingOrder
           : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
@@ -403,6 +412,18 @@ class _$OutletCopyWithImpl<$Res, $Val extends Outlet>
               as double?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BrandCopyWith<$Res>? get parentBrand {
+    if (_value.parentBrand == null) {
+      return null;
+    }
+
+    return $BrandCopyWith<$Res>(_value.parentBrand!, (value) {
+      return _then(_value.copyWith(parentBrand: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -418,12 +439,16 @@ abstract class _$$OutletImplCopyWith<$Res> implements $OutletCopyWith<$Res> {
       String outletAddress,
       List<String> filterTags,
       ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
+      Brand? parentBrand,
       bool isAcceptingOrder,
       String? rating,
       List<MenuSection> menus,
       bool isOpen,
       int? ratingCount,
       double? distanceDelta});
+
+  @override
+  $BrandCopyWith<$Res>? get parentBrand;
 }
 
 /// @nodoc
@@ -442,6 +467,7 @@ class __$$OutletImplCopyWithImpl<$Res>
     Object? outletAddress = null,
     Object? filterTags = null,
     Object? timing = null,
+    Object? parentBrand = freezed,
     Object? isAcceptingOrder = null,
     Object? rating = freezed,
     Object? menus = null,
@@ -470,6 +496,10 @@ class __$$OutletImplCopyWithImpl<$Res>
           ? _value.timing
           : timing // ignore: cast_nullable_to_non_nullable
               as ({TimeOfDay fromTime, TimeOfDay toTime}),
+      parentBrand: freezed == parentBrand
+          ? _value.parentBrand
+          : parentBrand // ignore: cast_nullable_to_non_nullable
+              as Brand?,
       isAcceptingOrder: null == isAcceptingOrder
           ? _value.isAcceptingOrder
           : isAcceptingOrder // ignore: cast_nullable_to_non_nullable
@@ -507,6 +537,7 @@ class _$OutletImpl implements _Outlet {
       required this.outletAddress,
       required final List<String> filterTags,
       required this.timing,
+      this.parentBrand,
       this.isAcceptingOrder = false,
       this.rating,
       final List<MenuSection> menus = const <MenuSection>[],
@@ -533,6 +564,8 @@ class _$OutletImpl implements _Outlet {
   @override
   final ({TimeOfDay fromTime, TimeOfDay toTime}) timing;
   @override
+  final Brand? parentBrand;
+  @override
   @JsonKey()
   final bool isAcceptingOrder;
   @override
@@ -556,7 +589,7 @@ class _$OutletImpl implements _Outlet {
 
   @override
   String toString() {
-    return 'Outlet(id: $id, location: $location, outletAddress: $outletAddress, filterTags: $filterTags, timing: $timing, isAcceptingOrder: $isAcceptingOrder, rating: $rating, menus: $menus, isOpen: $isOpen, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
+    return 'Outlet(id: $id, location: $location, outletAddress: $outletAddress, filterTags: $filterTags, timing: $timing, parentBrand: $parentBrand, isAcceptingOrder: $isAcceptingOrder, rating: $rating, menus: $menus, isOpen: $isOpen, ratingCount: $ratingCount, distanceDelta: $distanceDelta)';
   }
 
   @override
@@ -572,6 +605,8 @@ class _$OutletImpl implements _Outlet {
             const DeepCollectionEquality()
                 .equals(other._filterTags, _filterTags) &&
             (identical(other.timing, timing) || other.timing == timing) &&
+            (identical(other.parentBrand, parentBrand) ||
+                other.parentBrand == parentBrand) &&
             (identical(other.isAcceptingOrder, isAcceptingOrder) ||
                 other.isAcceptingOrder == isAcceptingOrder) &&
             (identical(other.rating, rating) || other.rating == rating) &&
@@ -591,6 +626,7 @@ class _$OutletImpl implements _Outlet {
       outletAddress,
       const DeepCollectionEquality().hash(_filterTags),
       timing,
+      parentBrand,
       isAcceptingOrder,
       rating,
       const DeepCollectionEquality().hash(_menus),
@@ -616,6 +652,7 @@ abstract class _Outlet implements Outlet {
       required final String outletAddress,
       required final List<String> filterTags,
       required final ({TimeOfDay fromTime, TimeOfDay toTime}) timing,
+      final Brand? parentBrand,
       final bool isAcceptingOrder,
       final String? rating,
       final List<MenuSection> menus,
@@ -633,6 +670,8 @@ abstract class _Outlet implements Outlet {
   List<String> get filterTags;
   @override
   ({TimeOfDay fromTime, TimeOfDay toTime}) get timing;
+  @override
+  Brand? get parentBrand;
   @override
   bool get isAcceptingOrder;
   @override
